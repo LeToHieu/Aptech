@@ -14,6 +14,7 @@ namespace InterfaceExample
         public async Task GetFilmsFromApi(IFilmManagement iFilmManagement) {
             try
             {
+                //buoi sau se sua thanh timeout
                 var uri = new Uri(URL_FILMS);
                 RestApiClient client = new RestApiClient(uri);                
                 HttpResponseMessage response = await client.SendJsonRequest(HttpMethod.Get, uri, null);
