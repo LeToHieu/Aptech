@@ -21,12 +21,12 @@ void sum() {
 void minus() {			
 	printf("x = "); scanf("%d", &x);
 	printf("y = "); scanf("%d", &y);
-	printf("Hieu = %d", x - y);
+	printf("Hieu = %d", abs(x - y)); //abs = absolute = lay gia tri tuyet doi
 }
 int main(){	
 	//chua noi gi den tinh toan, hay lam menu da
 	char choice;	
-	while(choice != 'c' && choice != 'C') {
+	while(choice != 'c' && choice != 'C' && choice != '3') {
 		printf("1.Tinh tong\n");
 		printf("2.Tinh hieu\n");			
 		printf("3.Ket thuc\n");			
@@ -42,10 +42,13 @@ int main(){
 				minus();		
 				break;
 			case '3':
-				printf("3.Ket thuc\n");			
+				printf("3.Ket thuc\n");							
 				break;
 			default:
 				break;
+		}
+		if(choice == '3'){
+			continue;
 		}
 		printf("Ban co muon ket thuc(c,k) ?\n");
 		choice = getInputOneCharacter();
