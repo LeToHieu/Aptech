@@ -53,6 +53,28 @@ float getMaxEvenPositiveValue(){
 	}
 	return max;
 }
+void testBreakAndContinue(){
+	//important !, continue = bypass, break: quit
+	int i;	
+	for(i = 0; i < 100; i++){
+		if(i % 2 != 0) {
+			//continue;
+			break;
+		}
+		printf("i = %d\n", i);
+	}
+}
+void testGoTo() {
+	//Donot use in your project !
+	int age;
+	ENTER_AGAIN: printf("Enter age to come here(must be >=18): ");
+	scanf("%d", &age);
+	if(age < 18) {
+		goto ENTER_AGAIN;
+	} else {
+		printf("Please come in\n");
+	}
+}
 void createMenu() {
 	int choice;	
 	while(choice != 7) {
@@ -78,14 +100,15 @@ void createMenu() {
 			printf("Min value is : %0.2f\n\n", min);			
 		}else if(choice == 5) {
 			float max = getMaxEvenPositiveValue();
-			printf("MaxEvenPositiveValue is : %0.2f\n\n", max);			
-			
+			printf("MaxEvenPositiveValue is : %0.2f\n\n", max);						
 		}else if(choice == 6) {
 			printf("Ban chon 6\n");			
-		}
+		}		
 	}	
 }
 int main() {
-	createMenu();
+	//createMenu();
+	//testGoTo();//donot use in your project !
+	testBreakAndContinue();
 	return 0;
 }
