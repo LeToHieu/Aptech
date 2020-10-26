@@ -69,18 +69,16 @@ void showListOfMobiles() {
 int sum(int* x, int* y) {
 	return *x + *y;
 }
-void doSomething(int z) {
-	z = 222;
-	printf("z = %d\n", z);
+
+
+void doSomething(int* z) { //call by reference
+	printf("Address of z is : %p\n", z);
+	*z = 222;		
 }
-//Moi khai bao kieu, chua co du lieu
-int main(int argc, char *argv[]) {
-	//testSomeStructs();
-	// inputSomeMobiles();
-	// showListOfMobiles();
+void sum2NumbersUsingPointer() {
 	//Pointer basics
 	int* x = (int *)malloc(2 * sizeof(int));
-	printf("Address of x is : %p", x);
+	printf("\nAddress of x is : %p", x);
 	*x = 12;
 	*(x + 1) = 333;
 	//Must allocate data("memory allocation")	
@@ -91,9 +89,26 @@ int main(int argc, char *argv[]) {
 	printf("Enter a = ");scanf("%d", a);
 	printf("Enter b = ");scanf("%d", b);
 	printf("Sum 2 and 3 is : %d", sum(a, b));
+}
+int main(int argc, char *argv[]) {
+	//testSomeStructs();
+	// inputSomeMobiles();
+	// showListOfMobiles();
+	//sum2NumbersUsingPointer();	
 	int z = 111;
-	doSomething(z);
+	printf("Address of z is : %p\n", &z);
+	doSomething(&z);
 	printf("z = %d\n", z);
+	float a = 120;
+	float* b = &a;	
+	float* c = b;	
+	printf("\naddress of a = %p", &a);
+	// printf("value AT b = %f", *b);
+	//b = NULL;
+	//printf("\nvalue of b = %p", b);	
+	printf("\nvalue of c = %p\n", c);
+	*b = 333;
+	printf("value of a = %f", a); //333 ?
 	return 0;
 }
 
