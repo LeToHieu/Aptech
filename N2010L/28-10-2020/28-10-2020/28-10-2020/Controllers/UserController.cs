@@ -10,7 +10,11 @@ namespace _28_10_2020.Controllers
 {
     public class UserController : Controller
     {
-        private MyDBContext myDBContext;
+        private readonly MyDBContext myDBContext;
+        public UserController(MyDBContext myDBContext)
+        {
+            this.myDBContext = myDBContext;
+        }
         public IActionResult Index()
         {
             return View();
@@ -19,12 +23,10 @@ namespace _28_10_2020.Controllers
             //ViewData["name"] = "Hoang";//Hastable = Dictionary 
             ViewBag.name = name;
             ViewBag.age = age;
-            
-            using (myDBContext = new MyDBContext()) {
-                var firstUser = myDBContext.Users.FirstOrDefault();
-                Console.WriteLine("xxx");
-            }
-                return View();
+
+            var firstUser = myDBContext.Users.FirstOrDefault();
+            Console.WriteLine("xxx");
+            return View();
         }
 
         private object CreateHostBuilder(object args)
