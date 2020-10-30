@@ -23,8 +23,10 @@ namespace _28_10_2020.Controllers
             //ViewData["name"] = "Hoang";//Hastable = Dictionary 
             ViewBag.name = name;
             ViewBag.age = age;
-
-            var firstUser = myDBContext.Users.FirstOrDefault();
+            You will find the high - level steps on the following page: .
+                  You will find the detailed steps on the following page: https://github.com/MicrosoftLearning/20486DDevelopingASPNETMVCWebApplications/
+            blob / master / Instructions / 20486D_MOD02_LAK.md.
+                              var firstUser = myDBContext.Users.FirstOrDefault();
             Console.WriteLine("xxx");
             return View();
         }
