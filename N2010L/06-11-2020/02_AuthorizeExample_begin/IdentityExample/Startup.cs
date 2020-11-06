@@ -7,6 +7,7 @@ using IdentityExample.Middleware;
 using IdentityExample.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +17,7 @@ namespace IdentityExample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDefaultIdentity<Student>(options =>
+            services.AddIdentity<Student, IdentityRole>(options =>
            {
                options.Password.RequireDigit = true;
                options.Password.RequiredLength = 7;
@@ -32,25 +33,27 @@ namespace IdentityExample
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, StudentContext studentContext)
+        public void Configure(IApplicationBuilder app, 
+            IWebHostEnvironment env, 
+            StudentContext studentContext)
         {
             studentContext.Database.EnsureDeleted();
             studentContext.Database.EnsureCreated();
-
             app.UseStaticFiles();
-
-            app.UseAuthentication();
-
-            app.UseNodeModules(env.ContentRootPath);
-
-            app.UseMvc(routes =>
+            app.UseNodeModules(env.ContentRootPath);            
+            app.UseRouting();
+            app.UseAuthentication();            
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                //endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(
                     name: "StudentRoute",
-                    template: "{controller}/{action}/{id?}",
+                    pattern: "{controller}/{action}/{id?}",
                     defaults: new { controller = "Student", action = "Index" },
-                    constraints: new { id = "[0-9]+" });
+                    constraints: new { id = "[0-9]+" });                
+
             });
+
         }
     }
 }
