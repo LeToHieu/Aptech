@@ -1,20 +1,31 @@
 ﻿
 
-function onButtonClick(btn) {
-    var x = $(btn).data('assigned-x');
-    var y = $(btn).data('assigned-y');
-    //$(btn).toggleClass('blue red');
-    connection.invoke("SwapColor", x, y);
-}
+"use strict";
 var connection = new signalR.HubConnectionBuilder()
     .withUrl("squareshub")
-    .build();
+    .build()
 
 connection.on("SwapSquareColor", (x, y) => {
-    $('#' + x + y).toggleClass('blue red');
+    debugger
+    $('#' + x + y).toggleClass('blue red')
 });
 
-connection.start();
+
+connection.start().then(function () {
+    debugger
+}).catch(function (err) {
+    debugger
+    return console.error(err.toString());
+});
+
+function onButtonClick(btn) {    
+    let x = btn.dataset.assignedX;
+    let y = btn.dataset.assignedY;
+    //$(btn).toggleClass('blue red');
+    debugger
+    connection.invoke("SwapColor", x, y)//notify to server
+}
+
 
 // SIG // Begin signature block
 // SIG // MIIdjAYJKoZIhvcNAQcCoIIdfTCCHXkCAQExCzAJBgUr

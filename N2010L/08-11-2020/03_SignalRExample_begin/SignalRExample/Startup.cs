@@ -16,29 +16,37 @@ namespace SignalRExample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSignalR();
             services.AddMvc();
-            
+            services.AddSingleton<ISquareManager, SquareManager>();
+            services.AddSignalR();
         }
         
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseStaticFiles();
+            /*
             app.UseSignalR(routes =>
             {
                 routes.MapHub<SquaresHub>("/squareshub");
             });
-
+            */                        
+            app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapDefaultControllerRoute();
+                endpoints.MapHub<SquaresHub>("/squareshub");//SignalR                
                 endpoints.MapControllerRoute(
                     name: "Default",
                 pattern: "{controller}/{action}",
                 defaults: new { controller = "Square", action = "Index" });
+                
 
             });
-                        
+            /*
+            app.UseEndpoints(endpoints =>
+            {
+                
+            });
+            */
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");
