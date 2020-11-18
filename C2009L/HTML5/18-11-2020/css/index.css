@@ -33,11 +33,36 @@
     height: 50px;
     width: 150px;
     color: white;
-    background-color: yellow !important;
+    /*background-color: yellow !important; */
+    background-color:salmon;
     border-width: 3px;
     margin-right: 20px;
     /* margin: 100px 10px 100px 0px; top right bottom left */
     border-radius: 25px;
     border-style: solid;
     border-color: red;
+}
+
+#tableSong, td, th {
+    border: 1px 
+    solid green;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+#tableSong {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}
+td,th {
+    padding: 10px;
+}
+th {
+    background-color:brown;
+    color: aliceblue;
+}
+.myinput {
+    height: 35px;
+    display: block;
+    margin-bottom: 20px;
 }
