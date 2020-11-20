@@ -1,4 +1,23 @@
 var x = 10
+var y = x
+console.log(`gia tri y = ${y}`)
+x = 11
+console.log(`y = ${y}`)
+var person1 = {
+    name: 'Hoang',
+    age: 18
+}
+//var person2 = person1
+//clone an object 
+var person2 = {...person1}
+person1.age = 19
+console.log(`person1 = ${JSON.stringify(person1)}`)
+console.log(`person2 = ${JSON.stringify(person2)}`)
+person1 = person2
+console.log('after kill p1')
+console.log(`person1 = ${JSON.stringify(person1)}`)
+console.log(`person2 = ${JSON.stringify(person2)}`)
+
 console.log(`Gia tri cua x la : ${x}`)
 function sum(x, y) {
     return x + y
