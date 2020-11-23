@@ -36,30 +36,68 @@ namespace WindowsFormsApp
                 return connection;
             }            
         }
-        public List<Employee> GetEmployees(int departmentId) {
-            List<Department> departments = new List<Department>();
+        public Department GetDepartmentById(int departmentId)
+        {
+            Department department = null;
             try
             {
-                string sql = "SELECT * FROM Departments";
+                string sql = $"SELECT * FROM Departments WHERE DeptID = {departmentId}";//SQL Injection
                 SqlCommand command = new SqlCommand(sql, GetConnection());
                 connection.Open();
                 using (SqlDataReader sqlDataReader = command.ExecuteReader())
                 {
                     while (sqlDataReader.Read())
                     {
-                        departments.Add(new Department()
+                        return new Department()
                         {
                             DepartmentID = Convert.ToInt32(sqlDataReader["DeptID"]),
-                            DepartmentName = sqlDataReader["DeptName"].ToString(),
-                        });
+                            DepartmentName = sqlDataReader["DeptName"].ToString()
+                        };
+                        
                     }
                 }
-                return departments;
+                return department;
             }
             catch (Exception e)
             {
                 Console.WriteLine($"exception = {e.Message}");
-                return departments;
+                return department;
+            }
+            finally
+            {
+                connection.Close();                
+            }
+        }
+        public List<Employee> GetEmployees(int departmentId) {
+            List<Employee> employees = new List<Employee>();
+            try
+            {
+                string sql = $"SELECT * FROM Employees WHERE DeptID = {departmentId}";//SQL Injection
+                SqlCommand command = new SqlCommand(sql, GetConnection());                
+                connection.Open();
+                using (SqlDataReader sqlDataReader = command.ExecuteReader())
+                {
+                    while (sqlDataReader.Read())
+                    {                        
+                        employees.Add(new Employee()
+                        {
+                            EmployeeID = Convert.ToInt32(sqlDataReader["EmployeeID"]),
+                            EmployeeName = sqlDataReader["EmployeeName"].ToString(),
+                            DepartmentID = Convert.ToInt32(sqlDataReader["DeptID"]),
+                            Gender = sqlDataReader["Gender"].ToString(),
+                            BirthDate = Convert.ToDateTime(sqlDataReader["BirthDate"]),
+                            Telephone = sqlDataReader["Tel"].ToString(),
+                            Address = sqlDataReader["Address"].ToString(),                            
+                        });
+                        Console.WriteLine("Hello");
+                    }
+                }
+                return employees;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"exception = {e.Message}");
+                return employees;
             }
             finally
             {
@@ -67,7 +105,7 @@ namespace WindowsFormsApp
             }
         }
         public List<Department> GetAllDepartments() {
-            List<Department> departments = new List<Department>();
+            List<Department> departments = new List<Department>();            
             try
             {
                 string sql = "SELECT * FROM Departments";

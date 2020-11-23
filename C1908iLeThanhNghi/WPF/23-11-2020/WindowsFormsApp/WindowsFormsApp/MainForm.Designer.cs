@@ -135,6 +135,7 @@
             this.listViewEmployees.Size = new System.Drawing.Size(844, 668);
             this.listViewEmployees.TabIndex = 4;
             this.listViewEmployees.UseCompatibleStateImageBehavior = false;
+            this.listViewEmployees.SelectedIndexChanged += new System.EventHandler(this.listViewEmployees_SelectedIndexChanged);
             // 
             // btnInsert
             // 
