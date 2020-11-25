@@ -10,7 +10,7 @@
 <body>
     <center>
         <p id="headerText">User Registration</p>
-        <form action="#" method="GET">
+        <form action="#" onsubmit="validateForm()" >
             <table id="tableRegister">
                 <tr>
                     <td>User Id</td>
@@ -43,18 +43,24 @@
                     <td>Existing email Id</td>
                     <td><input 
                         required
+                        onchange="if(this.checkValidity()) 
+                            form.confirmEmail.pattern = this.value;"
                         type="email" name="existingEmail" class="inputInfo" id="existingEmail"></td>
                 </tr>
                 <tr>
                     <td>Confirm Existing email Id</td>
                     <td><input 
                         required
+                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                        onchange="this.setCustomValidity(this.validity.patternMismatch 
+                        ? 'Please enter the same Email as above' : '');"
                         type="email" name="confirmEmail" class="inputInfo" id="confirmEmail"></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td style="float: left; margin-left: 10px;">
-                        <button type="submit">Submit</button>
+                        <button type="submit"
+                        >Submit</button>
                         <button type="reset">Reset</button>
                     </td>
                 </tr>
