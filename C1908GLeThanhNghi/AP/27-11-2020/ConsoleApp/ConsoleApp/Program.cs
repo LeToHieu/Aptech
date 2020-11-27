@@ -20,7 +20,7 @@ namespace ConsoleApp
                     string name = Console.ReadLine();
 
                     Console.WriteLine("Enter DOB(dd/mm/yyyy): ");
-                    String[] inputStrings = Console.ReadLine().Trim().Split();
+                    String[] inputStrings = Console.ReadLine().Trim().Split("/");
 
                     Console.WriteLine("Enter skills(eg: c#, html, js, swift)");
                     string skills = Console.ReadLine().Trim();
@@ -35,14 +35,14 @@ namespace ConsoleApp
                     {
                         DateOfBirth = dateOfBirth,                        
                         Skills = skills
-                    });
-                    Console.WriteLine("Enter an age to filter: ");
-                    int underAge = Convert.ToInt32(Console.ReadLine());
-                    myemployee.ShowFilterInfo(underAge);
+                    });                    
                 }
                 catch (Exception ex) {
                     Console.Error.WriteLine($"Cannot insert new Programmer, Error : {ex.ToString()}");
                 }
+                Console.WriteLine("Enter an age to filter: ");
+                int underAge = Convert.ToInt32(Console.ReadLine());
+                myemployee.ShowFilterInfo(underAge);
             }
         }
     }

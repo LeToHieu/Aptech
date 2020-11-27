@@ -11,7 +11,7 @@ namespace ConsoleApp
         public HiredProgrammers(int capacity)
         {
             _capacity = capacity;
-            HPGM = new List<Programmer>(capacity);
+            HPGM = new List<Programmer>();
         }
         public void AddNew(Programmer prog)
         {
@@ -19,6 +19,7 @@ namespace ConsoleApp
             {
                 throw new Exception("Cannot add Programmer, out of capacity");
             }
+            HPGM.Add(prog);
         }
         public int ShowFilterInfo(int underAge)
         {
