@@ -193,6 +193,9 @@ table {
   width: 90%;
   margin-bottom: 20px;
 }
-#pageName {
+#divpageName {
   height: 100vh;
+}
+iframe {
+  overflow: hidden;
 }
