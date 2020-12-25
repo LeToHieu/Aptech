@@ -34,7 +34,8 @@ namespace ExamApp
                 connection.Open();
                 DataSet dataSet = new DataSet();
                 SqlDataReader sqlDataReader = command.ExecuteReader();
-                while (sqlDataReader.Read()) {
+                while (sqlDataReader.Read())
+                {
                     int departmentId = Convert.ToInt32(sqlDataReader[0]);
                     string departmentName = sqlDataReader[1].ToString();
                     Department department = new Department()
@@ -47,18 +48,20 @@ namespace ExamApp
                 connection.Close();
                 return departments;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.Error.WriteLine($"Connect DB error : {ex.ToString()}");
                 return departments;
             }
         }
-        public List<Employee> getEmployees(int departmentId)
+        public List<Employee> getEmployees(int departmentId = 1)
         {
             List<Employee> employees = new List<Employee>();
             try
             {
-                connection = new SqlConnection(CONNECTION_STRING);
-                string query = @"SELECT EmployeeID, EmployeeName, DepartmentID, Gender, BirthDate, Telephone, Address FROM Employees";
+                connection = new SqlConnection(CONNECTION_STRING);                
+                string query = @"SELECT EmployeeID, EmployeeName, DepartmentID, Gender, BirthDate, Telephone, Address "+
+                                @"FROM Employees WHERE DepartmentID = "+ departmentId.ToString();
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 DataSet dataSet = new DataSet();
@@ -69,15 +72,15 @@ namespace ExamApp
                     string employeeName = sqlDataReader[1].ToString();
                     int departmentID = Convert.ToInt32(sqlDataReader[2]);
                     int gender = Convert.ToInt32(sqlDataReader[3]);
-                    DateTime birthDate = Convert.ToDateTime(sqlDataReader[4])
+                    DateTime birthDate = Convert.ToDateTime(sqlDataReader[4]);
                     string telephone = sqlDataReader[5].ToString();
                     string address = sqlDataReader[6].ToString();
-                    
+
                     Employee employee = new Employee()
                     {
                         EmployeeID = employeeID,
-                        EmployeeName = employeeName,                        
-                        DepartmentId = departmentId,
+                        EmployeeName = employeeName,
+                        DepartmentID = departmentId,
                         Gender = gender,
                         BirthDate = birthDate,
                         Telephone = telephone,

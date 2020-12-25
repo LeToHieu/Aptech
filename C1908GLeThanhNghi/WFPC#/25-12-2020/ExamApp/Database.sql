@@ -16,9 +16,7 @@ CREATE TABLE Departments(
 	DepartmentID INT PRIMARY KEY IDENTITY(1,1),
 	DepartmentName NVARCHAR(400) NOT NULL	
 );
-INSERT INTO Departments(DepartmentName) VALUES(N'Sales');
-INSERT INTO Departments(DepartmentName) VALUES(N'Accounts');
-INSERT INTO Departments(DepartmentName) VALUES(N'Technical Support');
+
 ALTER TABLE Employees
 ADD CONSTRAINT FK_DepartmentEmployee
 FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID);
@@ -26,5 +24,4 @@ FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID);
 ALTER TABLE Employees 
 DROP CONSTRAINT IF EXISTS FK_DepartmentEmployee;
 
-SELECT DepartmentID, DepartmentName FROM Departments;
-SELECT EmployeeID, EmployeeName, DepartmentID, Gender, BirthDate, Telephone, Address FROM Employees;
+SELECT * FROM Departments;
