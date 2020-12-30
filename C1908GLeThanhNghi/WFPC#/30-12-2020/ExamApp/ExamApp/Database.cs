@@ -16,7 +16,9 @@ namespace ExamApp
                                                     @"UID=sa;password=123456";
         private SqlConnection connection;
         private static Database instance;
-        private Database() { }
+        private Database() {
+            //lam mot so khoi tao nao do 
+        }
         public static Database GetInstance()
         {
             if (instance == null)
