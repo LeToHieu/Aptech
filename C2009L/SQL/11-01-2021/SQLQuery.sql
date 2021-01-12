@@ -256,20 +256,37 @@ END
 UPDATE Student SET ClassId = 3
 WHERE StudentId = 4;
 
+DROP TRIGGER TG_Result_Insert;
 CREATE TRIGGER TG_Result_Insert
 ON Result 
 AFTER INSERT AS
 DECLARE @Count AS INT
+DECLARE @ErrorMessage AS NVARCHAR(300)
 BEGIN
 SET @Count = (SELECT COUNT(*) FROM inserted WHERE Mark < 0);
 IF @Count > 0
 BEGIN
-	BEGIN RAISERROR(CONCAT('Cannot insert Mark < 0, there are : ',cast(@Count AS VARCHAR), 16, 2);
+	SET @ErrorMessage = 'Cannot insert Mark < 0, there are : ' + cast(@Count AS NVARCHAR) + ' invalid records';
+	BEGIN RAISERROR(@ErrorMessage, 16, 2);
 		ROLLBACK;
 	END
 END 
 END
 
+DELETE FROM Result WHERE StudentId = 5 AND SubjectId = 4;
 SELECT * FROM Result;
-INSERT INTO Result(StudentId, SubjectId, Mark)
-VALUES(5, 4, -2);
+INSERT INTO Result(StudentId, SubjectId, Mark) VALUES
+(5, 4, -2),
+(5, 5, -1);
+
+DROP TRIGGER TG_Subject_Update;
+CREATE TRIGGER TG_Subject_Update 
+ON Subject AFTER UPDATE AS 
+BEGIN
+	IF UPDATE(SubjectName)
+		BEGIN
+			BEGIN RAISERROR('You don''t update this column', 16, 3);
+				ROLLBACK;
+			END
+		END
+END
