@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WAD_NguyenVanA;
+using PagedList;
 
 namespace WAD_NguyenVanA.Controllers
 {
@@ -17,10 +18,42 @@ namespace WAD_NguyenVanA.Controllers
 
         // GET: Movies
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
             var movies = db.Movies.Include(m => m.Genre);
-            return View(movies.ToList());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(m => m.Title.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    movies = movies.OrderByDescending(m => m.Title);
+                    break;
+                case "Date":
+                    movies = movies.OrderBy(m => m.ReleaseDate);
+                    break;
+                
+                default:
+                    movies = movies.OrderByDescending(m => m.Title);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(movies.ToPagedList(pageNumber, pageSize));       
         }
 
         // GET: Movies/Details/5
