@@ -11,7 +11,7 @@ class SchoolBook extends Book {
 
                                 }
     public function getTotalPrice() {
-        if($this->state == "new") {
+        if($this->state == BookState::OLD) {
             return $this->getAmount() * $this->getUnitPrice();
         } else {
             return $this->getAmount() * $this->getUnitPrice() * 0.5;

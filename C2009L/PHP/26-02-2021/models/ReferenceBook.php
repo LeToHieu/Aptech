@@ -11,5 +11,8 @@ class ReferenceBook extends Book {
         $this->tax = $tax; //test thu parent::__construct
 
                                 }
+    public function getTotalPrice() {
+        return $this->getAmount() * $this->getUnitPrice() * $this->tax;
+    }
 }
 ?>
