@@ -57,4 +57,5 @@ public abstract class Product {
     //abstract => phai co lop con implement ho
     //da abstract thi KO private
     public abstract SellableStatus getSellableStatus();
+
 }
