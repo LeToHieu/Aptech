@@ -21,14 +21,35 @@
         // print_r($GLOBALS["x"]);
         //in ca doi tuong $GLOBALS ra
         print_r($GLOBALS);
-        echo "base salary of mr Aaa= ".Employee::$BASE_SALARY;
+        //echo "base salary of mr Aaa= ".Employee::$BASE_SALARY;
         $employeeA = new Employee("nv a", 18);
         $employeeB = new Employee("nv b", 19);
         
         //neu muon them doi tuong => employeeA, B, C....1000 nhan vien
         //1000 nhan vien nay co thuoc tinh BASE_SALARY giong nhau 
 
-        echo "server's name = ".Settings::SERVER_NAME.", port is : ".Settings::PORT;
+        //echo "server's name = ".Settings::SERVER_NAME.", port is : ".Settings::PORT;
+        //var_dump($_SERVER);
+        // phpinfo();
+        //=== va == khac nhau ntn ?
+        //== so sanh bang nhau ve "noi dung"
+        //=== so sanh bang nhau ve "noi dung" VA "kieu"
+        $x = "123";
+        $y = "123";
+        if($x === $y) {
+            echo "BANG nhau";
+        }
+        //=== tot hon hay == ?
+        //=== chat che hon 
+        //tren thuc te thi tuy tung truong hop ma dung ===, ==
+        $age = 20;
+        $grade = 9.0;
+        $isYoung = $age > 20 and $age < 4;
+        $goodAtSchool = $grade > 8.0;
+        if($isYoung and $goodAtSchool) {
+            echo "ok !";
+        }
+
     ?>
 </body>
 </html>
