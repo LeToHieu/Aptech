@@ -10,7 +10,7 @@
     <?php
         require "./Database/Database.php";
         $database = new Database();
-        
+        $database->createDatabaseAndTables();
     ?>
 </body>
 </html>
