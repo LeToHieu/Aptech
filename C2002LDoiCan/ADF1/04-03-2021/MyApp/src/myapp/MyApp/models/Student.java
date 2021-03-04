@@ -16,6 +16,8 @@ public class Student extends Person {
     public Student(String name, String address) {
         super(name, address);
     }
+
+    Student() {}
     public void inputMarks(){        
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter mark1: ");

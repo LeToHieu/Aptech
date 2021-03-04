@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Employee extends Person{
     private Float salary;
     private String position;
+    Employee() {}
     public Employee(String name, String address) {
         super(name, address);
     }
