@@ -78,8 +78,9 @@ class Database {
             $sql = "INSERT INTO abc12users(USERNAME, PASSWORD_HASH, PHONE)".
                     " VALUES(:username, :password, :phone)";
             $stmt = $this->connection->prepare($sql);
+            $hash_password = sha1($password);            
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':password', $hash_password);
             $stmt->bindParam(':phone', $phone);
             $stmt->execute();
             
@@ -95,6 +96,93 @@ class Database {
             //echo "Error createDatabaseAndTables: ".$exception->getMessage();
             //return new Response(FALSE, 300, $exception->getMessage());//cach 1
             //cach 2
+            return array("result" => FALSE, 
+                        "errorCode" => 300, 
+                        "errorMessage" => $exception->getMessage()
+                    );
+        }
+    }
+    public function loginUser($username, $password){
+        //dang ky thanh cong => tra ve true
+        //neu ko thanh cong, tra ve false
+        try {
+            //check ton tai
+            $sql = "SELECT COUNT(*) AS numberOfUsers FROM abc12users".
+                   " WHERE USERNAME = :username AND PASSWORD_HASH = :password";
+            $hash_password = sha1($password);                    
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':password', $hash_password);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+            $resultSet = $stmt->fetchAll();
+            foreach ($resultSet as $row) {
+                $count = intval($row["numberOfUsers"]);
+                if($count > 0) {                    
+                    return array(   "result" => TRUE, 
+                                    "errorCode" => 400, 
+                                    "errorMessage" => "Login successfully" 
+                    );
+                }     
+            } 
+            return array(   "result" => FALSE, 
+                             "errorCode" => 301, 
+                             "errorMessage" => "Wrong username or password"
+                    );
+        }catch(PDOException $exception) {            
+            return array("result" => FALSE, 
+                        "errorCode" => 300, 
+                        "errorMessage" => $exception->getMessage()
+                    );
+        }
+    }
+    function generatePassword($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+    public function resetUserPassword($username, $phone){
+        //dang ky thanh cong => tra ve true
+        //neu ko thanh cong, tra ve false
+        try {
+            //check ton tai
+            $sql = "SELECT COUNT(*) AS numberOfUsers FROM abc12users".
+                   " WHERE USERNAME = :username AND PHONE = :phone";            
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':phone', $phone);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);                             
+            $stmt->execute();
+            $resultSet = $stmt->fetchAll();
+            foreach ($resultSet as $row) {
+                $count = intval($row["numberOfUsers"]);
+                if($count > 0) {                    
+                    //tu dong doi mat khau
+                    $sql = "UPDATE abc12users SET PASSWORD_HASH = :hash_password".
+                            " WHERE USERNAME = :username AND PHONE = :phone";
+                            $password = $this->generatePassword(4);//password dai 4 ky tu
+                            echo "new password: ".$password."<br>";
+                            $hash_password = sha1($password);   
+
+                            $stmt = $this->connection->prepare($sql);
+                            $stmt->bindParam(':hash_password', $hash_password);
+                            $stmt->bindParam(':username', $username);
+                            $stmt->bindParam(':phone', $phone);
+                            $stmt->execute();
+                    return array(   "result" => TRUE, 
+                                    "errorCode" => 400, 
+                                    "errorMessage" => "Reset successfully" 
+                    );
+                }     
+            } 
+            return array("result" => FALSE, 
+                             "errorCode" => 302, 
+                             "errorMessage" => "Wrong username or phone");
+        }catch(PDOException $exception) {            
             return array("result" => FALSE, 
                         "errorCode" => 300, 
                         "errorMessage" => $exception->getMessage()
