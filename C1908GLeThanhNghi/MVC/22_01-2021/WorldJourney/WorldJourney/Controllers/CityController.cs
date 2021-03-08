@@ -16,7 +16,7 @@ namespace WorldJourney.Controllers
         private IWebHostEnvironment _environment;
         public CityController(IData data, IWebHostEnvironment environment)
         {
-            //Dependency injection
+            //Dependency injection            
             _data = data;
             _environment = environment;
             _data.CityInitializeData();

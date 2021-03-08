@@ -22,13 +22,13 @@ namespace WorldJourney.Controllers
         }
         public IActionResult Index()
         {
-            ViewData["Page"] = "Search city";
+            ViewData["Page"] = "Search city";            
             return View();//Views/City/Index.cshtml
             //return RedirectToAction("Index", "City");
         }
         public IActionResult Details(int? id) {
             City city = _data.GetCityById(id);
-            ViewBag.Title = city.CityName;            
+            ViewBag.Title = city.CityName;               
             return View(city);//Views/City/Details.cshtml
             //View(@model)
         }

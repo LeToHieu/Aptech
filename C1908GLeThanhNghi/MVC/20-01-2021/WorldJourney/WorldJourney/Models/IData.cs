@@ -9,6 +9,6 @@ namespace WorldJourney.Models
     {
         List<City> CityList { get; set; }
         List<City> CityInitializeData();
-        City GetCityById(int? id);
+        City GetCityById(int? id);//? option                 
     }
 }
