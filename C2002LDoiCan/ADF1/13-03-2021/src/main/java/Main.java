@@ -1,6 +1,7 @@
 import main.aptech.Employee;
 import main.aptech.Manager;
 import main.aptech.Person;
+import main.aptech.PersonManager;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -8,6 +9,10 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
+        PersonManager personManager = new PersonManager();
+        personManager.setPersons();
+        personManager.getPersons();
+        /*
         ArrayList<Employee> employees = new ArrayList<>();
         for(int i = 0; i < 3; i++) {
             Employee eachEmployee = new Employee();
@@ -41,6 +46,6 @@ public class Main {
         for (Person person: persons) {
             person.display();
         }
-
+        */
     }
 }

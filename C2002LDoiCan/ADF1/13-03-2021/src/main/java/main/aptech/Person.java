@@ -32,10 +32,19 @@ public class Person {
     }
     public Person() {}
     public void input() {
+        System.out.println("Enter person's info:");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name: ");
         this.name = scanner.next();
         System.out.println("Enter age: ");
         this.age = scanner.nextInt();
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
