@@ -72,7 +72,7 @@ public class FileManager {
         return matcher.find();
     }
     private boolean checkEndComment(String string) {
-        Pattern pattern = Pattern.compile("\\*/[\s]$", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("\\*/[\s]*$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(string);
         return matcher.find();
     }
