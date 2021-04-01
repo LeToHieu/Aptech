@@ -16,7 +16,7 @@ namespace EAP_Music_NguyenVanA.Models
 
         public DataContext():base(CONNECTION_STRING)
         {
-            Database.SetInitializer<DataContext>(new DBInitializer());
+            Database.SetInitializer<DataContext>(new DBInitializer(this));
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -27,6 +27,12 @@ namespace EAP_Music_NguyenVanA.Models
 
     public class DBInitializer : DropCreateDatabaseIfModelChanges<DataContext>
     {
+        public DBInitializer(DataContext context)
+        {
+
+            this.Seed(context);
+        }
+
         protected override void Seed(DataContext context)
         {
             IList<Genre> genres = new List<Genre>();
@@ -39,7 +45,7 @@ namespace EAP_Music_NguyenVanA.Models
             genres.Add(new Genre() { GenreId = 8, GenreName = "Country" });
             genres.Add(new Genre() { GenreId = 9, GenreName = "Latin" });
             context.Genres.AddRange(genres);
-
+            context.SaveChanges();
             IList<Album> albums = new List<Album>();
                         
 
@@ -64,6 +70,7 @@ namespace EAP_Music_NguyenVanA.Models
             albums.Add(new Album() { AlbumId = 17, Title = "Los Duo", ReleaseDate = new DateTime(2015, 02, 10), Artist = "Joan Gabriel", GenreId = 9, Price = 7.99});
             albums.Add(new Album() { AlbumId = 18, Title = "They Don’t KNow", ReleaseDate = new DateTime(2016, 09, 09), Artist = "Jason Aldean", GenreId = 9, Price = 9.99});
             context.Albums.AddRange(albums);
+            context.SaveChanges();
             base.Seed(context);
         }
     }

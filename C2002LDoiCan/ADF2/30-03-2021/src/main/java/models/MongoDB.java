@@ -1,17 +1,26 @@
 package models;
-import com.mongodb.DB;
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
-import dev.morphia.Datastore;
-import dev.morphia.Morphia;
+ import com.mongodb.*;
+ import com.mongodb.client.*;
+ import com.mongodb.client.model.Filters;
 
-import java.lang.reflect.Array;
+ import com.mongodb.client.model.UpdateOptions;
+ import com.mongodb.client.result.*;
+ import org.bson.Document;
+ import org.bson.types.ObjectId;
+
+ import java.util.List;
+ import java.util.Arrays;
+ import java.util.ArrayList;
+
+ import static com.mongodb.client.model.Filters.*;
+ import static com.mongodb.client.model.Updates.*;
 import java.util.ArrayList;
 
 public class MongoDB {
-    public static final String MONGO_URL = "mongodb+srv://DESKTOP-7PS7HG8:27017";
-    public static final String DB_NAME = "test";
-    private Datastore datastore;
+    public static final String MONGO_URL = "mongodb+srv://hoangnd:hoangnd123456@cluster0.pjz6j.mongodb.net/myFirstDatabase";
+    //mongo "mongodb+srv://cluster0.pjz6j.mongodb.net/myFirstDatabase" --username hoangnd
+    //pass hoangnd123456
+    public static final String DB_NAME = "shop";
     private MongoDB() {}
     private static MongoDB instance;
     public static MongoDB getInstance(){
@@ -21,31 +30,45 @@ public class MongoDB {
         instance.getConnection();
         return instance;
     }
-    public Datastore getConnection() {
+    public MongoDatabase getConnection() {
         try {
-            Morphia morphia = new Morphia();
-            morphia.map(Film.class);
-            //morphia.mapPackage("models");
-            datastore = morphia.createDatastore(new MongoClient(MONGO_URL), DB_NAME);
-            //datastore.ensureIndexes();
-            return datastore;
+            MongoClient client = MongoClients.create(MONGO_URL);
+            MongoDatabase database = client.getDatabase(DB_NAME);
+            return database;
         }catch (Exception exception){
             System.err.println("Cannot connect to db.Error: "+exception.toString());
             return null;
         }
     }
+    /*
     public ArrayList<Film> getAllFilms() {
-        ArrayList<Film> films = (ArrayList<Film>)this.getConnection().createQuery(Film.class)
-          .field("title")
-          .contains("Learning Java")
-          .find()
-          .toList();
-        return films;
+
     }
+    */
+    public MongoCollection<Document> getAllFilms() {
+        try {
+
+            MongoCollection<Document> films = this.getConnection().getCollection("films");
+
+            MongoCursor<Document> cursor = films.find().iterator();
+            while(cursor.hasNext()) {
+                //cursor.next()
+                Document document = cursor.next();
+                String name = (String)document.get("name");
+                System.out.println("aa");
+            }
+            System.out.println("success");
+            return films;
+        }catch (Exception exception) {
+            System.err.println("cannot connect DB.Error: "+exception.toString());
+            return null;
+        }
+    }
+
     public void saveFilms(ArrayList<Film> films) {
         try {
             for (Film film: films) {
-                datastore.save(film);
+
             }
         }catch (Exception exception) {
             System.err.println("Cannot save to db.Error: "+exception.toString());

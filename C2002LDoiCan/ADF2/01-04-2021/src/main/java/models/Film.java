@@ -1,6 +1,11 @@
 package models;
-public class Film {
 
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+
+@Entity("films")
+public class Film {
+    @Id
     private String _id;
     private String vietnameseName;
     private String englishName;
