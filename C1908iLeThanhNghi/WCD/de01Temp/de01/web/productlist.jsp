@@ -8,9 +8,11 @@
     <body>
         <h1>Product list</h1>
         <%            
-            database.Database db = new database.Database();            
-            //out.println(db.sayHello());
-            db.getConnection();
+//            java.database.Database db = new java.database.Database();            
+//            //out.println(db.sayHello());
+//            db.getConnection();
+            String x = "aaa";
+            out.println("haha");
         %>
     <center>
         <span>Search</span>
