@@ -32,7 +32,7 @@
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 session.setAttribute("username",username); 
-                session.setAttribute("id",id); 
+//                session.setAttribute("id",id); 
                 if(username.equals("admin") && password.equals("admin")) {
                     response.sendRedirect("index.jsp");
                 }
@@ -41,20 +41,6 @@
                 }
             }        
         %>
-<!--        <div>
-            <%=Controllers.ClassA.funcA()%>
-            <%
-                for(Integer i = 0; i < 10; i++) {
-                    out.println("i = "+String.valueOf(i));
-                }
-            %>
-            Define a function in JSP
-            <%! int sum(int x, int y) {
-                return x + y;
-            }
-            %>
-            <%=sum(1,2)%>
-        </div>-->
         <jsp:include page="./footer.jsp"/>
         
     </body>

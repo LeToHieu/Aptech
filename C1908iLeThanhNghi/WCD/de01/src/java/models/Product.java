@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Models;
+package models;
 
-/**
- *
- * @author sunli
- */
 public class Product {
     private int id;
     private String productName;

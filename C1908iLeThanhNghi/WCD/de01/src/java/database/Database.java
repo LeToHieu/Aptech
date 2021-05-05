@@ -1,22 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
+import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import models.Product;
-
+import models.*;
 public class Database {
     private static final String CONNECTION_STRING = "jdbc:sqlserver://localhost\\SQLEXPRESS;DatabaseName=ExamSERVJSP";
     private static final String USERNAME = "sa";
@@ -45,7 +39,8 @@ public class Database {
     }
     public ArrayList<Product> getAllProducts() {
         ArrayList<Product> products = new ArrayList<Product>();
-        try {            
+        try {   
+            this.getConnection();            
             Statement statement = (Statement) this.connection.createStatement();
             String sql = "SELECT * FROM tblProduct";
             ResultSet resultSet = statement.executeQuery(sql);
@@ -59,6 +54,7 @@ public class Database {
             }
             
         } catch(SQLException ex) {
+            System.err.println("Error in SQL: "+ex.toString());
         } finally {
             return products;
         }                
