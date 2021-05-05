@@ -76,9 +76,15 @@ async function do1And2() {
         console.log(`error = ${JSON.stringify(exception)}`)
     }
 }
-do1And2()
+//do1And2()
 //bai tap nho: viet them doSomething2, chay sau doSomething
 //bai tap de hon
 //viet ham nhan 2 so
-const sum = (x, y)
-const sum = ({x, y})
+//const sum = (x, y) => x + y
+const sum = ({x, y}) => {
+    debugger
+    return x ?? 0 + y ?? 0
+}
+//console.log(`sum is : ${sum({y: 2, x: 3})}`) //labeled parameters
+console.log(`sum is : ${sum({y: 2})}`) //labeled parameters
+
