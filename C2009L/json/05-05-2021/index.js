@@ -81,10 +81,33 @@ async function do1And2() {
 //bai tap de hon
 //viet ham nhan 2 so
 //const sum = (x, y) => x + y
-const sum = ({x, y}) => {
-    debugger
+const sum = ({x, y}) => {    
     return x ?? 0 + y ?? 0
 }
 //console.log(`sum is : ${sum({y: 2, x: 3})}`) //labeled parameters
 console.log(`sum is : ${sum({y: 2})}`) //labeled parameters
 
+const url = "https://jsonplaceholder.typicode.com/todos"
+//async = asynchronous = bat dong bo = "chay song song voi thang khac "
+var that = this
+const getDataFromServer = async () => {
+//async function getDataFromServer() {       
+    console.log('1111')
+    debugger
+    let responseData = await fetch(url)
+    let response = await responseData.json()
+    response.forEach(user => {
+        // let title = user.title //dai dong
+        // let userId = user.userId
+        //destructuring an object
+        const {completed, id, title, userId} = user
+        console.log(`id = ${id}, title = ${title}, userId = ${userId}`)
+    })
+    console.log('222')
+}
+console.log('xxx')
+getDataFromServer()
+console.log('yyy')
+
+//chuong trinh thuc te chay:
+//xxxx, 111, yyy ,... 222

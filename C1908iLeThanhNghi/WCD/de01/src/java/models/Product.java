@@ -10,12 +10,20 @@ public class Product {
     private String productName;
     private float price;
     private int quantity;
-
+    
     public Product(int id, String productName, float price, int quantity) {
         this.id = id;
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getProductName() {

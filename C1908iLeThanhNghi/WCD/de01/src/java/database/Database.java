@@ -1,15 +1,7 @@
 package database;
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import models.*;
 public class Database {
     private static final String CONNECTION_STRING = "jdbc:sqlserver://localhost\\SQLEXPRESS;DatabaseName=ExamSERVJSP";
@@ -18,6 +10,13 @@ public class Database {
     private Connection connection = null;
     public String sayHello(){
         return "hahahaa";
+    }
+    private static Database instance;
+    public static Database getInstance() {
+        if(instance == null) {
+            instance = new Database();                    
+        }
+        return instance;
     }
     public Connection getConnection(){
         try {             
@@ -57,6 +56,21 @@ public class Database {
             System.err.println("Error in SQL: "+ex.toString());
         } finally {
             return products;
+        }                
+    }
+    public void insertProduct(Product product) {        
+        try {   
+            this.getConnection();            
+            String sql = "INSERT INTO tblProduct(id, productName, price, quantity) VALUES(?, ?, ?, ?)";
+            PreparedStatement  statement = (PreparedStatement) this.connection.prepareStatement(sql);           
+            statement.setInt(1, product.getId());
+            statement.setString(2, product.getProductName());
+            statement.setDouble(3, product.getPrice());
+            statement.setInt(4, product.getQuantity());
+            statement.executeUpdate();                        
+            System.out.println("insert data successfully");
+        } catch(SQLException ex) {
+            System.err.println("Error in SQL: "+ex.toString());
         }                
     }
     
