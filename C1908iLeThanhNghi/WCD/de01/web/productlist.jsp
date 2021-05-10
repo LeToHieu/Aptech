@@ -39,13 +39,18 @@
                 out.print("<td>"+product.getProductName()+"</td>");
                 out.print("<td>"+product.getPrice()+"</td>");
                 out.print("<td>"+product.getQuantity()+"</td>");                
-                //out.print("<td><a href='productadd.jsp?productId="+product.getId()+"'>Add New</a></td> ");        
-                out.print("<td><a href='productadd.jsp'>Add New</a></td> ");        
+                out.print("<td><a href='productdelete.jsp?productId="+product.getId()+"'>Delete</a></td> ");                        
                 out.print("</tr>");
             }
-            //response.sendRedirect("productadd.jsp");
+            //response.sendRedirect("productadd.jsp");            
         %>            
-    </table>        
+    </table> 
+    <div style="margin: 10px;">
+        
+    </div>
+    <%
+        out.print("<td><a href='productadd.jsp'>Add New</a></td> ");        
+    %>    
     </center>
     </body>
 </html>

@@ -73,5 +73,17 @@ public class Database {
             System.err.println("Error in SQL: "+ex.toString());
         }                
     }
+    public void deleteProduct(int productId) {        
+        try {   
+            this.getConnection();            
+            String sql = "DELETE FROM tblProduct WHERE id = ?";
+            PreparedStatement  statement = (PreparedStatement) this.connection.prepareStatement(sql);           
+            statement.setInt(1, productId);            
+            statement.executeUpdate();                        
+            System.out.println("delete data successfully");
+        } catch(SQLException ex) {
+            System.err.println("Delete error: "+ex.toString());
+        }                
+    }
     
 }
