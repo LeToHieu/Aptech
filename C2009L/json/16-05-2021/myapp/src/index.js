@@ -10,7 +10,7 @@ ReactDOM.render(
       person={{name: 'Hoang', email: 'hoang@gmail.com'}}
       products={[
         {
-          name: 'iphone x',
+          name: 'dien thoai cam ung x',
           year: 2019
         },
         {
@@ -18,7 +18,7 @@ ReactDOM.render(
           year: 2017
         },
         {
-          name: 'iphone 6',
+          name: ' dien thoai iphone 6',
           year: 2016
         }
     ]}
