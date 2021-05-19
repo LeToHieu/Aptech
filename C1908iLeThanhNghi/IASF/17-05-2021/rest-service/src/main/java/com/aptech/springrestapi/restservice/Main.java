@@ -1,12 +1,14 @@
 package com.aptech.springrestapi.restservice;
 
+import com.aptech.springrestapi.restservice.controllers.storage.StorageProperties;
 import com.aptech.springrestapi.restservice.message.RedisReceiver;
 import org.slf4j.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.*;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.listener.PatternTopic;
@@ -14,8 +16,8 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-
 @SpringBootApplication
+@EnableConfigurationProperties(StorageProperties.class)
 @EnableScheduling //time interval, timer
 public class Main {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);

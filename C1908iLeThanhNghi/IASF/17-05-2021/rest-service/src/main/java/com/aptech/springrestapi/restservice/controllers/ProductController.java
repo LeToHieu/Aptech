@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-@RestController() //phuc vu cho nhan request
+@RestController//phuc vu cho nhan request
 @RequestMapping("/products")
 public class ProductController {
     private static final Logger log = LoggerFactory.getLogger(ProductController.class);
@@ -45,16 +45,27 @@ public class ProductController {
     }
     @PutMapping("/updateProduct")
     public Hashtable<String, Object> updateProduct(
-            
-            @RequestParam(value = "page", defaultValue = "0") Integer id,
-            @RequestParam(value = "name", defaultValue = "") String name,
-            @RequestParam(value = "description", defaultValue="") String description
+        @RequestBody Hashtable<String, Object> params
+//            @RequestParam(value = "id", defaultValue = "0") Integer id,
+//            @RequestParam(value = "name", defaultValue = "") String name,
+//            @RequestParam(value = "description", defaultValue="") String description
     )
     {
-        log.info("id = {}, name = {}, description = {}", id, name, description);
+        log.info("id = {}, name = {}, description = {}", params.get("id"), params.get("name"), params.get("description"));
         Hashtable<String, Object> dictResponse = new Hashtable<>();
         dictResponse.put("code", 200);
         dictResponse.put("message", "Update successful");
+        dictResponse.put("data", new Product(2, "iphone 6", 2006,"This is an iphone, 6"));
+        return  dictResponse;
+    }
+    @DeleteMapping("/deleteProduct")
+    public Hashtable<String, Object> deleteProduct(
+            @RequestParam(value = "id", defaultValue = "0") Integer id
+    ){
+        log.info("id = {}", id);
+        Hashtable<String, Object> dictResponse = new Hashtable<>();
+        dictResponse.put("code", 200);
+        dictResponse.put("message", String.format("Delete product %d successful", id));
         dictResponse.put("data", new Product(2, "iphone 6", 2006,"This is an iphone, 6"));
         return  dictResponse;
     }
