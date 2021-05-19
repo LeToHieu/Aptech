@@ -21,16 +21,16 @@ public class Main {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 	public static void main(String[] args) throws InterruptedException {
 		ApplicationContext context = SpringApplication.run(Main.class, args);
-		StringRedisTemplate template = context.getBean(StringRedisTemplate.class);
-		RedisReceiver receiver = context.getBean(RedisReceiver.class);
-		while (receiver.getCount()  < 10) {
-
-			LOGGER.info("Sending message...");
-			template.convertAndSend("chat", "Hello from Redis!");
-			Thread.sleep(500L);
-		}
-
-		System.exit(0);
+//		StringRedisTemplate template = context.getBean(StringRedisTemplate.class);
+//		RedisReceiver receiver = context.getBean(RedisReceiver.class);
+//		while (receiver.getCount()  < 10) {
+//
+//			LOGGER.info("Sending message...");
+//			template.convertAndSend("chat", "Hello from Redis!");
+//			Thread.sleep(500L);
+//		}
+//
+//		System.exit(0);
 	}
 	@Bean
 	RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,

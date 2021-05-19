@@ -6,7 +6,7 @@ public class Product {
     private Integer year;
     private String description;
 
-    public Product(long id, String name,String description) {
+    public Product(long id, String name,Integer year, String description) {
         this.id = id;
         this.name = name;
         this.year = year;
