@@ -33,8 +33,10 @@ public class FileSystemStorageService implements StorageService {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file.");
             }
+            String originalFileName = file.getOriginalFilename();
+            String generatedFileName = String.format("img_%d_%s", System.nanoTime(), originalFileName);
             Path destinationFile = this.rootLocation.resolve(
-                    Paths.get(file.getOriginalFilename()))
+                    Paths.get(generatedFileName))
                     .normalize().toAbsolutePath();
             if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
                 // This is a security check
@@ -66,6 +68,7 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public Path load(String filename) {
+
         return rootLocation.resolve(filename);
     }
 
