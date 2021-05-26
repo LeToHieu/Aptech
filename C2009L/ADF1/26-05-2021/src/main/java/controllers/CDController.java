@@ -2,6 +2,7 @@ package controllers;
 
 import models.CompactDisk;
 import models.SortType;
+import validations.Validation;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,11 +16,22 @@ public class CDController {
     private ArrayList<CompactDisk> compactDisks = new ArrayList<>();
     public void insertCD() {
         System.out.println("Enter id : ");
-        int id = this.getScanner().nextInt();
-
+        String strID = this.getScanner().next();
+        //viet cach basic
+        /*
+        if(!Validation.isValidID(id)) {
+            System.err.println("Id must be from 0 to 1000000");
+            return;
+        }
+        */
+        if(!Validation.isValidID(strID)) {
+            System.err.println("Id must be from 0 to 1000000, must be number");
+            return;
+        }
+        int id = Integer.valueOf(strID);
         System.out.println("Enter title : ");
         String title = this.getScanner().next();
-
+        //lam tuong tu
         System.out.println("Enter artist : ");
         String artist = this.getScanner().next();
 

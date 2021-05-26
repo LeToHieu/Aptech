@@ -1,10 +1,16 @@
 import controllers.CDController;
 import models.CompactDisk;
+import validations.Validation;
 
 public class Main {
     public static void main(String[] args) {
-        CDController cdController = new CDController();
-        cdController.showMenu();
+        //Validation.isValidID("123cd");
+        Validation.isValidID("456");
+//        Validation.isValidID("110000");
+//        Validation.isValidID("-21");
+
+//        CDController cdController = new CDController();
+//        cdController.showMenu();
         /*
         cdController.insertCD(new CompactDisk(1, "title abnc",
                 "nguyen van a", 12, 123.3));
