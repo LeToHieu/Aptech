@@ -1,3 +1,4 @@
+import models.GoldTransaction;
 import models.InvoiceByDay;
 import models.InvoiceByHour;
 
@@ -6,7 +7,6 @@ import java.util.Date;
 
 public class App {
     public static void main(String [] args) {
-        System.out.println("hello");
         try {
             InvoiceByHour invoice2 = new InvoiceByHour("22",
                     Helper.toDate("01/06/2021"),
