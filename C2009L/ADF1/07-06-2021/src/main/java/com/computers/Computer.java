@@ -58,6 +58,7 @@ public class Computer extends Product {
         this.producer = getScanner().nextLine();
     }
 
+
     @Override
     public void display() {
         System.out.println("Computer information: ");

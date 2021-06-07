@@ -1,10 +1,16 @@
 package com.product.test;
 
+import com.product.books.Book;
+
+import javax.sound.sampled.BooleanControl;
 import java.util.Scanner;
 
 public class Test {
     public static void main(String [] args) {
+
         int choice = 0;
+        ProductController productController = new ProductController();
+        productController.sortBooksByPublisher();
         do {
             System.out.println("Please select:");
             System.out.println("1.Input information for n Computers.");
@@ -19,16 +25,16 @@ public class Test {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("1");
+                    productController.inputComputers();
                     break;
                 case 2:
-                    System.out.println("2");
+                    productController.inputBooks();
                     break;
                 case 3:
-                    System.out.println("3");
+                    productController.sortComputersByPrice();
                     break;
                 case 4:
-                    System.out.println("4");
+                    productController.sortBooksByPublisher();
                     break;
                 default:
                     if(choice != 5) {
@@ -36,6 +42,7 @@ public class Test {
                     }
             }
         }while (choice != 5);
+        //reproduce
         System.out.println("Program ended");
     }
 }
