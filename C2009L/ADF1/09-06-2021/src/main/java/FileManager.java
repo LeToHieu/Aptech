@@ -105,7 +105,5 @@ public class FileManager {
         } catch (Exception exception) {
             System.err.println("Cannot save file. Error: "+exception.toString());
         }
-
-
     }
 }
