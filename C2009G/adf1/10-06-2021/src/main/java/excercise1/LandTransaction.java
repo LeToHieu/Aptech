@@ -9,6 +9,15 @@ public class LandTransaction extends Transaction{
     public LandTransaction(){
         super();
     }
+
+    public LandType getLandType() {
+        return landType;
+    }
+
+    public void setLandType(LandType landType) {
+        this.landType = landType;
+    }
+
     @Override
     public Double getTotalPrice() {
         /*
