@@ -35,6 +35,9 @@ namespace practice1
             Console.WriteLine("+ ------------------------------------------------------------------+");
             Console.WriteLine("| 1.Input | 2.Sort | 3.Analyze | 4.Find | 5.Save | 6.Open | 7.Exit |");
             Console.WriteLine("+ ------------------------------------------------------------------+");
+            //ghi file => ghi csv(Comma Separated Value)
+            //Quan ly package dung nuget(npm Nodejs, pom in Java, Gradle in Java)
+            //Docker ?
 
             ////implicit casting = ep kieu tu dong
             ////Double y = x; //sure !
@@ -53,8 +56,6 @@ namespace practice1
             //Console.WriteLine("x = {0}", myBox.Value); //tai sao ko = 120 ?
             //Ta muon no = 120, phai truyen vao "dia chi cua x"
             //C# don gian hon nhieu => boxing => goi bien x vao trong 1 doi tuong
-
-
         }
     }
 }
