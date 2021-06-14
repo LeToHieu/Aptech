@@ -32,14 +32,18 @@ public class ProductController {
         WebDriverWait wait = new WebDriverWait(driver, 5L);
         try {
             driver.get(this.getUrl(1));
-            String xPath = "//div[@class='s-main-slot s-result-list s-search-results sg-row']";
-            List<WebElement> elements = driver.findElements(By.xpath(xPath));
+            //
+            String xPath = "//*[@class='s-main-slot s-result-list s-search-results sg-row']";
+            List<WebElement> elements = (driver.findElement(By.xpath(xPath))).findElements(By.xpath("./child::*"));
             this.products.clear();
-            for (WebElement eachElement: elements) {
-                String productName = eachElement.findElement(By.xpath("//a[@class='a-link-normal a-text-normal']")).getText();
+            //for (WebElement eachElement: elements) {
+            for(int i = 0; i < elements.size(); i++){
+                WebElement eachElement = elements.get(i);
+                String productName = eachElement.findElement(By.xpath("//span[@class='a-size-base-plus a-color-base a-text-normal']")).getText();
                 //eachElement.findElement(By.className("a-section a-spacing-medium"))
-                Integer numberOfLikes = Integer.valueOf(eachElement.findElement(By.xpath("//span[@class='a-size-base']"))
-                        .getText().replace(",",""));
+                Integer numberOfLikes = Integer.valueOf(
+                        eachElement.findElement(By.xpath("//span[@class='a-size-base']")).getText()
+                                .replace(",",""));
                 String categoryName = eachElement.findElement(By.xpath("//a[@class='a-size-base a-link-normal a-text-bold']")).getText();
                 String urlImage = eachElement.findElement(By.xpath("//img[@class='s-image']")).getAttribute("src");
                 Double price = Double.valueOf(eachElement.findElement(By.xpath("//span[@class='a-price']"))
