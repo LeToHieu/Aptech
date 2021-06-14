@@ -1,5 +1,6 @@
 package models;
 
+import interfaces.IDoSomething;
 import interfaces.ILearning;
 import interfaces.IPlayable;
 
@@ -32,5 +33,10 @@ public class Student implements IPlayable, ILearning {
     @Override
     public void goToLibrary(String libraryName) {
         System.out.println("I am going to "+libraryName);
+    }
+    public void doX(IDoSomething iDoSomething) {
+        System.out.println("begin do x");
+        iDoSomething.onClick("bla bla");
+        System.out.println("end do x");
     }
 }

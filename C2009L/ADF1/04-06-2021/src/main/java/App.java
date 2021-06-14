@@ -1,4 +1,5 @@
 import controllers.TransactionController;
+import interfaces.IDoSomething;
 import interfaces.IPlayable;
 import models.*;
 
@@ -40,7 +41,7 @@ public class App {
         IPlayable y = new IPlayable() {
             @Override
             public void playAGame(String gameName) {
-                
+
             }
 
             @Override
@@ -48,6 +49,13 @@ public class App {
 
             }
         };//anonymous Object
+        studentA.doX(new IDoSomething() {
+            @Override
+            public void onClick(String x) {
+                System.out.println("bam click :"+x);
+                //Objective C va Java => ko hoc song song
+            }
+        });
 
     }
 }
