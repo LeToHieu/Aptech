@@ -1,9 +1,11 @@
+import aptech.*;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import aptech.*;
 public class Main {
     public static void main(String[] args) {
+        System.out.println("haha");
         System.out.println("haha");
         //Init object from interface? NO
         //IPlayable mrA = new Playable();
@@ -51,8 +53,10 @@ public class Main {
         //tu Java8, co the dung lambda expression
         employees.sort((Employee employee1, Employee employee2) ->
                 employee1.getSalary() - employee2.getSalary());
-        //hien tax
-
-
+        for(int i = 0; i < managers.size(); i++) {
+            Manager manager = managers.get(i);
+            manager.calculateTax();
+            manager.display();
+        }
     }
 }

@@ -1,7 +1,10 @@
+import aptech.Employee;
+import aptech.Manager;
+import aptech.Person;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import aptech.*;
 public class Main {
     public static void main(String[] args) {
         System.out.println("haha");
@@ -34,24 +37,22 @@ public class Main {
             Employee employee = new Employee();
             Manager manager = new Manager();
             person.input();
-            employee.input();
-            manager.input();
-            persons.add(person);
-            employees.add(employee);
-            managers.add(manager);
+//            employee.input();
+//            manager.input();
+//            persons.add(person);
+//            employees.add(employee);
+//            managers.add(manager);
         }
-        persons.sort(new Comparator<Person>() {
+        //tu Java8, co the dung lambda expression
+        employees.sort((Employee .sort(new Comparator<Person>() {
             @Override
             public int compare(Person person1, Person person2) {
                 return person1.getAge() - person2.getAge();
             }
         });
         employees.get(1).increaseSalary(10);//overloading function
-        employees.get(2).increaseSalary(0.1);
-        //tu Java8, co the dung lambda expression
-        employees.sort((Employee employee1, Employee employee2) ->
+        employees.get(2).increaseSalary(0.1);employee1, Employee employee2) ->
                 employee1.getSalary() - employee2.getSalary());
-        //hien tax
 
 
     }
