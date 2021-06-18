@@ -1,5 +1,9 @@
 package database;
+import models.Product;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.PropertyPermission;
 
 public class Database {
     public static String HOST_NAME = "localhost";
@@ -25,4 +29,74 @@ public class Database {
             return null;
         }
     }
+    public long insertProduct(Product product) {
+        String sqlString = "INSERT INTO tblProduct(productName, year) "
+                + "VALUES(?, ?)";
+        long productId = 0;
+        try (
+             PreparedStatement preparedStatement = this.getConnection().prepareStatement(sqlString,
+                     Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setString(1, product.getProductName());
+            preparedStatement.setInt(2, product.getYear());
+            int affectedRows = preparedStatement.executeUpdate();
+            // check the affected rows
+            if (affectedRows > 0) {
+                // get the ID back
+                try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+                    if (resultSet.next()) {
+                        productId = resultSet.getLong(1);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return productId;
+    }
+    public void updateProduct(Integer productId, Product product) {
+        String sqlString = "UPDATE tblProduct SET productName = ?, year = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = this.getConnection().prepareStatement(sqlString)) {
+            preparedStatement.setString(1, product.getProductName());
+            preparedStatement.setInt(2, product.getYear());
+            preparedStatement.setInt(3, productId);
+            preparedStatement.executeUpdate();
+
+            System.out.println("Update product successfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    public ArrayList<Product> searchProducts(String text) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sqlString = "SELECT id, productName, year FROM tblProduct WHERE productName LIKE '%"+text+"%' LIMIT 100";
+//            String sqlString = "SELECT id, productName, year FROM tblProduct WHERE productName LIKE '%%?%%' LIMIT 100";
+            PreparedStatement statement = getConnection().prepareStatement(sqlString);
+            //statement.setString(1, text);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                long id = resultSet.getLong(1);
+                String productName = resultSet.getString(2);
+                Integer year = resultSet.getInt(3);
+                products.add(new Product(id, productName, year));
+            }
+            System.out.println("Query product successfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return products;
+    }
+    public void deleteProduct(Integer productId) {
+        String sqlString = "DELETE FROM tblProduct WHERE id = ?";
+        try (PreparedStatement preparedStatement = this.getConnection().prepareStatement(sqlString)) {
+            preparedStatement.setInt(1, productId);
+            preparedStatement.executeUpdate();
+            System.out.println("Delete product successfully");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
 }
