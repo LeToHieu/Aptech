@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace exam2
+namespace _26_06_2021
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("chao moi nguoi");            
+            Console.WriteLine("Hello World! 12");
         }
     }
 }
