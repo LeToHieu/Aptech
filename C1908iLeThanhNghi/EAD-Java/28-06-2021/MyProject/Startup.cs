@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MyProject.Models;
 
 namespace MyProject
 {
@@ -23,9 +25,15 @@ namespace MyProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MyDatabaseContext>(options =>
+            try
+            {
+                services.AddDbContext<MyDatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllersWithViews();
+                services.AddControllersWithViews();
+            }
+            catch (Exception e) {
+                Console.WriteLine("haha");
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

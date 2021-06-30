@@ -4,6 +4,12 @@ namespace MyProject.Models
 {
     public class MyDatabaseContext: DbContext
     {
-        public MyDatabaseContext() : base();        
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
+
+        //public MyDatabaseContext(DbContextOptions<MyDatabaseContext> options) : base(options)
+        //{
+
+        //}
     }
 }
