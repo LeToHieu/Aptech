@@ -1,4 +1,5 @@
 import views.LoginView;
+import views.ProductListView;
 import views.RegisterView;
 
 import javax.swing.JButton;
@@ -19,6 +20,8 @@ public class Main {
         * */
         LoginView loginView = new LoginView(300, 150);
         loginView.show();
+
+
 
 
 //        RegisterView registerView = new RegisterView(300, 150);

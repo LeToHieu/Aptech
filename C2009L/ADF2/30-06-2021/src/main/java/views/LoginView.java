@@ -1,5 +1,6 @@
 package views;
 import org.w3c.dom.xpath.XPathNamespace;
+import views.helpers.Alert;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,6 +15,7 @@ public class LoginView implements IView{
     private final JPasswordField textFieldPassword = new JPasswordField(6);
     private final JButton buttonLogin = new JButton("Login");
     private final GridLayout gridLayout = new GridLayout(3,2);
+    private ProductListView productListView = new ProductListView(375, 250);
 
     public JFrame getMainFrame() {
         return mainFrame;
@@ -32,9 +34,31 @@ public class LoginView implements IView{
         innerView.add(new JLabel("Password :"));
         innerView.add(textFieldPassword);
         innerView.add(buttonLogin);
+        //fake
+        textFieldEmail.setText("hoang@gmail.com");
+        textFieldPassword.setText("123456");
 
         buttonLogin.addActionListener((ActionEvent event) -> {
-            System.out.println(String.format("Email = %s, password = %s", textFieldEmail.getText(), textFieldPassword.getPassword()));
+            System.out.println("sss");
+            String email = textFieldEmail.getText().trim();
+            String password = String.valueOf(textFieldPassword.getPassword());
+            boolean isEmailPasswordBlank = email.length() == 0 || password.length() == 0;
+            if(isEmailPasswordBlank) {
+                Alert.alert("Warning", "You must enter email/pass", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            //Nhieu validation ?
+            //goi JPA hoac JDBC, goi thang
+            boolean loginSuccess = email.equals("hoang@gmail.com") && password.equals("123456");
+            if(!loginSuccess) {
+                Alert.alert("Warning", "Wrong email/pass", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            this.productListView.reloadData();
+            this.productListView.show();
+
+            //chuyen sang man hinh List
+            //System.out.println(String.format("Email = %s, password = %s", textFieldEmail.getText(), textFieldPassword.getPassword()));
         });
         mainFrame.add(innerView);
     }
