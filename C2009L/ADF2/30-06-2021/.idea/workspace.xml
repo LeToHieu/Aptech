@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7db0448-ae4d-4bf8-9e41-c20f5c0d188d" name="Default Changelist" comment="" />
+    <list default="true" id="c7db0448-ae4d-4bf8-9e41-c20f5c0d188d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/Point.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/SPlineView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/ProductListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/ProductListView.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +28,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/GridLayout.java" root0="SKIP_INSPECTION" />
+    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JOptionPane.java" root0="SKIP_INSPECTION" />
+    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JPasswordField.java" root0="SKIP_INSPECTION" />
+    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/Container.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectId" id="1ufPx9gdAFI3zoGExRNvMQVFyoV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -35,6 +48,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -78,24 +92,24 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/views/LoginView.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="1" />
+          <line>79</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/views/ProductListView.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="11" />
+          <line>110</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/views/ProductListView.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="12" />
+          <url>file://$PROJECT_DIR$/src/main/java/views/SPlineView.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="data" language="JAVA" />
+        <watch expression="mainFrame.visible" language="JAVA" />
         <watch expression="dataX" language="JAVA" />
         <watch expression="new String[]{ persons.get(2).getRollNumber(),persons.get(2).getName(),DateUtility.convertDateToString(persons.get(2).getDateOfBirth())" language="JAVA" />
       </configuration>
