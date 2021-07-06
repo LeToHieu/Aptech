@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace exam3
 {
-    class ShapeCollection
+    public class ShapeCollection
     {
 
         public List<Shape> Shapes { get; set; }
@@ -44,6 +44,7 @@ namespace exam3
         public void ShowAllShapes() {
             foreach (Shape shape in this.Shapes) {
                 Console.WriteLine(shape.ToString());
+                //ve nha viet ham ToString() cua tung object
             }
         }
     }

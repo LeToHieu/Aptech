@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace exam3
 {
-    abstract class Shape
+    public abstract class Shape
     {
         public abstract void ShowArea();
     }
