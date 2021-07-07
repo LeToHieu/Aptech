@@ -7,6 +7,7 @@ app.use(express.json())
 const PORT = 3001
 //import routers
 const userRouter = require('./routers/user')
+const productRouter = require('./routers/product')
 
 //simple GET request
 app.get('/', (request, response) => {
@@ -14,6 +15,9 @@ app.get('/', (request, response) => {
 })
 //config middleware routers
 app.use('/users', userRouter)
+app.use('/products', productRouter)
+//test db connection
+const dbConnection = require('./database/connection')
 
 
 app.listen(PORT, () => {

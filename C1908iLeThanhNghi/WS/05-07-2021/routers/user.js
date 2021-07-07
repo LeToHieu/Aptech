@@ -12,6 +12,7 @@ router.get('/:userId', (request, response) => {
 //POST can be tested by Postman
 router.post('/', (request, response) => {
     debugger
+    //Need dependency to read JSON params
     response.send('This is POST request from user router11')    
 })
 router.put('/', (request, response) => {
