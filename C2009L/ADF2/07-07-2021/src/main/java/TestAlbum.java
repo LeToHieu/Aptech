@@ -39,7 +39,6 @@ public class TestAlbum {
 
         Track trackWitMaxViewCount =  Stream.of(tracks1, tracks2)
                 .flatMap(Collection::stream)
-                .collect(Collectors.toList()).stream()
                 .max((trackA, trackB) -> trackA.getViewCount().compareTo(trackB.getViewCount()))
                 .orElseThrow(NoSuchElementException::new);
         System.out.println("Track with max count :"+trackWitMaxViewCount.toString());
