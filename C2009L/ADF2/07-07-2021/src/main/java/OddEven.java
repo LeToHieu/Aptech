@@ -23,7 +23,7 @@ public class OddEven {
             }
         }
     }
-    public void saveTo2Files() throws IOException {
+    public void saveTo2Files(){
         FileWriter fileWriterOdd = null;
         FileWriter fileWriterEven = null;
         try {
@@ -40,17 +40,15 @@ public class OddEven {
                 }
             }
             myReader.close();
+            fileWriterOdd.close();
+            fileWriterEven.close();
         } catch (FileNotFoundException e) {
             System.out.println("Cannot read file :"+e.toString());
-        } catch (Exception e2) {
-            System.out.println("Error :"+e2.toString());
+        } catch (Exception e) {
+            System.out.println("Error :"+e.toString());
         } finally {
-            if(fileWriterOdd != null) {
-                fileWriterOdd.close();
-            }
-            if(fileWriterEven != null) {
-                fileWriterEven.close();
-            }
+            fileWriterOdd = null;
+            fileWriterEven = null;
         }
     }
 }
