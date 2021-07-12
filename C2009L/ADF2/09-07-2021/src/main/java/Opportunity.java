@@ -51,6 +51,19 @@ public class Opportunity implements Serializable {
 
     public Opportunity() {
     }
+    public static List<Opportunity> findOpportunitiesInList(List<Opportunity> opportunities) {
+        List<Opportunity> result = new ArrayList<>();
+        System.out.println("Enter job's title: ");
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            String jobTitle = bufferedReader.readLine();
+            result = (List<Opportunity>)(opportunities.stream().filter(eachItem -> eachItem.getJobTitle().trim().equals(jobTitle)).toList());
+        }catch (Exception e) {
+            System.err.println("Cannot read job title: "+e.toString());
+        }
+        return result;
+    }
+
     public boolean input(){
         try {
             System.out.println("Enter opportunity's information: ");
@@ -133,5 +146,16 @@ public class Opportunity implements Serializable {
 
     public void setEducation(List<String> education) {
         this.education = education;
+    }
+
+    @Override
+    public String toString() {
+        return "Opportunity{" +
+                "id='" + id + '\'' +
+                ", jobTitle='" + jobTitle + '\'' +
+                ", expectedSalary=" + expectedSalary +
+                ", skills=" + skills +
+                ", education=" + education +
+                '}';
     }
 }
