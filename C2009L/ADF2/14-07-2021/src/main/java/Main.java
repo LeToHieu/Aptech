@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
+        /*
         System.out.println("Multi thread demo");
         List<Thread> threads = new ArrayList<>();
         int numberOfThreads = 1_000_000_000;
@@ -12,6 +10,11 @@ public class Main {
             threads.add(myThread);
         }
         System.out.println("Number of threads: "+threads.size());
-
+         */
+        EncryptDecrypt encryptDecrypt = new EncryptDecrypt();
+        String encryptedString = encryptDecrypt.encryptData("123456");
+        System.out.println(encryptedString);
+        String decryptedString = encryptDecrypt.decryptData(encryptedString);
+        System.out.println(decryptedString);
     }
 }
