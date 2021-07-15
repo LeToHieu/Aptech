@@ -24,7 +24,7 @@ namespace exam5.Models {
 
         public override void ShowInfo()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Product id: {ID}, name= {Name},price = {_price}, price in VAT: {PriceCal}");
         }
     }
 }
