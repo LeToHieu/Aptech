@@ -9,8 +9,18 @@
   	<description></description>
   	<servlet-class>com.aptech.jspdemo.controllers.HomeController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ProductController</servlet-name>
+  	<display-name>ProductController</display-name>
+  	<description></description>
+  	<servlet-class>com.aptech.jspdemo.controllers.ProductController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>HomeController</servlet-name>
   	<url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ProductController</servlet-name>
+  	<url-pattern>/products</url-pattern>
   </servlet-mapping>    
 </web-app>
