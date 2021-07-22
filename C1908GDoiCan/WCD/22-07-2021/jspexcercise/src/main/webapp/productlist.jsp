@@ -12,10 +12,12 @@
 <title>Product list</title>
 </head>
 <body>
+<form>
 <div class="container">
-<div class="row">
-	    <form class="row g-3">
-		  <div class="col-auto">
+<div class="d-flex justify-content-center">
+<div class="row container">
+	    <div class="row g-3 container d-flex justify-content-center" >
+		  <div class="col-auto pt-1">
 		    <label for="staticEmail2">Search</label>		    
 		  </div>
 		  <div class="col-auto ml-2">		    
@@ -24,8 +26,10 @@
 		  <div class="col-auto">
 		    <button type="submit" class="btn btn-primary mb-3">Search</button>
 		  </div>
-		</form>
+		</div>
   </div>
+</div>
+
 <table class="table table-success table-striped">
   <thead>
     <tr>
@@ -46,6 +50,10 @@
     </tr>    
   </tbody>
 </table>	
+<div class="col-auto">
+	<a type="submit" class="link-primary mb-3">Add New</a>
 </div>
+</div>
+</form>
 </body>
 </html>
