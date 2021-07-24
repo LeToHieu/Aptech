@@ -30,70 +30,101 @@ namespace myapp
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnQuery = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtStudentName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtClassName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnExportXML = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtPassword);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.btnExportXML);
+            this.panel1.Controls.Add(this.btnSave);
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.txtAddress);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtUserName);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.btnQuery);
+            this.panel1.Controls.Add(this.btnInsert);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txtStudentName);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.txtClassName);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(-4, -4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1014, 902);
+            this.panel1.Size = new System.Drawing.Size(1484, 1213);
             this.panel1.TabIndex = 0;
             // 
-            // button2
+            // txtUserName
             // 
-            this.button2.Location = new System.Drawing.Point(297, 663);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 58);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Thoát";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnExit_Click);
+            this.txtUserName.Location = new System.Drawing.Point(297, 493);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(465, 47);
+            this.txtUserName.TabIndex = 8;
             // 
-            // button1
+            // label4
             // 
-            this.button1.Location = new System.Drawing.Point(615, 546);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 58);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Đăng nhập";
-            this.button1.UseVisualStyleBackColor = true;            
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(70, 493);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(180, 41);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "User\'s name";
+            // 
+            // btnQuery
+            // 
+            this.btnQuery.Location = new System.Drawing.Point(879, 270);
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Size = new System.Drawing.Size(242, 58);
+            this.btnQuery.TabIndex = 6;
+            this.btnQuery.Text = "Query";
+            this.btnQuery.UseVisualStyleBackColor = true;
+            this.btnQuery.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.Location = new System.Drawing.Point(879, 381);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(242, 58);
+            this.btnInsert.TabIndex = 5;
+            this.btnInsert.Text = "Insert";
+            this.btnInsert.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label3.Location = new System.Drawing.Point(297, 134);
+            this.label3.Location = new System.Drawing.Point(578, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(395, 54);
             this.label3.TabIndex = 4;
             this.label3.Text = "Danh sách sinh viên";
             // 
-            // txtPassword
+            // txtStudentName
             // 
-            this.txtPassword.Location = new System.Drawing.Point(297, 387);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(465, 47);
-            this.txtPassword.TabIndex = 3;
+            this.txtStudentName.Location = new System.Drawing.Point(297, 387);
+            this.txtStudentName.Name = "txtStudentName";
+            this.txtStudentName.Size = new System.Drawing.Size(465, 47);
+            this.txtStudentName.TabIndex = 3;
             // 
             // label2
             // 
@@ -105,12 +136,12 @@ namespace myapp
             this.label2.Text = "Ten sinh vien";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // txtUserName
+            // txtClassName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(297, 279);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(465, 47);
-            this.txtUserName.TabIndex = 1;
+            this.txtClassName.Location = new System.Drawing.Point(297, 279);
+            this.txtClassName.Name = "txtClassName";
+            this.txtClassName.Size = new System.Drawing.Size(465, 47);
+            this.txtClassName.TabIndex = 1;
             // 
             // label1
             // 
@@ -121,32 +152,80 @@ namespace myapp
             this.label1.TabIndex = 0;
             this.label1.Text = "Ten lop";
             // 
-            // textBox1
+            // txtAddress
             // 
-            this.textBox1.Location = new System.Drawing.Point(297, 493);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(465, 47);
-            this.textBox1.TabIndex = 8;
+            this.txtAddress.Location = new System.Drawing.Point(297, 594);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(465, 47);
+            this.txtAddress.TabIndex = 10;
             // 
-            // label4
+            // label5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(70, 493);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(188, 41);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Ten sinh vien";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(70, 594);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(107, 41);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Dia chi";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(879, 487);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(242, 58);
+            this.btnUpdate.TabIndex = 11;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(879, 594);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(242, 58);
+            this.btnDelete.TabIndex = 12;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(1197, 381);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(242, 58);
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // btnExportXML
+            // 
+            this.btnExportXML.Location = new System.Drawing.Point(1197, 487);
+            this.btnExportXML.Name = "btnExportXML";
+            this.btnExportXML.Size = new System.Drawing.Size(242, 58);
+            this.btnExportXML.TabIndex = 14;
+            this.btnExportXML.Text = "Export XML";
+            this.btnExportXML.UseVisualStyleBackColor = true;
+            this.btnExportXML.Click += new System.EventHandler(this.btnExportXML_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(70, 715);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 102;
+            this.dataGridView1.RowTemplate.Height = 49;
+            this.dataGridView1.Size = new System.Drawing.Size(1369, 457);
+            this.dataGridView1.TabIndex = 15;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1003, 885);
+            this.ClientSize = new System.Drawing.Size(1484, 1214);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "Login";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -154,15 +233,22 @@ namespace myapp
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtStudentName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.TextBox txtClassName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnQuery;
+        private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnExportXML;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

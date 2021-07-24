@@ -30,5 +30,10 @@ namespace myapp
         {
             Application.Exit();
         }
+
+        private void btnExportXML_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Export successfully");
+        }
     }
 }
