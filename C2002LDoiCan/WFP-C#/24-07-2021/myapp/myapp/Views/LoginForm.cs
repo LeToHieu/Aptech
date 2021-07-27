@@ -17,6 +17,7 @@ namespace myapp
         {
             InitializeComponent();//nam o partial class khac
             txtPassword.PasswordChar = '*';
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -37,12 +38,21 @@ namespace myapp
                 MessageBox.Show("Password's length must be less than 3 characters");
                 return;
             }
-            MainForm = MainForm == null ? new MainForm()
+            Database database = new Database();
+            if (database.login(userName, password) == true)
             {
-                LoginForm = this
-            } : MainForm;
+                MainForm = MainForm == null ? new MainForm()
+                {
+                    LoginForm = this
+                } : MainForm;
 
-            MainForm.Show();
+                MainForm.Show();
+            }
+            else {
+                MessageBox.Show(@"Cannot login to your account");
+            }
+
+            
             //this.Hide();
         }
 
