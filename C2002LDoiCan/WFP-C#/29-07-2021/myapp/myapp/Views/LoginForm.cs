@@ -16,6 +16,8 @@ namespace myapp
         public LoginForm()
         {
             InitializeComponent();//nam o partial class khac
+            txtUserName.Text = "nguyenvana";
+            txtPassword.Text = "123456";
             txtPassword.PasswordChar = '*';
 
         }
@@ -37,9 +39,8 @@ namespace myapp
             {
                 MessageBox.Show("Password's length must be less than 3 characters");
                 return;
-            }
-            Database database = new Database();
-            if (database.login(userName, password) == true)
+            }            
+            if (Database.GetInstance().login(userName, password) == true)
             {
                 MainForm = MainForm == null ? new MainForm()
                 {
