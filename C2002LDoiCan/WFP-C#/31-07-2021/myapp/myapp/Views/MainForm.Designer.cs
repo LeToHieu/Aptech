@@ -30,6 +30,7 @@ namespace myapp
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBoxClass = new System.Windows.Forms.ComboBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.btnExportXML = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -45,14 +46,13 @@ namespace myapp
             this.txtStudentName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxClassName = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.comboBoxClassName);
+            this.panel1.Controls.Add(this.comboBoxClass);
             this.panel1.Controls.Add(this.dataGridView);
             this.panel1.Controls.Add(this.btnExportXML);
             this.panel1.Controls.Add(this.btnSave);
@@ -68,26 +68,34 @@ namespace myapp
             this.panel1.Controls.Add(this.txtStudentName);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-4, -4);
+            this.panel1.Location = new System.Drawing.Point(-5, -4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1309, 1095);
+            this.panel1.Size = new System.Drawing.Size(1484, 1213);
             this.panel1.TabIndex = 0;
+            // 
+            // comboBoxClass
+            // 
+            this.comboBoxClass.FormattingEnabled = true;
+            this.comboBoxClass.Location = new System.Drawing.Point(297, 270);
+            this.comboBoxClass.Name = "comboBoxClass";
+            this.comboBoxClass.Size = new System.Drawing.Size(465, 49);
+            this.comboBoxClass.TabIndex = 16;
             // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(62, 645);
+            this.dataGridView.Location = new System.Drawing.Point(70, 715);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 102;
             this.dataGridView.RowTemplate.Height = 49;
-            this.dataGridView.Size = new System.Drawing.Size(1208, 412);
+            this.dataGridView.Size = new System.Drawing.Size(1369, 457);
             this.dataGridView.TabIndex = 15;
             // 
             // btnExportXML
             // 
-            this.btnExportXML.Location = new System.Drawing.Point(1056, 439);
+            this.btnExportXML.Location = new System.Drawing.Point(1197, 486);
             this.btnExportXML.Name = "btnExportXML";
-            this.btnExportXML.Size = new System.Drawing.Size(214, 52);
+            this.btnExportXML.Size = new System.Drawing.Size(243, 58);
             this.btnExportXML.TabIndex = 14;
             this.btnExportXML.Text = "Export XML";
             this.btnExportXML.UseVisualStyleBackColor = true;
@@ -95,68 +103,69 @@ namespace myapp
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(1056, 344);
+            this.btnSave.Location = new System.Drawing.Point(1197, 381);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(214, 52);
+            this.btnSave.Size = new System.Drawing.Size(243, 58);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(776, 536);
+            this.btnDelete.Location = new System.Drawing.Point(879, 594);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(214, 52);
+            this.btnDelete.Size = new System.Drawing.Size(243, 58);
             this.btnDelete.TabIndex = 12;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(776, 439);
+            this.btnUpdate.Location = new System.Drawing.Point(879, 486);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(214, 52);
+            this.btnUpdate.Size = new System.Drawing.Size(243, 58);
             this.btnUpdate.TabIndex = 11;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(262, 536);
+            this.txtAddress.Location = new System.Drawing.Point(297, 594);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(411, 43);
+            this.txtAddress.Size = new System.Drawing.Size(465, 47);
             this.txtAddress.TabIndex = 10;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(62, 536);
+            this.label5.Location = new System.Drawing.Point(70, 594);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 37);
+            this.label5.Size = new System.Drawing.Size(107, 41);
             this.label5.TabIndex = 9;
             this.label5.Text = "Dia chi";
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(262, 445);
+            this.txtUserName.Location = new System.Drawing.Point(297, 493);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(411, 43);
+            this.txtUserName.Size = new System.Drawing.Size(465, 47);
             this.txtUserName.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(62, 445);
+            this.label4.Location = new System.Drawing.Point(70, 493);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(160, 37);
+            this.label4.Size = new System.Drawing.Size(180, 41);
             this.label4.TabIndex = 7;
             this.label4.Text = "User\'s name";
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(776, 244);
+            this.btnQuery.Location = new System.Drawing.Point(879, 270);
             this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(214, 52);
+            this.btnQuery.Size = new System.Drawing.Size(243, 58);
             this.btnQuery.TabIndex = 6;
             this.btnQuery.Text = "Query";
             this.btnQuery.UseVisualStyleBackColor = true;
@@ -164,9 +173,9 @@ namespace myapp
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(776, 344);
+            this.btnInsert.Location = new System.Drawing.Point(879, 381);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(214, 52);
+            this.btnInsert.Size = new System.Drawing.Size(243, 58);
             this.btnInsert.TabIndex = 5;
             this.btnInsert.Text = "Insert";
             this.btnInsert.UseVisualStyleBackColor = true;
@@ -177,25 +186,25 @@ namespace myapp
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label3.Location = new System.Drawing.Point(510, 81);
+            this.label3.Location = new System.Drawing.Point(578, 90);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(355, 48);
+            this.label3.Size = new System.Drawing.Size(395, 54);
             this.label3.TabIndex = 4;
             this.label3.Text = "Danh sách sinh viên";
             // 
             // txtStudentName
             // 
-            this.txtStudentName.Location = new System.Drawing.Point(262, 349);
+            this.txtStudentName.Location = new System.Drawing.Point(297, 387);
             this.txtStudentName.Name = "txtStudentName";
-            this.txtStudentName.Size = new System.Drawing.Size(411, 43);
+            this.txtStudentName.Size = new System.Drawing.Size(465, 47);
             this.txtStudentName.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 349);
+            this.label2.Location = new System.Drawing.Point(70, 387);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(168, 37);
+            this.label2.Size = new System.Drawing.Size(188, 41);
             this.label2.TabIndex = 2;
             this.label2.Text = "Ten sinh vien";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -203,25 +212,17 @@ namespace myapp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 252);
+            this.label1.Location = new System.Drawing.Point(70, 279);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 37);
+            this.label1.Size = new System.Drawing.Size(115, 41);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ten lop";
             // 
-            // comboBoxClassName
-            // 
-            this.comboBoxClassName.FormattingEnabled = true;
-            this.comboBoxClassName.Location = new System.Drawing.Point(262, 249);
-            this.comboBoxClassName.Name = "comboBoxClassName";
-            this.comboBoxClassName.Size = new System.Drawing.Size(411, 45);
-            this.comboBoxClassName.TabIndex = 16;
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1309, 1096);
+            this.ClientSize = new System.Drawing.Size(1484, 1214);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "Login";
@@ -250,7 +251,7 @@ namespace myapp
         private System.Windows.Forms.Button btnExportXML;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.ComboBox comboBoxClassName;
+        private System.Windows.Forms.ComboBox comboBoxClass;
     }
 }
 
