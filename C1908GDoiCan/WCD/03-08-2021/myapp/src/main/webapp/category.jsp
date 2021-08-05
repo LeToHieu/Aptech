@@ -33,7 +33,7 @@
                     <td>${item.id}</td>
                     <td>${item.name}</td>
                     <td>${item.description}</td>
-                    <td><a>Show Products</a></td>
+                    <td><a href="productlist.jsp?categoryId=${item.id}">Show Products</a></td>
                 </tr>            
             </c:forEach>
             
