@@ -5,7 +5,7 @@
  */
 package com.aptech;
 /**
- docker run -d --rm --name mysql-c1908GDoiCan -v mysql-c1908GDoiCan:/var/lib/mysql -p 3309:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
+ docker run -d --name mysql-c1908GDoiCan --volume mysql-c1908GDoiCan:/var/lib/mysql -p 3309:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
  mysql -P 3309 --protocol=tcp -u root -p
  create database c1908GDoiCan;
  use c1908GDoiCan;
@@ -59,8 +59,7 @@ public class Database {
         ResultSet rs = null;
         try {
             stmt = this.getConnection().createStatement();
-            rs = stmt.executeQuery("select * from tblCategory");
-            
+            rs = stmt.executeQuery("select * from tblCategory");            
             while(rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
