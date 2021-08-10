@@ -45,38 +45,39 @@ namespace aptechde02
             this.panel.Controls.Add(this.btnClose);
             this.panel.Controls.Add(this.btnDelete);
             this.panel.Controls.Add(this.btnInsert);
-            this.panel.Location = new System.Drawing.Point(368, 646);
-            this.panel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel.Location = new System.Drawing.Point(207, 417);
+            this.panel.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(652, 100);
+            this.panel.Size = new System.Drawing.Size(367, 65);
             this.panel.TabIndex = 8;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(391, 0);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnClose.Location = new System.Drawing.Point(220, 0);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(178, 43);
+            this.btnClose.Size = new System.Drawing.Size(100, 28);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(194, 0);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnDelete.Location = new System.Drawing.Point(109, 0);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(178, 43);
+            this.btnDelete.Size = new System.Drawing.Size(100, 28);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.Location = new System.Drawing.Point(0, 0);
-            this.btnInsert.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnInsert.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(178, 43);
+            this.btnInsert.Size = new System.Drawing.Size(100, 28);
             this.btnInsert.TabIndex = 0;
             this.btnInsert.Text = "Insert";
             this.btnInsert.UseVisualStyleBackColor = true;
@@ -86,43 +87,43 @@ namespace aptechde02
             // 
             this.listViewEmployees.FullRowSelect = true;
             this.listViewEmployees.HideSelection = false;
-            this.listViewEmployees.Location = new System.Drawing.Point(588, 90);
-            this.listViewEmployees.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.listViewEmployees.Location = new System.Drawing.Point(331, 58);
+            this.listViewEmployees.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.listViewEmployees.MultiSelect = false;
             this.listViewEmployees.Name = "listViewEmployees";
-            this.listViewEmployees.Size = new System.Drawing.Size(783, 525);
+            this.listViewEmployees.Size = new System.Drawing.Size(442, 340);
             this.listViewEmployees.TabIndex = 7;
             this.listViewEmployees.UseCompatibleStateImageBehavior = false;
             // 
             // treeViewDepartment
             // 
-            this.treeViewDepartment.Location = new System.Drawing.Point(80, 90);
-            this.treeViewDepartment.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.treeViewDepartment.Location = new System.Drawing.Point(45, 58);
+            this.treeViewDepartment.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.treeViewDepartment.Name = "treeViewDepartment";
-            this.treeViewDepartment.Size = new System.Drawing.Size(402, 522);
+            this.treeViewDepartment.Size = new System.Drawing.Size(228, 338);
             this.treeViewDepartment.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(80, 17);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(45, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(283, 54);
+            this.label1.Size = new System.Drawing.Size(251, 48);
             this.label1.TabIndex = 6;
             this.label1.Text = "Employee List";
             // 
             // EmployeeProfilesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1518, 803);
+            this.ClientSize = new System.Drawing.Size(854, 518);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.listViewEmployees);
             this.Controls.Add(this.treeViewDepartment);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Name = "EmployeeProfilesForm";
             this.Text = "EmployeeProfilesForm";
             this.panel.ResumeLayout(false);

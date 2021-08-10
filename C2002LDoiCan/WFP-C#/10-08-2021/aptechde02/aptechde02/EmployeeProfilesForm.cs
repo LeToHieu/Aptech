@@ -14,6 +14,7 @@ namespace aptechde02
     {
         private EmployeeDetailForm employeeDetailForm;
         private List<tblDepartment> departments = new List<tblDepartment>();
+        private int departmentId;
         public EmployeeProfilesForm()
         {
             InitializeComponent();
@@ -61,16 +62,22 @@ namespace aptechde02
         private void treeView1_NodeMouseClick(object sender, EventArgs e)
         {
             TreeNode treeNode = treeViewDepartment.SelectedNode;
-            int departmentId = (int)treeNode.Tag;
+            departmentId = (int)treeNode.Tag;
             listViewEmployees.Items.Clear();
             //query employees by departmentId
+            reloadListView();
+                            
+        }
+        private void reloadListView() {
             using (MyDBContextEntities myDBContext = new MyDBContextEntities())
             {
                 List<tblEmployee> employees = myDBContext.tblEmployees
                     .Where(employee => employee.DepartmentId == departmentId).ToList();
                 List<ListViewItem> listViewItems = new List<ListViewItem>();
-                foreach (var employee in employees) {
-                    ListViewItem item = new ListViewItem($"{employee.EmployeeId}", 0);                    
+                foreach (var employee in employees)
+                {
+                    ListViewItem item = new ListViewItem($"{employee.EmployeeId}", 0);
+                    item.Tag = employee;
                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item,
                                         employee.EmployeeName));
                     item.SubItems.Add(new ListViewItem.ListViewSubItem(item,
@@ -93,9 +100,7 @@ namespace aptechde02
                 //Add the items to the ListView.
                 listViewEmployees.Items.Clear();
                 listViewEmployees.Items.AddRange(listViewItems.ToArray());
-
             }
-                            
         }
         private void btnInsert_Click(object sender, EventArgs e)
         {
@@ -103,6 +108,29 @@ namespace aptechde02
                                      employeeDetailForm;
             employeeDetailForm.MdiParent = this.MdiParent;
             employeeDetailForm.Show();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (listViewEmployees.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listViewEmployees.SelectedItems[0];
+                tblEmployee selectedEmployee = (tblEmployee)selectedItem.Tag;
+                var confirmResult = MessageBox.Show($"Are you sure to delete employee: {selectedEmployee.EmployeeName}",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    using (MyDBContextEntities myDBContext = new MyDBContextEntities()) {
+                        myDBContext.tblEmployees
+                            .RemoveRange(myDBContext.tblEmployees
+                            .Where(employee => employee.EmployeeId == selectedEmployee.EmployeeId));
+                        myDBContext.SaveChanges();
+                        reloadListView();
+                    }                    
+                }
+
+            }
         }
     }
 }
