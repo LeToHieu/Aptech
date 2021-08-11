@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import com.app.aptech.R;
 import com.app.aptech.activities.IActivity;
-import com.app.aptech.activities.photo.PhotoListActivity;
 import com.app.aptech.activities.product.ProductListActivity;
 import com.app.aptech.utilities.Utility;
 
@@ -44,8 +43,7 @@ public class MainActivity extends AppCompatActivity implements IActivity {
                 return;
             }
             Utility.alert(getApplicationContext(), "Login successful");
-            //startActivity(new Intent(MainActivity.this, ProductListActivity.class));
-            startActivity(new Intent(MainActivity.this, PhotoListActivity.class));
+            startActivity(new Intent(MainActivity.this, ProductListActivity.class));
         });
     }
 

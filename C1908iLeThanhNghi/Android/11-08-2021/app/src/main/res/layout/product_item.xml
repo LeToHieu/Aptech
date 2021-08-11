@@ -48,7 +48,7 @@
         app:layout_constraintStart_toStartOf="@+id/txtProductName"
         app:layout_constraintTop_toBottomOf="@id/txtProductName" />
     <TextView
-        android:id="@+id/txtAlbumId"
+        android:id="@+id/txtPrice"
         android:layout_width="287dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

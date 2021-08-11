@@ -17,9 +17,6 @@
             android:name=".activities.product.ProductListActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.photo.PhotoListActivity"
-            android:exported="true" />
-        <activity
             android:name=".activities.main.MainActivity"
             android:label="@string/app_name">
             <intent-filter>

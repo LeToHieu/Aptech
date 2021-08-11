@@ -1,5 +1,6 @@
 package com.app.aptech.activities.product;
 
+import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,6 @@ public class ProductViewItem extends RecyclerView.ViewHolder{
         imageViewProduct = view.findViewById(R.id.imageViewProduct);
         txtProductName = view.findViewById(R.id.txtProductName);
         txtProductDescription = view.findViewById(R.id.txtProductDescription);
-        txtPrice = view.findViewById(R.id.txtAlbumId);
+        txtPrice = view.findViewById(R.id.txtPrice);
     }
 }
