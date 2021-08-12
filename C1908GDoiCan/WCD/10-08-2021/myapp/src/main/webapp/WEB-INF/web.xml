@@ -8,6 +8,10 @@
         <servlet-name>categoryServlet</servlet-name>
         <servlet-class>com.aptech.servlets.categoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.aptech.servlets.UserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/TestServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>categoryServlet</servlet-name>
         <url-pattern>/categoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/UserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
