@@ -14,6 +14,7 @@ namespace dvdproject
     {
         private MyDBEntities dbContext = new MyDBEntities();
         private DetailCatalogForm detailCatalogForm;
+        private tblDVDLibrary selectedDVDLibrary;
         public MainForm()
         {
             InitializeComponent();
@@ -49,8 +50,21 @@ namespace dvdproject
             dataGridView.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
             dataGridView.MultiSelect = false;
-            dataGridView.Dock = DockStyle.Fill;            
+            dataGridView.Dock = DockStyle.Fill;
+            dataGridView.SelectionChanged += DataGridView_SelectionChanged;
         }
+
+        private void DataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count > 0) {
+                int dvdCodeno = 111;//phai debug
+                //int dvdCodeNo = Convert.ToInt32((dataGridView.SelectedRows[0])[0]);
+                selectedDVDLibrary = dbContext
+                    .tblDVDLibraries.Where(item => item.DVDCodeNo == dvdCodeNo)
+                    .FirstOrDefault();
+            }
+        }
+
         private void PopulateDataGridView()
         {
             dbContext.tblDVDLibraries.ToList().ForEach(dvdLibrary => {
@@ -84,6 +98,9 @@ namespace dvdproject
             if (detailCatalogForm == null) {
                 detailCatalogForm = new DetailCatalogForm();
             }
+            detailCatalogForm.Status = InsertOrUpdate.Insert;            
+            //update UI in setter of DVDLibrary
+            detailCatalogForm.Show();
         }
     }
 }
