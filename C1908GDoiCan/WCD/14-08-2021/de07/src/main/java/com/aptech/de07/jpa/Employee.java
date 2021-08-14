@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "TblEmployee.findByEmployeeName", query = "SELECT t FROM TblEmployee t WHERE t.employeeName = :employeeName")
     , @NamedQuery(name = "TblEmployee.findByPlaceOfWork", query = "SELECT t FROM TblEmployee t WHERE t.placeOfWork = :placeOfWork")
     , @NamedQuery(name = "TblEmployee.findByPhoneNo", query = "SELECT t FROM TblEmployee t WHERE t.phoneNo = :phoneNo")})
-public class TblEmployee implements Serializable {
+public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,10 +49,16 @@ public class TblEmployee implements Serializable {
     @Column(name = "PhoneNo")
     private String phoneNo;
 
-    public TblEmployee() {
+    public Employee() {
+    }
+    public Employee(String employeeNo, String employeeName, String placeOfWork, String phoneNo) {
+        this.employeeNo = employeeNo;
+        this.employeeName = employeeName;
+        this.placeOfWork = placeOfWork;
+        this.phoneNo = phoneNo;        
     }
 
-    public TblEmployee(String employeeNo) {
+    public Employee(String employeeNo) {
         this.employeeNo = employeeNo;
     }
 
@@ -98,10 +104,10 @@ public class TblEmployee implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TblEmployee)) {
+        if (!(object instanceof Employee)) {
             return false;
         }
-        TblEmployee other = (TblEmployee) object;
+        Employee other = (Employee) object;
         if ((this.employeeNo == null && other.employeeNo != null) || (this.employeeNo != null && !this.employeeNo.equals(other.employeeNo))) {
             return false;
         }
