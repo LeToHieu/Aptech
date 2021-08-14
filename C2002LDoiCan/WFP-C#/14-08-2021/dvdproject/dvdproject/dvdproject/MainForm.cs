@@ -57,7 +57,7 @@ namespace dvdproject
         private void DataGridView_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count > 0) {
-                int dvdCodeno = 111;//phai debug
+                int dvdCodeNo = 111;//phai debug
                 //int dvdCodeNo = Convert.ToInt32((dataGridView.SelectedRows[0])[0]);
                 selectedDVDLibrary = dbContext
                     .tblDVDLibraries.Where(item => item.DVDCodeNo == dvdCodeNo)
