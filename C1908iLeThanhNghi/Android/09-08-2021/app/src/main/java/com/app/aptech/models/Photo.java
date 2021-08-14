@@ -19,9 +19,12 @@ public class Photo {
     public static Photo fromJson(JsonObject jsonObject) {
         int id = Integer.valueOf(jsonObject.get("id").toString());
         int albumId = Integer.valueOf(jsonObject.get("albumId").toString());
-        String title = jsonObject.get("title").toString();
-        String url = jsonObject.get("url").toString();
-        String thumbnailUrl = jsonObject.get("thumbnailUrl").toString();
+        String title = jsonObject.get("title").toString().substring(1);
+        title = title.substring(0, title.length() - 1);
+        String url = jsonObject.get("url").toString().substring(1);
+        url = url.substring(0, url.length() - 1);
+        String thumbnailUrl = jsonObject.get("thumbnailUrl").toString().substring(1);
+        thumbnailUrl = thumbnailUrl.substring(0, thumbnailUrl.length() - 1);
         return new Photo(id, albumId, title, url, thumbnailUrl);
     }
     //convert from json object to Photo object

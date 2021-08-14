@@ -16,6 +16,11 @@ import java.util.List;
 
 public class PhotosAdapter extends RecyclerView.Adapter {
     private List<Photo> photos;
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
     PhotoViewItem photoViewItem;
     PhotosAdapter(List<Photo> photos) {
         this.photos = photos;

@@ -24,14 +24,14 @@ public class PhotoListActivity extends AppCompatActivity implements IActivity {
     private ImageButton btnBack;
     private TextView txtTitle;
     private RecyclerView recyclerview;
-    private RecyclerView.Adapter adapter;
+    private PhotosAdapter adapter;
     //data
     private List<Photo> photos = new ArrayList<Photo>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_list_activity);
+        setContentView(R.layout.photo_list_activity);
         getSupportActionBar().hide();
         setupUI();
         setupActions();
@@ -40,20 +40,29 @@ public class PhotoListActivity extends AppCompatActivity implements IActivity {
             @Override
             public void getResponse(Object response, String errorMessage) {
                 if(errorMessage.equals("")) {
-                    List<Photo> photos = (List<Photo>)response;
                     Log.d("PhotoListActivity", "haha");
+                    PhotoListActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            PhotoListActivity.this.photos = (List<Photo>)response;
+                            adapter.setPhotos(PhotoListActivity.this.photos);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+
                     //reload data
                 }
 
             }
         });
+        Log.d("PhotoListActivity", "haha");
     }
 
     @Override
     public void setupUI() {
         btnBack = findViewById(R.id.btnBack);
         txtTitle = findViewById(R.id.txtTitle);
-        txtTitle.setText("List of products");
+        txtTitle.setText("List of photos");
 
         recyclerview = findViewById(R.id.recyclerview);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(

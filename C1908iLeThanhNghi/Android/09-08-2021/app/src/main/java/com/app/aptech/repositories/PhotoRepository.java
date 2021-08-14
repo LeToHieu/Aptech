@@ -30,18 +30,11 @@ public class PhotoRepository {
     OkHttpClient client = new OkHttpClient();
     public void getAllPhotos(IResponse myResponse) {
         List<Photo> photos = new ArrayList<>();
-        final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         Request request = new Request.Builder()
                 .url(urlPhotos)
                 .build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException exception) {
-                Log.e("PhotoRepository", "Cannot get photos from Server: "+exception.toString());
-                myResponse.getResponse(photos, exception.toString());
-            }
-
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 String jsonString = response.body().string();
@@ -55,6 +48,14 @@ public class PhotoRepository {
                 myResponse.getResponse(photos, "");
 
             }
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException exception) {
+                Log.e("PhotoRepository", "Cannot get photos from Server: "+exception.toString());
+                myResponse.getResponse(photos, exception.toString());
+            }
+
+
         });
     }
 }
