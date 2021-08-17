@@ -14,6 +14,9 @@
     <body>
         <h1>List of Employees</h1>
         <table style="width:50%">
+            <c:forEach var="employee" items="${requestScope.employees}">
+                
+           </c:forEach>
             <tr>
               <th>Firstname</th>
               <th>Lastname</th> 
