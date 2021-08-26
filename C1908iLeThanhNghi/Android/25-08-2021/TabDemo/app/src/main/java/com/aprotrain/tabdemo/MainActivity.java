@@ -25,22 +25,17 @@ public class MainActivity extends AppCompatActivity {
         viewPager2 = this.findViewById(R.id.viewPager2);
         StudentFragmentStateAdapter adapter = new StudentFragmentStateAdapter(this, getFakeStudents());
         viewPager2.setAdapter(adapter);
-        tabLayout = findViewById(R.id.tabLayout);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
         new TabLayoutMediator(tabLayout, viewPager2,
                 (tab, position) -> tab.setText("page " + (position + 1))
         ).attach();
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_launcher_background);
     }
     private List<Student> getFakeStudents() {
         List<Student> students = new ArrayList<Student>();
-        students.add(new Student(1,"Nguyen Van A","nva@gmai.com",
-                "https://via.placeholder.com/150/92c952", "1111111"));
-        students.add(new Student(2,"Nguyen Van B","nva@gmai.com",
-                "https://via.placeholder.com/150/771796", "1111111"));
-        students.add(new Student(3,"Nguyen Van C","nva@gmai.com",
-                "https://via.placeholder.com/150/24f355", "1111111"));
-        students.add(new Student(4,"Nguyen Van D","nva@gmai.com",
-                "https://via.placeholder.com/150/24f355", "1111111"));
+        students.add(new Student(1,"Nguyen Van A","nva@gmai.com", "", "1111111"));
+        students.add(new Student(2,"Nguyen Van B","nva@gmai.com", "", "1111111"));
+        students.add(new Student(3,"Nguyen Van C","nva@gmai.com", "", "1111111"));
+        students.add(new Student(4,"Nguyen Van D","nva@gmai.com", "", "1111111"));
         return students;
     }
 }
