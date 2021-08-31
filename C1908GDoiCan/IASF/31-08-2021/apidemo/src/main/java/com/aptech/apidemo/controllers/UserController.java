@@ -1,23 +1,18 @@
 package com.aptech.apidemo.controllers;
 
-import com.aptech.apidemo.controllers.exceptions.UserNotFoundException;
 import com.aptech.apidemo.models.User;
 import com.aptech.apidemo.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class UserController {
-    @Autowired
-    private UserRepository repository; //must init
+    private final UserRepository repository; //must init
     //DI = Dependency Injection
-    /*
     public UserController(UserRepository repository) {
         this.repository = repository;
     }
-     */
     //routers
     //Postman : Raw, JSON
     @PostMapping("/registerUser")
@@ -30,9 +25,9 @@ public class UserController {
         return repository.findAll();
     }
     @GetMapping("/users/{id}")
-    User findById(@PathVariable Long id) throws UserNotFoundException {
+    User findById(@PathVariable Long id) throws Exception {
         return repository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
+                .orElseThrow(() -> new Exception("Cannot find user"));
     }
 
     @PutMapping("/users/{id}") //update or insert

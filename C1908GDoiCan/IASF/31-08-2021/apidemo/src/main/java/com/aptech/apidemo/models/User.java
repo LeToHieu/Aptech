@@ -1,20 +1,11 @@
 package com.aptech.apidemo.models;
-/*
-mysql -h localhost -P 3309 --protocol=tcp -u root -p
-SELECT user FROM mysql.user;
-DROP USER 'hoangnd'@'%';
-create user 'hoangnd'@'%' identified by '123456';
-grant all on c1908GDoiCan.* to 'hoangnd'@'%';
 
-* */
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tblUser")
 public class User {
-    private @Id @GeneratedValue(strategy=GenerationType.AUTO) Long id;
-    @Column(nullable = false, unique = true, length = 200)
+    private @Id @GeneratedValue Long id;
     private String email;
     private String fullName;
     private String phoneNumber;
