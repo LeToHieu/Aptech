@@ -22,15 +22,10 @@ public class BookService implements IBookService{
 
     @Override
     public void deleteBook(Long bookId) {
-        try {
-            Optional<Book> foundBook = repository.findById(bookId);
-            if(foundBook.isPresent()) {
-                repository.delete(foundBook.get());
-            } else {
-                throw new RuntimeException("Cannot find book to delete");
-            }
-        }catch (Exception e)  {
-            throw new RuntimeException("Error delete"+e.getMessage());
+        Optional<Book> foundBook = repository.findById(bookId);
+        if(foundBook.isPresent()) {
+            repository.delete(foundBook.get());
         }
+
     }
 }

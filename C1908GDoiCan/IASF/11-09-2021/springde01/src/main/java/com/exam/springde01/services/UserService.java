@@ -11,7 +11,6 @@ public class UserService implements IUserService{
     private UserRepository repository;
     @Override
     public User login(String username, String password) {
-        Optional<User> foundUser = repository.findByUsernameAndPassword(username.trim(), password);
-        return foundUser.isPresent() ? foundUser.get() : null;
+        return repository.findByUsernameAndPassword(username.trim(), password);
     }
 }
