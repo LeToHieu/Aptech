@@ -59,6 +59,40 @@ namespace _13_09_2021
 
             userB.DateOfBirth = new DateTime(1987, 12, 30);
             Console.WriteLine($"age of mr B = {userB.Age}");
+            Console.WriteLine("1.Input data of product list");
+            Console.WriteLine("2.Sort & display data of product list");
+            Console.WriteLine("3.Export data into file product.dat");
+            Console.WriteLine("4.Exit");
+            int choice = 0;
+            while (true) {
+                Console.WriteLine("Enter your choice");
+                choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("choose 1");
+                        break;
+                    case 2:
+                        Console.WriteLine("choose 2");
+                        break;
+                    case 3:
+                        Console.WriteLine("choose 3");
+                        break;
+                    case 4:
+                        Console.WriteLine("Program ended");
+                        return;
+                        //break;
+                    default:
+                        Console.WriteLine("please select 1-4");
+                        break;
+                }
+                //if (choice == 4)
+                //{
+                //    break;
+                //}
+
+            }
+
 
         }
     }
