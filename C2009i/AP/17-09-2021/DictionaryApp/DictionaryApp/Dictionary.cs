@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq;//LinQ(language integrated query) giong Stream Java
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,19 +41,25 @@ namespace DictionaryApp
 
         public bool Remove(string word)
         {
-            Word foundWord = this.Words.Where(item => item._Word.Equals(word)).FirstOrDefault();
-            return this.Words.Remove(foundWord);
-            /*
+            
+            Word foundWord = this.Words.Where(eachWord => eachWord._Word.Equals(word)).FirstOrDefault();
+            //return this.Words.Remove(foundWord);
+            
             if (foundWord != null) {
                 this.Words.Remove(foundWord);
                 return true;
             }
+            Console.WriteLine("Cannot find Word to delete");
             return false;            
-            */
+            /**
+             * Microsoft: C/C++, C#, F#, Fortran(90% c++)
+             * Google: Python, R(Machine Learning), Dart, Kotlin(mobile), Google script(90% javascript)
+             * Apple: Swift, Objective C/C++
+             */            
         }
 
         public void Search(string word)
-        {
+        {            
             Word foundWord = this.Words.Where(item => item._Word.Equals(word)).FirstOrDefault();
             if (foundWord != null) {
                 foundWord.Display();

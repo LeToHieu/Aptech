@@ -8,5 +8,11 @@ namespace DictionaryApp
 {
     interface IDictionary
     {
+        void AddWord(string word, string meaning);
+        void EditWord(string word, string meaning);
+        bool Remove(string word);
+        void List();
+        void Search(string word);
+
     }
 }
