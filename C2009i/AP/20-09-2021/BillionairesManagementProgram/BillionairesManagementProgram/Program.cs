@@ -10,10 +10,14 @@ namespace BillionairesManagementProgram
 {
     public class Program
     {
+        
         public static void Main(string [] args)
         {
-            Console.WriteLine("Hello, World!");
+            Menu menu = new Menu();
+            Console.WriteLine("Bilionaires Management Program");
+            menu.ShowMenu();
         }
     }
 }
+
 
