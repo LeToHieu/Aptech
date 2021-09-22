@@ -103,10 +103,12 @@ namespace myapp
                 else if (choice.Equals("5"))
                 {
                     Console.WriteLine("Save");
+                    this.Save();
                 }
                 else if (choice.Equals("6"))
-                {
+                {                    
                     Console.WriteLine("Open");
+                    this.Open();
                 }
                 else if (choice.Equals("7"))
                 {
@@ -194,10 +196,75 @@ namespace myapp
         private void Save()
         {
             //save to csv file(Comma Separated Value)
+            try
+            {
+                Console.WriteLine("Enter file name:");
+                string fileName = Console.ReadLine() ?? "".Trim();
+                //automatically add .csv extension
+                string fileExtension = fileName.Split('/').Last().Trim().ToLower();
+                fileName = fileExtension.Equals("csv") ? fileName : $"{fileName}.csv";
+                using StreamWriter file = new StreamWriter(fileName);
+
+                string line = "";
+                line = "Name, Nationality, Birth year, Net worth";
+                file.WriteLine(line);
+                foreach (Person person in this.persons)
+                {
+                    line = $"{person.Name},{person.Nationality},{person.BirthYear},{person.NetWorth}";
+                    file.WriteLine(line);
+                }
+                file.Close();
+                Console.WriteLine($"Save to file: {fileName} successfully");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         private void Open()
         {
-
+            try
+            {
+                Console.WriteLine("Enter file name:");
+                string fileName = Console.ReadLine() ?? "".Trim();                
+                using StreamReader file = new StreamReader(fileName);
+                string line = "";
+                this.persons.Clear();
+                int lineNumber = 0;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if(line != null)
+                    {
+                        string [] data = line.Split(",");
+                        if(lineNumber > 0)
+                        {
+                            string name = data[0];
+                            string nationality = data[1];
+                            int birthYear = Convert.ToInt32(data[2]);
+                            float netWorth = (float)Convert.ToDouble(data[3]);
+                            Person person = new Person()
+                            {
+                                Name = name,
+                                Nationality = nationality,
+                                BirthYear = birthYear,
+                                NetWorth = netWorth,
+                            };
+                            persons.Add(person);
+                        }
+                        lineNumber++;
+                        Console.WriteLine("haha");
+                    }
+                    
+                    
+                }
+                file.Close();
+                Console.WriteLine($"Read file: {fileName} successfully");
+                this.ShowAllPersons();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
