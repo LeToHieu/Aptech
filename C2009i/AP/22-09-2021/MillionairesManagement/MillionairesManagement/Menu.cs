@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MillionairesManagement.Models;
+using System.Linq;//Language Integrated Query (like Stream in Java)
 
 namespace MillionairesManagement
 {
@@ -9,12 +10,40 @@ namespace MillionairesManagement
         private List<Person> persons = new List<Person>();//variable = field
         public void Analyze()
         {
-
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            foreach (Person person in this.persons)
+            {
+                string nationality = person.Nationality;                
+                result[nationality] = (result.ContainsKey(nationality) ? result[nationality] : 0) + 1;
+            }
+            Console.WriteLine("Statistics result: ");
+            foreach(string nationality in result.Keys)
+            {
+                int count = result[nationality];
+                Console.WriteLine($"+ There are {count} person(s) from ‘{nationality}’.");
+            }
+            
         }
 
         public void Find()
         {
-
+            Console.WriteLine("Enter nationality to search: ");
+            string nationality = Console.ReadLine().Trim().ToLower();
+            Console.WriteLine("Enter min: ");
+            double min = Convert.ToDouble(Console.ReadLine());
+            //duyet danh sach, tim thay thi cho vao array khac ? True, donot this !
+            List<Person> filteredPersons = this.persons.Where(
+                person => person.Nationality.ToLower().Equals(nationality)
+                    && person.NetWorth >= min).ToList();
+            if(filteredPersons.Count == 0)
+            {
+                Console.WriteLine("Cannot find person");                
+                return;
+            }
+            foreach(Person person in filteredPersons)
+            {
+                Console.WriteLine(person.ToString());
+            }
         }
 
         public void Input()
@@ -54,8 +83,43 @@ namespace MillionairesManagement
                 Console.WriteLine(person.ToString());
             }
         }
+        private void GeneratePersons()
+        {
+            this.persons = new List<Person>()
+            {
+                new Person()
+                {
+                    Name = "a",
+                    Nationality = "aa",
+                    NetWorth = 12,
+                    BirthYear = 1980,
+                },
+                new Person()
+                {
+                    Name = "a",
+                    Nationality = "bb",
+                    NetWorth = 51,
+                    BirthYear = 1981,
+                },
+                new Person()
+                {
+                    Name = "c",
+                    Nationality = "bb",
+                    NetWorth = 10,
+                    BirthYear = 1983,
+                },
+                new Person()
+                {
+                    Name = "c",
+                    Nationality = "cc",
+                    NetWorth = 50,
+                    BirthYear = 1982,
+                },
+            };
+        }
         public void ShowMenu()
         {
+            this.GeneratePersons();
             string choice = "";
             while (choice != "7")
             {
@@ -76,14 +140,15 @@ namespace MillionairesManagement
                 else if (choice.Equals("2"))
                 {
                     this.Sort();
+                    this.Display();
                 }
                 else if (choice.Equals("3"))
                 {
-
+                    this.Analyze();
                 }
                 else if (choice.Equals("4"))
                 {
-
+                    this.Find();
                 }
                 else if (choice.Equals("5"))
                 {
