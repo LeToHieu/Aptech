@@ -1,7 +1,7 @@
 ﻿using myapp.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq;//Language Integated Query
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,8 +26,10 @@ namespace myapp
             Dictionary<string, int> result = new Dictionary<string, int>();
             foreach (Person person in persons)
             {
-                string nationality = person.Nationality ?? "";
+                string nationality = person.Nationality ?? ""; //Elvis operator
+                //string nationality = person.Nationality == null ? "" : person.Nationality;
                 int x = 0;
+                /*
                 if(result.ContainsKey(nationality))
                 {
                     x = result[nationality];
@@ -36,8 +38,8 @@ namespace myapp
                     x = 0;
                 }
                 result[nationality] = x + 1;
-                
-                //result[nationality] = (result.ContainsKey(nationality) ? result[nationality] : 0) + 1;
+                */    
+                result[nationality] = (result.ContainsKey(nationality) ? result[nationality] : 0) + 1;
             }
 
             Console.WriteLine("Statistics Result:");
@@ -45,8 +47,27 @@ namespace myapp
             {
                 Console.WriteLine($"+There are {result[nationality]} person(s) from ‘{nationality}’.");
             }
+                        
+        }
+        private void Find()
+        {
+            Console.WriteLine("Enter nationality: ");
+            string nationality = (Console.ReadLine() ?? "").Trim().ToLower();
+
+            Console.WriteLine("Enter min = ");
+            float min = (float)Convert.ToDouble(Console.ReadLine() ?? "0");
+
+            //iterate a list, found => save to new List => NO !
             
-            
+            List<Person> filteredPersons = this.persons
+                .Where(person => (person.Nationality ?? "").Trim().ToLower().Equals(nationality) &&
+                    person.NetWorth >= min
+                ).ToList();
+            foreach(Person person in filteredPersons)
+            {
+                Console.WriteLine(person.ToString());
+            }
+            Console.WriteLine($"{filteredPersons.Count} person(s) found");
         }
         public void ShowMenu() {
             string choice = "";
@@ -76,6 +97,7 @@ namespace myapp
                 }
                 else if (choice.Equals("4"))
                 {
+                    this.Find();
                     Console.WriteLine("Find");
                 }
                 else if (choice.Equals("5"))
@@ -168,6 +190,14 @@ namespace myapp
         {
             this.persons.Sort((p1, p2) => (int)(p2.NetWorth - p1.NetWorth));
             ShowAllPersons();
+        }
+        private void Save()
+        {
+            //save to csv file(Comma Separated Value)
+        }
+        private void Open()
+        {
+
         }
     }
 }
