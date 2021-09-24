@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MillionairesManagement.Models;
 using System.Linq;//Language Integrated Query (like Stream in Java)
+using System.IO;
 
 namespace MillionairesManagement
 {
@@ -60,12 +61,70 @@ namespace MillionairesManagement
 
         public void Open()
         {
-
+            try {
+                Console.WriteLine("Enter file name:");
+                string fileName = Console.ReadLine();                                
+                //@"I have a dream", @ goi la "raw"                
+                string[] lines = File.ReadAllLines(fileName);
+                this.persons.Clear();
+                int lineNumber = 0;
+                foreach (String line in lines)
+                {
+                    string[] arrayOfFields = line.Split(",");
+                    if (lineNumber == 0) {
+                        lineNumber ++;
+                        continue;
+                    }
+                   
+                    string personName = arrayOfFields[0];
+                    string nationality = arrayOfFields[1];
+                    int birthYear  = Convert.ToInt32(arrayOfFields[2]);
+                    float netWorth  = (float)Convert.ToDouble(arrayOfFields[3]);
+                    Person person = new Person() {
+                        Name = personName,
+                        Nationality = nationality,
+                        BirthYear = birthYear,
+                        NetWorth = netWorth
+                    };
+                    this.persons.Add(person);
+                    lineNumber++;
+                }
+                Console.WriteLine("haha");
+                
+            } catch (Exception exception)
+            {
+                Console.WriteLine($"Error: {exception.Message}");
+            }
         }
 
         public void Save()
         {
+            try
+            {
+                Console.WriteLine("Enter file name:");
+                string fileName = Console.ReadLine().Trim();
 
+                /*
+                VD: co file ten nhu sau: abc.com.Idoit.vls
+                fileName.Split(".") => ["abc", "com", "Idoit", "vls"]
+                fileName.Split(".").Last() => "vls"                
+                */
+                string fileExtension = fileName.Split(".").Length < 2 ? "" : (fileName.Split(".").Last().Trim().ToLower());
+                //neu ten file la csv thi sao ?
+                fileName = fileExtension.Equals("csv") ? fileName : $"{fileName}.csv";
+                using StreamWriter file = new(fileName);
+                file.WriteLine("person's name, Nationality, Birth year, Networth");
+                foreach (Person person in this.persons)
+                {
+                    string line = $"{person.Name},{person.Nationality},{person.BirthYear},{person.NetWorth}";
+                    file.WriteLine(line);
+                }
+                file.Close();
+            } catch(Exception exception)
+            {
+                Console.WriteLine($"Error: {exception.Message}");
+            }
+            
         }
 
         public void Sort()
@@ -152,11 +211,11 @@ namespace MillionairesManagement
                 }
                 else if (choice.Equals("5"))
                 {
-
+                    this.Save();
                 }
                 else if (choice.Equals("6"))
                 {
-
+                    this.Open();
                 }
                 else if (choice.Equals("7"))
                 {
