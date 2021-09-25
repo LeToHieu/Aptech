@@ -7,7 +7,7 @@ namespace BookStore.Models
     public static class DbInitializer
     {
         public static async Task InitializeAsync(
-            //BookStoreContext context, 
+            BookStoreContext context, 
             IServiceProvider serviceProvider,
             UserManager<IdentityUser> userManager
             )
@@ -35,7 +35,9 @@ namespace BookStore.Models
                 {
                     userManager.AddToRoleAsync(user, "admin").Wait();
                 }
+
             }
+            
         }
     }
 }

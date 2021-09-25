@@ -10,10 +10,10 @@ namespace Com.Product
     //sealed abstract => NO!
     public abstract class Product
     {
-        protected string ProductId {  get; set; }
-        protected string ProductName { get; set; }
-        protected int Year {  get; set; }
-        protected float Price {  get; set; }
+        public string ProductId {  get; set; }
+        public string ProductName { get; set; }
+        public int Year {  get; set; }
+        public float Price {  get; set; }
         public abstract void Input();//abstract = has no content
         public abstract void Display();//abstract = has no content
         public virtual void DoSomething()
