@@ -9,21 +9,21 @@ namespace ExamApp
 
     public class Laptop : DeviceBase, IDevice
     {
-        private int _price;
+        private float _price;
         private float _vat;
         private string _manufacturer = "";
-        Laptop(int id): base(id)
+        public Laptop(int id): base(id)
         {
             _price = 0;
             _vat = 0.1f;
         }
-        Laptop(int id, string name, float price) : base(id, name)
+        public Laptop(int id, string name, float price) : base(id, name)
         {
-            _price = 0;
+            _price = price;
             _vat = 0.1f;
         }
 
-        public int Price { 
+        public float Price { 
             get => _price; 
             set
             {
@@ -55,6 +55,6 @@ namespace ExamApp
                                 $"Price: {Price} | " +
                                 $"Net Price: {NetPrice} | " +
                                 $"Manufacturer: {Manufacturer}");
-        }
+        }        
     }
 }
