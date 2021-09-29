@@ -9,6 +9,7 @@ namespace Exam1
     public class ShapeCollections
     {
         private List<Shape> shapes= new List<Shape>();
+        public List<Shape> Shapes { get => shapes};
         public void AddCircle()
         {
             try
@@ -44,6 +45,13 @@ namespace Exam1
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        public void ShowAllShapes()
+        {
+            foreach(Shape shape in shapes)
+            {
+                Console.WriteLine(shape.ToString());
             }
         }
     }
