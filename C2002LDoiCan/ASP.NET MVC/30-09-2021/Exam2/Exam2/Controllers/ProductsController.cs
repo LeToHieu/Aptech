@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Exam2.Models;
+using PagedList;
 
 namespace Exam2.Controllers
 {
@@ -54,10 +55,9 @@ namespace Exam2.Controllers
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            return View(students.ToPagedList(pageNumber, pageSize));
-
+            return View(products.ToPagedList(pageNumber, pageSize));
             
-            return View(products.ToList());
+            //return View(products.ToList());
         }
 
         // GET: Products/Details/5
