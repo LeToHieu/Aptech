@@ -22,7 +22,7 @@ namespace ExamApp
                     string name = Console.ReadLine();
 
                     Console.WriteLine("Enter price: ");
-                    float price = (float)Convert.ToDouble(Console.ReadLine());
+                    int price = Convert.ToInt32(Console.ReadLine());
                     Laptop laptop = new Laptop(id, name, price);
                     myList[i] = laptop;
 

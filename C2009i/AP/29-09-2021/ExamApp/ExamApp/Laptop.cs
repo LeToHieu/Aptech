@@ -9,7 +9,7 @@ namespace ExamApp
 
     public class Laptop : DeviceBase, IDevice
     {
-        private float _price;
+        private int _price;
         private float _vat;
         private string _manufacturer = "";
         public Laptop(int id): base(id)
@@ -17,13 +17,13 @@ namespace ExamApp
             _price = 0;
             _vat = 0.1f;
         }
-        public Laptop(int id, string name, float price) : base(id, name)
+        public Laptop(int id, string name, int price) : base(id, name)
         {
             _price = price;
             _vat = 0.1f;
         }
 
-        public float Price { 
+        public int Price { 
             get => _price; 
             set
             {
