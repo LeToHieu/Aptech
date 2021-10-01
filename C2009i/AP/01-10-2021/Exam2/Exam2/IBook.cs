@@ -10,7 +10,6 @@ namespace Exam2
         public string Publisher { get; set; }
         public int Year { get; set; }
         public string ISBN { get; set; }
-
         public void Show();
     }
 }
