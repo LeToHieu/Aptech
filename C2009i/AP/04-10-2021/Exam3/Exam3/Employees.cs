@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exam3
 {
-    public class Employees
+    public abstract class Employees
     {
         //fields
         private int empID;
@@ -103,7 +103,7 @@ namespace Exam3
                 throw new Exception($"cannot convert to datetime: {e.Message}");
             }
         }
-        public void Input()
+        public virtual void Input()
         {
             try {
                 Console.WriteLine("Input employeeID: ");
@@ -116,13 +116,25 @@ namespace Exam3
                 DOB = this.convertStringToDateTime(Console.ReadLine());
 
                 Console.WriteLine("Input department: ");
-                Console.ReadLine();
+                Department = Console.ReadLine();
+
                 Console.WriteLine("Input numWork: ");
-                Console.ReadLine();
+                NumWork = Convert.ToInt32(Console.ReadLine());
+
             } catch(Exception error)
             {
                 Console.WriteLine($"Cannot input information. Error: {error.Message}");
             }
         }
+        public virtual void DisplayDetail()
+        {            
+            Console.WriteLine("=============================================");
+            Console.WriteLine($"EmpID: {EmpID}");
+            Console.WriteLine($"EmpName: {EmpName}");
+            Console.WriteLine($"DOB: {DOB}");
+            Console.WriteLine($"Department: {Department}");
+            Console.WriteLine($"Number of work: {EmpName}");            
+        }
+        public abstract double CalculateSalary();        
     }
 }
