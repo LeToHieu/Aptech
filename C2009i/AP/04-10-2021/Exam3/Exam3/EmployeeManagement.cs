@@ -43,5 +43,22 @@ namespace Exam3
             Console.WriteLine("Employee with max numwork:");
             foundEmployee.DisplayDetail();
         }
+        public void SearchEmployee()
+        {
+            Console.WriteLine("Enter name to search: ");
+            string employeeName = Console.ReadLine().ToLower();
+            TemporaryEmp foundEmployee = listEmployee
+                .Where(eachEmployee => eachEmployee.EmpName.Equals(employeeName)).FirstOrDefault();
+            if(foundEmployee == null)
+            {
+                Console.WriteLine($"Cannot find employee with name: {employeeName}");                
+            }
+            else
+            {
+                Console.WriteLine("Founded employee:");
+                foundEmployee.DisplayDetail();
+            }
+            
+        }
     }
 }
