@@ -9,7 +9,7 @@ namespace Exam3
     class EmployeeManagement
     {
         private List<TemporaryEmp> listEmployee = new List<TemporaryEmp>();
-        public List<TemporaryEmp> ListEmployee { get => listEmployee; }
+        public List<TemporaryEmp> ListEmployee { get => listEmployee; set => listEmployee = value; }
         public void InputEmployee()
         {
             //input_imployees => php, ruby, python,....
@@ -49,7 +49,7 @@ namespace Exam3
             Console.WriteLine("Enter name to search: ");
             string employeeName = Console.ReadLine().ToLower();
             TemporaryEmp foundEmployee = listEmployee
-                .Where(eachEmployee => eachEmployee.EmpName.Equals(employeeName)).FirstOrDefault();
+                .Where(eachEmployee => eachEmployee.EmpName.ToLower().Equals(employeeName)).FirstOrDefault();
             if(foundEmployee == null)
             {
                 Console.WriteLine($"Cannot find employee with name: {employeeName}");                

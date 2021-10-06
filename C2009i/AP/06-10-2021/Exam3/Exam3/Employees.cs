@@ -111,9 +111,19 @@ namespace Exam3
 
                 Console.WriteLine("Input employeeName: ");
                 EmpName = Console.ReadLine();
-
-                Console.WriteLine("Input dob(dd/mm/yyyy): ");
-                DOB = this.convertStringToDateTime(Console.ReadLine());
+                
+                while(true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Input dob(dd/mm/yyyy): ");
+                        DOB = this.convertStringToDateTime(Console.ReadLine());                        
+                        break;
+                    }
+                    catch (Exception e){
+                        Console.WriteLine(e.Message);
+                    }                    
+                }                                
 
                 Console.WriteLine("Input department: ");
                 Department = Console.ReadLine();
@@ -133,7 +143,7 @@ namespace Exam3
             Console.WriteLine($"EmpName: {EmpName}");
             Console.WriteLine($"DOB: {DOB}");
             Console.WriteLine($"Department: {Department}");
-            Console.WriteLine($"Number of work: {EmpName}");            
+            Console.WriteLine($"Number of work: {NumWork}");            
         }
         public abstract double CalculateSalary();        
     }
