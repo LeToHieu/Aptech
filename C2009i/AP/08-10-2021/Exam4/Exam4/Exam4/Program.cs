@@ -6,8 +6,13 @@ namespace Exam4
     {
         static void Main(string[] args)
         {
+            /*
             EmployeeTest employeeTest= new EmployeeTest();
             employeeTest.Input();
+            */
+            PersonTest personTest = new PersonTest();
+            personTest.Test();
+
         }
     }
 }
