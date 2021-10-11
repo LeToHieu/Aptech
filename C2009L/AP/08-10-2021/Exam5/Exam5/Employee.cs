@@ -11,6 +11,7 @@ namespace Exam5
         private string _empName;
         private int _yearsOfService;
         protected double _bonus = 0.0;
+        protected int x = 120;
 
         public string Designation;
         public double Salary;
