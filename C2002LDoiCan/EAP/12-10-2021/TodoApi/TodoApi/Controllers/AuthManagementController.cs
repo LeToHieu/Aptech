@@ -20,6 +20,16 @@ using TodoApi.Models.DTOs.Responses;
 
 namespace TodoApi.Controllers
 {
+    /*
+     "username": "hoang",
+      "email": "hoang@gmail.com",
+      "password": "Abc123456@"
+    
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjNmMzkzNTZhLWU1YzktNDQ0OS1hMzk3LTY1MDk0MGIxYWJlMyIsImVtYWlsIjoiaG9hbmdAZ21haWwuY29tIiwic3ViIjoiaG9hbmdAZ21haWwuY29tIiwianRpIjoiNzFmZjE1ODQtYTY4Ni00YjQyLTkyYTUtOWFlNmQ2MWQxNDFjIiwibmJmIjoxNjM0MDQ4NDAwLCJleHAiOjE2MzQwNDg0MzAsImlhdCI6MTYzNDA0ODQwMH0.hFMdnjJNTUtlasVSCTqA_2lZta5GTnPjaxekgYMTlzM",    
+    "refreshToken": "9X6ES287V69VSGVIY4YV0MG06XAB2JAA70Pf7505ce3-47da-4d70-a2eb-6fe7143423fc",    
+
+    "refreshToken": "DC9C23Z5SLZH91HBKMKQ2BU9EH6CGS8FHR22cfdc062-ffcc-4c7f-a4ff-e52a60abb132",
+     */
     [Route("api/[controller]")] // api/authManagement
     [ApiController]
     public class AuthManagementController : ControllerBase
@@ -90,6 +100,7 @@ namespace TodoApi.Controllers
 
         [HttpPost]
         [Route("Login")]
+        //Moi lan login co 1 token/refresh token khac nhau
         public async Task<IActionResult> Login([FromBody] UserLoginRequest user)
         {
             if (ModelState.IsValid)
@@ -101,7 +112,7 @@ namespace TodoApi.Controllers
                     return BadRequest(new RegistrationResponse()
                     {
                         Errors = new List<string>() {
-                                "Invalid login request"
+                                "User does not exist"
                             },
                         Success = false
                     });
@@ -114,7 +125,7 @@ namespace TodoApi.Controllers
                     return BadRequest(new RegistrationResponse()
                     {
                         Errors = new List<string>() {
-                                "Invalid login request"
+                                "Invalid password"
                             },
                         Success = false
                     });
@@ -136,6 +147,7 @@ namespace TodoApi.Controllers
 
         [HttpPost]
         [Route("RefreshToken")]
+
         public async Task<IActionResult> RefreshToken([FromBody] TokenRequest tokenRequest)
         {
             if (ModelState.IsValid)
@@ -172,6 +184,7 @@ namespace TodoApi.Controllers
 
             var key = Encoding.ASCII.GetBytes(_jwtConfig.Secret);
 
+            int expireTimeInSeconds = 10;
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
@@ -181,7 +194,7 @@ namespace TodoApi.Controllers
                     new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
-                Expires = DateTime.UtcNow.AddSeconds(30), // 5-10 
+                Expires = DateTime.UtcNow.AddSeconds(expireTimeInSeconds), // 5-10 
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -200,6 +213,7 @@ namespace TodoApi.Controllers
             };
 
             await _apiDbContext.RefreshTokens.AddAsync(refreshToken);
+            //update refresh token in DB
             await _apiDbContext.SaveChangesAsync();
 
             return new AuthResult()
@@ -231,6 +245,7 @@ namespace TodoApi.Controllers
                 }
 
                 // Validation 3 - validate expiry date
+                //Blunder
                 var utcExpiryDate = long.Parse(tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
 
                 var expiryDate = UnixTimeStampToDateTime(utcExpiryDate);
@@ -261,6 +276,7 @@ namespace TodoApi.Controllers
                 }
 
                 // Validation 5 - validate if used
+                //good
                 if (storedToken.IsUsed)
                 {
                     return new AuthResult()
@@ -273,6 +289,7 @@ namespace TodoApi.Controllers
                 }
 
                 // Validation 6 - validate if revoked
+                //Good
                 if (storedToken.IsRevorked)
                 {
                     return new AuthResult()
@@ -286,7 +303,7 @@ namespace TodoApi.Controllers
 
                 // Validation 7 - validate the id
                 var jti = tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
-
+                //Good
                 if (storedToken.JwtId != jti)
                 {
                     return new AuthResult()
