@@ -16,5 +16,25 @@ namespace MyApp.Forms
         {
             InitializeComponent();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                // If 'Yes', do something here.
+            }
+            else
+            {
+                // If 'No', do something here.
+            }
+        }
+
+        private void btnExportXML_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Export successfully");
+        }
     }
 }
