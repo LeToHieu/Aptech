@@ -13,13 +13,14 @@ namespace MyApp.Repositories
         private const string PORT = "1435";
         private const string USERNAME = "sa";
         private const string PASSWORD = "Abc123456789";
+        private const string DB_NAME = "master";
         private OdbcConnection connection = null;
 
         
         public OdbcConnection GetConnection()
         {                        
             string connetionString = $"Data Source={SERVER_NAME},{PORT};" +
-                $"Network Library=DBMSSOCN;Initial Catalog=master;" +
+                $"Network Library=DBMSSOCN;Initial Catalog={DB_NAME};" +
                 $"User ID={USERNAME};Password={PASSWORD};";
             connection = new OdbcConnection(connetionString);
             try
