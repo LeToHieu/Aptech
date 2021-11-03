@@ -1,6 +1,7 @@
 ﻿using MyApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Odbc;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,28 +12,26 @@ namespace MyApp.Repositories
 {
     public class StudentRepository
     {
-        public List<Student> GetStudents()
+        public DataSet GetStudentsDataSet()
         {
-            List<Student> students = new List<Student>();
             try
             {
 
                 SqlConnection connection = Database.getInstance().GetConnection();
-                string sql = @"SELECT * FROM tblStudent;";
-                SqlCommand command = new SqlCommand(sql, connection);                
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {                    
-                    Student student = new Student();
-                    student.Id = Convert.ToInt32(reader[0]);
-                    student.Name = Convert.ToString(reader[1]);
-                    student.Gender = Convert.ToString(reader[2]);
-                    student.DateOfBirth = Convert.ToDateTime(reader[3]);
-                    student.Address = Convert.ToString(reader[4]);
-                    student.UserName = Convert.ToString(reader[6]);
-                    students.Add(student);
-                }
-                return students;
+                string sql = "SELECT " +
+                                "	tblClass.TenLop," +
+                                "	tblStudent.TenSV," +
+                                "	tblStudent.UserNm," +
+                                "	tblStudent.DiaChi " +
+                                "FROM tblStudent " +
+                                "INNER JOIN tblClass " +
+                                "ON tblStudent.MaLop=tblClass.MaLop;";
+                using SqlCommand command = new SqlCommand(sql, connection);
+                command.CommandType = CommandType.Text;
+                using SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
+                using DataSet dataSet = new DataSet();
+                sqlDataAdapter.Fill(dataSet);
+                return dataSet;
             }
             catch (Exception e)
             {
