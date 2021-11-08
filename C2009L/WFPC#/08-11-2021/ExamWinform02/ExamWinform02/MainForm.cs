@@ -15,11 +15,21 @@ namespace ExamWinform02
         public MainForm()
         {
             InitializeComponent();
+            this.Text = "Human management system";
+            LoadDepartmentsToTreeView();
+        }
+        private void LoadDepartmentsToTreeView() {
+
+            treeView.BeginUpdate();
+            treeView.Nodes.Add("Employees");
+            treeView.Nodes[0].Nodes.Add("Child 1");
+            treeView.Nodes[0].Nodes.Add("Child 2");            
+            treeView.EndUpdate();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit(0);
+            Application.Exit();
         }
     }
 }
