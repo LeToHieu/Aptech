@@ -36,7 +36,9 @@ namespace MyWebApp.Controllers
                     Price = 4444.22,
                 }
             };
-            return View(products);//Product/Index.html
+            ViewBag.products = products;
+            ViewBag.newProduct = new Product();
+            return View();//Product/Index.html
         }
     }
 }
