@@ -13,7 +13,7 @@ namespace WAD_C2009L_NguyenVanA.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202112151211142_Initial"; }
+            get { return "202112151320035_Initial"; }
         }
         
         string IMigrationMetadata.Source

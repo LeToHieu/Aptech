@@ -7,13 +7,13 @@ namespace WAD_C2009L_NguyenVanA.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class m2 : IMigrationMetadata
+    public sealed partial class Initial2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(m2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial2));
         
         string IMigrationMetadata.Id
         {
-            get { return "202112151221013_m2"; }
+            get { return "202112151325081_Initial2"; }
         }
         
         string IMigrationMetadata.Source
