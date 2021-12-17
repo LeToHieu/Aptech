@@ -18,8 +18,8 @@ namespace WindowsFormsApp1.Repositories
                     Name = "di choi xx11", 
                     From = "Hanoi",
                     To = "HCM City",
-                    Price = 1234.55,
-                    StartDate = new DateTime(2021, 12, 30)
+                    Price = 1234.124,
+                    StartDate = new DateTime(2019, 05, 30)
                 },
                 new Travel() {
                     TravelId = 2,
@@ -27,23 +27,23 @@ namespace WindowsFormsApp1.Repositories
                     From = "Hanoi",
                     To = "HCM City",
                     Price = 4444.55,
-                    StartDate = new DateTime(2021, 12, 30)
+                    StartDate = new DateTime(2020, 09, 02)
                 },
                 new Travel() {
                     TravelId = 3,
                     Name = "di choi xx44",
                     From = "Hanoi",
                     To = "HCM City",
-                    Price = 2222.55,
-                    StartDate = new DateTime(2021, 12, 30)
+                    Price = 2222.787,
+                    StartDate = new DateTime(2015, 08, 26)
                 },
                 new Travel() {
                     TravelId = 4,
                     Name = "di choi xx33",
                     From = "Hanoi",
                     To = "HCM City",
-                    Price = 1111.55,
-                    StartDate = new DateTime(2021, 12, 30)
+                    Price = 1111.3321,
+                    StartDate = new DateTime(2014, 04, 30)
                 },
 
             };

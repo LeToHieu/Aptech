@@ -31,6 +31,7 @@ namespace WindowsFormsApp1.Forms
         {
             this.label1 = new System.Windows.Forms.Label();
             this.listViewTravels = new System.Windows.Forms.ListView();
+            this.treeViewCategory = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // label1
@@ -46,18 +47,26 @@ namespace WindowsFormsApp1.Forms
             // listViewTravels
             // 
             this.listViewTravels.HideSelection = false;
-            this.listViewTravels.Location = new System.Drawing.Point(65, 148);
+            this.listViewTravels.Location = new System.Drawing.Point(337, 148);
             this.listViewTravels.Name = "listViewTravels";
-            this.listViewTravels.Size = new System.Drawing.Size(1004, 538);
+            this.listViewTravels.Size = new System.Drawing.Size(732, 538);
             this.listViewTravels.TabIndex = 1;
             this.listViewTravels.UseCompatibleStateImageBehavior = false;
             this.listViewTravels.View = System.Windows.Forms.View.Details;
+            // 
+            // treeViewCategory
+            // 
+            this.treeViewCategory.Location = new System.Drawing.Point(12, 148);
+            this.treeViewCategory.Name = "treeViewCategory";
+            this.treeViewCategory.Size = new System.Drawing.Size(305, 538);
+            this.treeViewCategory.TabIndex = 2;
             // 
             // TravelListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 761);
+            this.Controls.Add(this.treeViewCategory);
             this.Controls.Add(this.listViewTravels);
             this.Controls.Add(this.label1);
             this.Name = "TravelListForm";
@@ -71,5 +80,6 @@ namespace WindowsFormsApp1.Forms
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView listViewTravels;
+        private System.Windows.Forms.TreeView treeViewCategory;
     }
 }

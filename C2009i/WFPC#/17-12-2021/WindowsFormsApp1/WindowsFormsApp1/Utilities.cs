@@ -16,5 +16,14 @@ namespace WindowsFormsApp1
         //ClassName.StaticMethodName(params,...)
         public static bool isValidPassword(string password) =>
             password.Length > 2;
+
+        public static string convertDateTimeToString(DateTime dateTimeObject)
+        {
+            string strDay = (dateTimeObject.Day < 10) ? $"0{dateTimeObject.Day}" : $"{dateTimeObject.Day}";
+            string strMonth = (dateTimeObject.Month < 10) ? $"0{dateTimeObject.Month}" : $"{dateTimeObject.Month}";
+            string strYear = $"{dateTimeObject.Year}";
+            return $"{strDay}-{strMonth}-{strYear}";
+        }
     }   
+    
 }

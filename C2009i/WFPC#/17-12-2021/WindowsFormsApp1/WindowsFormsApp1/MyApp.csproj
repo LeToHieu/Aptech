@@ -58,6 +58,7 @@
     <Compile Include="Forms\TravelListForm.Designer.cs">
       <DependentUpon>TravelListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Travel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Forms\SearchTravelForm.Designer.cs">
       <DependentUpon>SearchTravelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\TravelRepository.cs" />
     <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="Forms\LoginForm.resx">
