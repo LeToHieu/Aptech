@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WAD_C2009L_NguyenVanA.Models;
+using PagedList;
 
 namespace WAD_C2009L_NguyenVanA.Controllers
 {
@@ -15,11 +16,42 @@ namespace WAD_C2009L_NguyenVanA.Controllers
         private DataContext db = new DataContext();
 
         // GET: Exams
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            /*
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            */
+            ViewBag.markSortParameter = String.IsNullOrEmpty(sortOrder) ? "mark_desc" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
             //join table Exams + Subject
-            var exams = db.Exams.Include(e => e.Subject).ToList();
-            return View(exams);
+            var exams = db.Exams.Include(e => e.Subject);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                exams = exams.Where(exam => exam.Student.StudentName.Contains(searchString)
+                                       || exam.Subject.SubjectName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "mark_desc":
+                    exams = exams.OrderByDescending(exam => exam.Mark);
+                    break;                
+                default:  // Name ascending 
+                    exams = exams.OrderBy(exam => exam.Student.StudentName);
+                    break;
+            }
+
+            return View(exams.ToList());
         }
 
         // GET: Exams/Details/5
