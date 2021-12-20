@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,10 +16,41 @@ namespace WAD_C2009L_NguyenVanA.Controllers
         private DataContext db = new DataContext();
 
         // GET: Exams
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.MarkSortParm = String.IsNullOrEmpty(sortOrder) ? "mark_desc" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var exams = db.Exams.Include(e => e.Subject);
-            return View(exams.ToList());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                exams = exams.Where(exam => exam.Student.StudentName.Contains(searchString)
+                                       || exam.Subject.SubjectName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "mark_desc":
+                    exams = exams.OrderByDescending(exam => exam.Mark);
+                    break;                
+                default:  // Name ascending 
+                    exams = exams.OrderBy(exam => exam.Student.StudentName);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            var model = exams.ToPagedList(pageNumber, pageSize);
+            //Views/Exam/Index.cshtml
+            return View(model);            
         }
 
         // GET: Exams/Details/5
