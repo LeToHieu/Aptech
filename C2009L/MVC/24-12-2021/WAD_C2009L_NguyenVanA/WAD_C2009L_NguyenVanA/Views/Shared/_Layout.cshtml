@@ -19,6 +19,18 @@
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            <div style="padding:5px">
+
+                @{
+                    foreach (var i in WAD_C2009L_NguyenVanA.LanguageManager.AvailableLanguages)
+                    {
+                        @Html.ActionLink(i.LanguageFullName, 
+
+                            "ChangeLanguage", "Home", new { lang = i.LanguageCultureName }, null) <text> </text>
+                    }
+                }
+            </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>

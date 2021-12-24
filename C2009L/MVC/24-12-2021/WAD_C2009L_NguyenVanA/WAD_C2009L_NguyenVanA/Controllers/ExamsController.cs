@@ -12,7 +12,7 @@ using PagedList;
 namespace WAD_C2009L_NguyenVanA.Controllers
 {
     //ControllerX : MyController : Controller
-    public class ExamsController : Controller
+    public class ExamsController : MyController
     {
         private DataContext db = new DataContext();
 

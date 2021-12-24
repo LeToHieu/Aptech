@@ -22,7 +22,7 @@ namespace WAD_C2009L_NguyenVanA {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource {
+    public class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace WAD_C2009L_NguyenVanA {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WAD_C2009L_NguyenVanA.Resource", typeof(Resource).Assembly);
@@ -51,7 +51,7 @@ namespace WAD_C2009L_NguyenVanA {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,18 +61,18 @@ namespace WAD_C2009L_NguyenVanA {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Student&apos;s name.
+        ///   Looks up a localized string similar to Mark.
         /// </summary>
-        internal static string StudentName {
+        public static string Mark {
             get {
-                return ResourceManager.GetString("StudentName", resourceCulture);
+                return ResourceManager.GetString("Mark", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Subject&apos;s name.
         /// </summary>
-        internal static string SubjectName {
+        public static string SubjectName {
             get {
                 return ResourceManager.GetString("SubjectName", resourceCulture);
             }

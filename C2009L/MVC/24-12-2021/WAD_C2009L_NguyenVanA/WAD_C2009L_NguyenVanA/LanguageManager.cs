@@ -15,7 +15,7 @@ namespace WAD_C2009L_NguyenVanA
                 LanguageFullName = "English", LanguageCultureName = "en"
             },
             new Language {
-                LanguageFullName = "Vietnamese", LanguageCultureName = "Vn"
+                LanguageFullName = "Vietnamese", LanguageCultureName = "vi-VN"
             }            
         };
         public static bool IsLanguageAvailable(string lang)
