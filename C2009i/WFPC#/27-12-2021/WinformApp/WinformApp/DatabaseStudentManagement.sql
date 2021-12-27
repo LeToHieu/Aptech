@@ -52,9 +52,7 @@ CREATE VIEW view_StudentClass AS
 SELECT tblClass.ClassName,
     tblStudent.StudentName, 
     tblStudent.UserName,
-    tblStudent.Address,
-    IIF(tblStudent.Gender = 1, 'Male', 'Female') as Gender
-    
+    tblStudent.Address,        
 FROM tblStudent
     INNER JOIN tblClass 
 ON tblStudent.ClassId=tblClass.ClassId;
