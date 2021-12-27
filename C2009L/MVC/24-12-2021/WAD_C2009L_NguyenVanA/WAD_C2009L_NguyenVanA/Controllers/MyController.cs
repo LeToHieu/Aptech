@@ -8,6 +8,9 @@ namespace WAD_C2009L_NguyenVanA.Controllers
 {
     public class MyController : Controller
     {
+        /*
+         * Resource files: Resource.En.resx, Resource.vi-VN.resx,Resource.resx,
+         */
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
             string lang = null;

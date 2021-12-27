@@ -12,10 +12,15 @@ namespace WAD_C2009L_NguyenVanA.Models
         public int StudentId { get; set; }
         [Required]
         [Display(Name = "StudentName", ResourceType = typeof(Resource))]
+
+        [StringLength(maximumLength: 150, MinimumLength = 2,
+            ErrorMessage = "Length must be between 2 and 150")]
         public String StudentName { get; set; }
         
         [Required]
         [Display(Name = "StudentDOB", ResourceType = typeof(Resource))]
+        [DataType(DataType.DateTime, ErrorMessage ="This must be DateTime")]
+        [MinimumAge(16)]
         public DateTime StudentDOB { get; set; }
         [Required]
         public String StudentClass { get; set; }

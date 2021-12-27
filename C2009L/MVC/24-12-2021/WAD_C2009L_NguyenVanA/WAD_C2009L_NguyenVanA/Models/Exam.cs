@@ -15,6 +15,7 @@ namespace WAD_C2009L_NguyenVanA.Models
         
         [Required] //NOT NULL
         [Display(Name = "Mark", ResourceType = typeof(Resource))]
+        [Range(0, 100)]
         public int Mark { get; set; }
         
         public virtual Student Student { get; set; }
