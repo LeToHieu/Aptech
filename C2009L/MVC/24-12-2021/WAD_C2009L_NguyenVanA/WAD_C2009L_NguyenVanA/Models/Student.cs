@@ -13,7 +13,7 @@ namespace WAD_C2009L_NguyenVanA.Models
         [Required]
         [Display(Name = "StudentName", ResourceType = typeof(Resource))]
 
-        [StringLength(maximumLength: 150, MinimumLength = 2,
+        [StringLength(150, MinimumLength = 2,
             ErrorMessage = "Length must be between 2 and 150")]
         public String StudentName { get; set; }
         
