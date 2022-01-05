@@ -10,6 +10,10 @@ namespace WAD_C2009L_NguyenVanA.Controllers
     {
         public ActionResult Index()
         {
+            //convert string to datetime
+            //DateTime aDate = DateTime.Parse("2020/12/30");
+            //convert Datetime to string
+            //string stringDateTime = aDate.ToString("dd/MM/yyyy");
             return View();//Views/Home/Index.cshtml
         }
 

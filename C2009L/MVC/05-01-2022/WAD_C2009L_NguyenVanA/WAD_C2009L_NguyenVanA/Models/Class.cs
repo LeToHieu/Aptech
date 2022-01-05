@@ -6,12 +6,13 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WAD_C2009L_NguyenVanA.Models
-{
-    using System;
-    using System.Collections.Generic;
-    
+{    
+
     public partial class Class
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace WAD_C2009L_NguyenVanA.Models
         }
     
         public int ClassId { get; set; }
+        [Required]
         public string ClassName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
