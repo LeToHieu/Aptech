@@ -12,3 +12,8 @@ WHERE Employees.DeptID = 'ADM';
 
 
 SELECT * FROM Departments;
+SELECT * FROM Employees;
+
+INSERT INTO Employees(EmployeeName, DeptID, Gender, BirthDate, Tel, Address)
+VALUES(N'Nguyen Van A', 'DTY', 1, '1993/12/25', '021122233', 'nha A ngo B');
+

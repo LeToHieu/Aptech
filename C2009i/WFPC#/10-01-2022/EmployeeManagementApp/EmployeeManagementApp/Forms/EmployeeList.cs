@@ -16,10 +16,14 @@ namespace EmployeeManagementApp.Forms
     {
         private Department selectedDepartment;
         private DepartmentRepository departmentRepository = new DepartmentRepository();
+        private EmployeeRepository employeeRepository = new EmployeeRepository();
+        private EmployeeDetail employeeDetail = new EmployeeDetail();
+        private ListViewItem selectedListViewItem;
         public EmployeeList()
         {
             InitializeComponent();
-            SetupTreeView();            
+            SetupTreeView();
+            listView.MultiSelect = false;            
         }
         private void SetupTreeView() {
             //treeview with fake data
@@ -46,24 +50,67 @@ namespace EmployeeManagementApp.Forms
             if (selectedDepartment != null) {
                 List<Dictionary<string, string>> dictionaries = departmentRepository
                     .getEmployees(selectedDepartment.DeparmentId);
-                //fill data to ListView
-                ListViewItem item1 = new ListViewItem("item1", 0);
-                // Place a check mark next to the item.
-                item1.Checked = true;
-                item1.SubItems.Add("1");
-                item1.SubItems.Add("2");
-                item1.SubItems.Add("3");
-                ListViewItem item2 = new ListViewItem("item2", 1);
-                item2.SubItems.Add("4");
-                item2.SubItems.Add("5");
-                item2.SubItems.Add("6");
-                listView.Columns.Add("Item Column", -2, HorizontalAlignment.Left);
-                listView.Columns.Add("Column 2", -2, HorizontalAlignment.Left);
-                listView.Items.AddRange(new ListViewItem[] { item1, item2 });
+                //fill data to ListView                
+                //listView.Columns.Clear();
+                listView.Items.Clear();
+                listView.View = View.Details;
+                listView.Columns.Add("EmployeeID", -2);
+                listView.Columns.Add("EmployeeName", -2);
+                listView.Columns.Add("Department", -2);
+                listView.Columns.Add("Gender", -2);
+                listView.Columns.Add("BirthDate", -2);
+                listView.Columns.Add("Tel", -2);
+                listView.Columns.Add("Address", -2);
+                
                 foreach (Dictionary<string, string> dictionary in dictionaries) {
-                    Console.WriteLine("haha");
+                    ListViewItem listViewItem = new ListViewItem(new string[] {
+                        dictionary["EmployeeID"],
+                        dictionary["EmployeeName"],
+                        dictionary["Department"],
+                        dictionary["Gender"],
+                        dictionary["BirthDate"],
+                        dictionary["Tel"],
+                        dictionary["Address"],
+                    });
+                    listViewItem.Tag = dictionary;
+                    listView.Items.Add(listViewItem);                                        
                 }
             }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count > 0)
+            {
+                selectedListViewItem = listView.SelectedItems[0];
+                Dictionary<string, string> dictionary 
+                    = (Dictionary<string, string>)selectedListViewItem.Tag;
+                int employeeId = Convert.ToInt32(dictionary["EmployeeID"]);
+                DialogResult dialogResult = MessageBox.Show(
+                    "Do you want to delete this ?", "Delete", MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Information);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    employeeRepository.DeleteEmployeeById(employeeId);
+                    ReloadListView();
+                }
+            }
+            else {
+                MessageBox.Show("You must select 1 item to delete");
+            }
+            
+        }
+
+        private void buttonInsert_Click(object sender, EventArgs e)
+        {
+            if (employeeDetail.IsDisposed == true || employeeDetail == null) {
+                employeeDetail = new EmployeeDetail();
+            }            
+            //employeeDetail.IsMdiContainer = false;            
+            employeeDetail.MdiParent = this.MdiParent;
+            
+            //this.Parent = null;
+            employeeDetail.Show();
         }
     }
 }

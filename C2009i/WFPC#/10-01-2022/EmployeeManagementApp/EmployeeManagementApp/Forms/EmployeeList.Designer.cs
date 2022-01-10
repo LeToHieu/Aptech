@@ -76,6 +76,7 @@ namespace EmployeeManagementApp.Forms
             this.buttonInsert.TabIndex = 4;
             this.buttonInsert.Text = "&Insert";
             this.buttonInsert.UseVisualStyleBackColor = true;
+            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
             // buttonDelete
             // 
@@ -86,6 +87,7 @@ namespace EmployeeManagementApp.Forms
             this.buttonDelete.TabIndex = 5;
             this.buttonDelete.Text = "&Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonClose
             // 
