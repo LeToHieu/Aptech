@@ -31,6 +31,7 @@ namespace EmployeeManagementApp.Forms
             labelTelError.Text = "";
             labelBirthdateError.Text = "";
             dateTimePicker1.ValueChanged += DateTimePicker1_ValueChanged;
+            radioButtonMale.Checked = true;
         }
 
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -43,7 +44,7 @@ namespace EmployeeManagementApp.Forms
         {
             Console.WriteLine(textBoxTelephone.Text);
             labelTelError.Text = textBoxTelephone.Text.Length <= 6 
-                    || !textBoxTelephone.Text[0].Equals("0")?
+                    || !textBoxTelephone.Text[0].ToString().Equals("0")?
                 "Tel length must be > 6 characters, first char is 0" : "";
             
         }
@@ -66,15 +67,31 @@ namespace EmployeeManagementApp.Forms
         {
 
         }
-
+        private bool isValidationSucess() =>
+            employee.EmployeeName.Length > 5
+                && employee.BirthDate.Year <= 1999
+                && employee.Telephone.Length > 6
+                && employee.Telephone.Trim()[0].ToString().Equals("0") 
+                && employee.DeparmentId != null
+            ;
         private void buttonAddNew_Click(object sender, EventArgs e)
         {            
+            
             employee.EmployeeName = textBoxEmployeeName.Text;
             employee.DeparmentId = selectedDepartment.DeparmentId;
             employee.Gender = radioButtonMale.Checked == true;
-            employee.BirthDate = dateTimePicker1.Value;
-            employee.Telephone = textBoxTelephone.Text;
-            employee.Address = textBoxAddress.Text;
+            employee.BirthDate = dateTimePicker1.Value == null 
+                                    ? DateTime.Now : dateTimePicker1.Value;
+            employee.Telephone = textBoxTelephone.Text ?? "";
+            employee.Address = textBoxAddress.Text ?? "";
+            if (isValidationSucess() == true) {
+                employeeRepository.InsertEmployee(employee);
+                this.Hide();
+                this.Dispose();
+            } else 
+            {
+                MessageBox.Show("validation error");
+            }
             
         }
 
