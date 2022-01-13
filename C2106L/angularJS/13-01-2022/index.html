@@ -14,7 +14,7 @@
 </head>
     
 <body>
-    <div ng-app="myApp" ng-controller="HomeController">
+    <div ng-app="myApp" ng-controller="HomeController" ng-init="languages=['English', 'France', 'Vietnamese']">
         <div>
             <!-- ng-model => 2-way data-binding -->
             <input type="text" placeholder="Enter your name" ng-model="name"/>
@@ -29,8 +29,7 @@
             <p>REALLL sum = {{sum2Numbers()}}</p>
         </div>
         <script>
-            var app = angular.module('myApp', [])
-            debugger
+            const app = angular.module('myApp', [])            
             app.controller('HomeController', function($scope) {
                 $scope.name = ""
                 $scope.x = "0"
@@ -40,9 +39,36 @@
                     return parseInt($scope.x) + parseInt($scope.y)
                     debugger
                 }
+                //let = local variable inside a block
+                //priority : 1.const, 2.let, 3.var
+                const x = 10   
+                //reference to a function
+                const multiply2Numbers = (a, b) => {
+                    return a * b;
+                }                                
+                
+                console.log(`Tich 2 so la : ${multiply2Numbers(4, 5)}`)                 
+                for(let i = 0; i < 10; i++) {
+                    console.log('i = '+i);
+                }                 
+                const firstName = "Nguyen"
+                const lastName = "Duc Hoang"
+                //const fullName = firstName + " "+ lastName //string concatenation
+                const fullName = `${firstName} ${lastName}` //string concatenation
+                //console.log(fullName)
+                //alert(fullName)                                
             })
+            // for(let language in languages) {
+            //     console.log(`language = ${languages}`)
+            // }      
+            //map = anh xa.VD: danh sach cac nam sinh(year of birth) => map => danh sach tuoi
+            let birthYears = [1982, 1990, 2000, 1984, 2001] 
+            debugger       
+            const currentYear = new Date().getFullYear()
+            let ages = birthYears.map(birthYear => currentYear-birthYear)            
+            console.log(ages)    
         </script>
-        <h1>Haha</h1>            
+        <h1>{{languages}}</h1>             
     </div>        
 </body>
 </html>
