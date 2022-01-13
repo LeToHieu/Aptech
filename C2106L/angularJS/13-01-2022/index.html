@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" 
+        integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer">
+    </script>
+</head>
+    
+<body>
+    <div ng-app="myApp" ng-controller="HomeController">
+        <div>
+            <!-- ng-model => 2-way data-binding -->
+            <input type="text" placeholder="Enter your name" ng-model="name"/>
+            <p>You typed: {{name}}</p>
+            <h1>Sum 2 numbers example: </h1>
+            <input type="text" placeholder="Enter x" ng-model="x"/>
+            <br />
+            <input type="text" placeholder="Enter y" ng-model="y"/>
+            <button ng-click="sum2Numbers()">Sum</button>
+            <br />
+            <!-- <p>Sum = {{sum}}</p> -->
+            <p>REALLL sum = {{sum2Numbers()}}</p>
+        </div>
+        <script>
+            var app = angular.module('myApp', [])
+            debugger
+            app.controller('HomeController', function($scope) {
+                $scope.name = ""
+                $scope.x = "0"
+                $scope.y = "0"
+                $scope.sum = 0 //state
+                $scope.sum2Numbers = function () {                    
+                    return parseInt($scope.x) + parseInt($scope.y)
+                    debugger
+                }
+            })
+        </script>
+        <h1>Haha</h1>            
+    </div>        
+</body>
+</html>
