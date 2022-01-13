@@ -37,7 +37,9 @@ namespace EmployeeManagementApp.Forms
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             DateTime birthDate = dateTimePicker1.Value;
-            labelBirthdateError.Text = birthDate.Year > 1999 ? "Year must be <= 1999" : "";            
+            labelBirthdateError.Text = birthDate.Year > 1999 ? "Year must be <= 1999" : "";
+            employee.BirthDate = dateTimePicker1.Value == null
+                                    ? DateTime.Now : dateTimePicker1.Value;
         }
 
         private void TextBoxTelephone_TextChanged(object sender, EventArgs e)
@@ -46,7 +48,7 @@ namespace EmployeeManagementApp.Forms
             labelTelError.Text = textBoxTelephone.Text.Length <= 6 
                     || !textBoxTelephone.Text[0].ToString().Equals("0")?
                 "Tel length must be > 6 characters, first char is 0" : "";
-            
+            employee.Telephone = textBoxTelephone.Text ?? "";
         }
 
         private void TextBoxEmployeeName_TextChanged(object sender, EventArgs e)
@@ -55,7 +57,8 @@ namespace EmployeeManagementApp.Forms
             Console.WriteLine(textBoxEmployeeName.Text);
             labelEmployeeNameError.Text = textBoxEmployeeName.Text.Length <= 5 ?
                 "Employee length must be > 5 characters" : "";
-            
+            employee.EmployeeName = textBoxEmployeeName.Text;
+
         }
 
         private void ComboBoxDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -75,14 +78,9 @@ namespace EmployeeManagementApp.Forms
                 && employee.DeparmentId != null
             ;
         private void buttonAddNew_Click(object sender, EventArgs e)
-        {            
-            
-            employee.EmployeeName = textBoxEmployeeName.Text;
+        {                                    
             employee.DeparmentId = selectedDepartment.DeparmentId;
-            employee.Gender = radioButtonMale.Checked == true;
-            employee.BirthDate = dateTimePicker1.Value == null 
-                                    ? DateTime.Now : dateTimePicker1.Value;
-            employee.Telephone = textBoxTelephone.Text ?? "";
+            employee.Gender = radioButtonMale.Checked == true;                        
             employee.Address = textBoxAddress.Text ?? "";
             if (isValidationSucess() == true) {
                 employeeRepository.InsertEmployee(employee);
