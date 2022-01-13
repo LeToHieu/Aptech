@@ -19,9 +19,7 @@
                 <td>${category.getCategoryName()}</td>
                 <td>${category.getDescription()}</td>
                 <td>
-                    <a href="product-servlet?categoryId=${category.getCategoryID()}">Show Product</a>
-        
-                    <!-- OR -->
+                    <a href="product?categoryId=${category.getCategoryID()}">Show Product</a>
                 </td>
             </tr>
         </c:forEach>
