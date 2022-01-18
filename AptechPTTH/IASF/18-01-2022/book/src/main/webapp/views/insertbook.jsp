@@ -11,14 +11,27 @@
 <body>
     <h2>Insert new book</h2>
     <form method="post" action="/book/insertconfirmed">
-        <p><b>Title</b></p> <input type="text" name="title">
-        <p><b>Category</b></p>
-        <select name='idCate'>
-            <c:forEach items="${categories}" var="category">
-                <option value="${category.getCategoryID()}">${category.getCategoryName()}</option>
-            </c:forEach>
-        </select>
-        <p><b>Price</b></p> <input type="number" name="price">
+        <table>
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td>
+                    <select name='categoryID'>
+                        <c:forEach items="${categories}" var="category">
+                            <option value="${category.getCategoryID()}">${category.getCategoryName()}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td><input type="number" name="price"></td>
+            </tr>
+
+        </table>        
         <input type="submit" value="insert">
     </form>
    
