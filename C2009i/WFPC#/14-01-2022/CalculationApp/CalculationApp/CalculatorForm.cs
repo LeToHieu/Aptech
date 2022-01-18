@@ -63,9 +63,17 @@ namespace CalculationApp
                     eachButton.ForeColor = IsOperand(item) ? Color.White : Color.Black;
                     eachButton.BackColor = IsOperand(item) ? Color.Orange : eachButton.BackColor;
                     this.Controls.Add(eachButton);
+                    eachButton.Click += EachButton_Click;
+
                 }
             }            
         }
+
+        private void EachButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"You clicked {((UIButton)sender).Text}");
+        }
+
         public void SetupUI()
         {
             this.Width = SCREEN_WIDTH;
