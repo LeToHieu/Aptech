@@ -1,0 +1,8 @@
+CREATE DATABASE WebServiceExam;
+USE WebServiceExam;
+CREATE TABLE TblEmployee(
+	EmployeeNo VARCHAR(20) PRIMARY KEY,
+	EmployeeName VARCHAR(30) NOT NULL,
+	PlaceOfWork VARCHAR(30) NOT NULL,
+	PhoneNo VARCHAR(10) NOT NULL,
+);
