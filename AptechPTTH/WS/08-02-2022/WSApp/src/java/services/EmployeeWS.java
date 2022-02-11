@@ -76,6 +76,7 @@ public class EmployeeWS {
                 employee.setPhoneNo(phoneNo != null ? phoneNo : employee.getPhoneNo());                                
                 entityManager.persist(employee);
                 entityTransaction.commit();            
+                return employee;
             } else {
                 return null;
             }                             
