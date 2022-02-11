@@ -28,45 +28,37 @@ public class EmployeeWS {
     }
     
     @WebMethod(operationName = "findAll")
-    public HashMap<String, Object> findAll() {
-        HashMap<String, Object> result = new HashMap<>();
+    public java.util.List<Employee> findAll() {
+        //HashMap<String, Object> result = new HashMap<>();        
+        java.util.List<Employee> employees = new ArrayList<Employee>();
         try {
             Query query = entityManager.createNamedQuery("Employee.findAll", Employee.class);
-            java.util.List<Employee> employees = query.getResultList();
-            result.put("result", "ok");
-            result.put("data", employees);        
-            result.put("message", "Query employees successfully");        
+            employees = query.getResultList();
+            return employees;            
         } catch(Exception e) {
-            result.put("result", "failed");
-            result.put("data", new ArrayList<>());        
-            result.put("message", "Query employees failed");        
-        }
-        return result;
+            return employees;
+        }        
     }
-    /*
+    
     @WebMethod(operationName = "insertEmployee")
-    public HashMap<String, Object> insertEmployee(
+    public Employee insertEmployee(
             @WebParam(name = "employeeNo") String employeeNo,
             @WebParam(name = "employeeName") String employeeName,
             @WebParam(name = "placeOfWork") String placeOfWork,
-            @WebParam(name = "phoneNo") String phoneNo) {
-        HashMap<String, Object> result = new HashMap<>();
+            @WebParam(name = "phoneNo") String phoneNo) {        
         try {
-            Employee newEmployee = new Employee(employeeNo, employeeName, placeOfWork, phoneNo);
+            EntityTransaction entityTransaction = entityManager.getTransaction();
+            entityTransaction.begin();
+            Employee newEmployee = new Employee(employeeNo, employeeName, placeOfWork, phoneNo);            
             entityManager.persist(newEmployee);
-            entityManager.getTransaction().commit();
-            result.put("result", "ok");
-            result.put("data", newEmployee);        
-            result.put("message", "Insert employee successfully");        
+            entityTransaction.commit();
+            return newEmployee;
         } catch(Exception e) {
-            result.put("result", "failed");
-            result.put("data", new ArrayList<>());        
-            result.put("message", "Insert employee failed");        
-        }
-        return result;
+            return null;
+        }        
     }
     @WebMethod(operationName = "updateEmployee")
-    public HashMap<String, Object> updateEmployee(
+    public Employee updateEmployee(
             @WebParam(name = "employeeNo") String employeeNo,
             @WebParam(name = "employeeName") String employeeName,
             @WebParam(name = "placeOfWork") String placeOfWork,
@@ -76,46 +68,38 @@ public class EmployeeWS {
             Query query = entityManager.createNamedQuery("Employee.findByEmployeeNo", Employee.class);
             query.setParameter(1, employeeNo);
             Employee employee = (Employee) query.getSingleResult();
-            if(employee != null) {
+            if(employee != null) {                                
+                EntityTransaction entityTransaction = entityManager.getTransaction();
+                entityTransaction.begin();
                 employee.setEmployeeName(employeeName != null ? employeeName : employee.getEmployeeName());
                 employee.setPlaceOfWork(placeOfWork != null ? placeOfWork : employee.getPlaceOfWork());
-                employee.setPhoneNo(phoneNo != null ? phoneNo : employee.getPhoneNo());                
-            }                        
-            entityManager.persist(employee);
-            entityManager.getTransaction().commit();
-            result.put("result", "ok");
-            result.put("data", employee);        
-            result.put("message", "Update employee successfully");        
+                employee.setPhoneNo(phoneNo != null ? phoneNo : employee.getPhoneNo());                                
+                entityManager.persist(employee);
+                entityTransaction.commit();            
+            } else {
+                return null;
+            }                             
         } catch(Exception e) {
-            result.put("result", "failed");
-            result.put("data", new ArrayList<>());        
-            result.put("message", "Update employee failed");        
-        }
-        return result;
+            return null;   
+        }        
     }
     @WebMethod(operationName = "deleteEmployee")
-    public HashMap<String, Object> deleteEmployee(
-            @WebParam(name = "employeeNo") String employeeNo) {
-        HashMap<String, Object> result = new HashMap<>();
+    public int deleteEmployee(
+            @WebParam(name = "employeeNo") String employeeNo) {        
         try {
             Query query = entityManager.createNamedQuery("Employee.findByEmployeeNo", Employee.class);
             query.setParameter(1, employeeNo);
             Employee employee = (Employee) query.getSingleResult();            
             if(employee != null) {
+                EntityTransaction entityTransaction = entityManager.getTransaction();
+                entityTransaction.begin();
                 entityManager.remove(employee);
-            }                        
-            entityManager.persist(employee);
-            entityManager.getTransaction().commit();
-            result.put("result", "ok");
-            result.put("data", employee);        
-            result.put("message", "Delete employee successfully");        
+                entityTransaction.commit();                            
+            }                                                                        
+            return 1;            
         } catch(Exception e) {
-            result.put("result", "failed");
-            result.put("data", new ArrayList<>());        
-            result.put("message", "Delete employee failed");        
-        }
-        return result;
+            return 0;
+        }        
     }
-*/
 }
   

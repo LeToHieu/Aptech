@@ -5,12 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace myapp.Controllers
-{
+{    
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
 
+            
             return View();//Views/Home/Index.cshtml => cu phap razor(C# and html)
         }
 

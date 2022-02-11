@@ -20,8 +20,13 @@ namespace myapp
                 defaults: new { 
                     controller = "Home", 
                     action = "Index", 
-                    id = UrlParameter.Optional }
+                    id = UrlParameter.Optional 
+                }
             );
+            routes.MapRoute(
+               name: "Hello",
+               url: "{controller}/{action}/{name}/{id}"
+           );
         }
     }
 }
