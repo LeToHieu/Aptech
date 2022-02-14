@@ -88,7 +88,7 @@ public class EmployeeWS {
             @WebParam(name = "employeeNo") String employeeNo) {        
         try {
             Query query = entityManager.createNamedQuery("Employee.findByEmployeeNo", Employee.class);
-            query.setParameter(1, employeeNo);
+            query.setParameter("employeeNo", employeeNo);
             Employee employee = (Employee) query.getSingleResult();            
             if(employee != null) {
                 EntityTransaction entityTransaction = entityManager.getTransaction();

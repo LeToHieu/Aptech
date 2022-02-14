@@ -19,6 +19,7 @@
     <body>
     <center>
         <h1>Employee information</h1>
+        <form method='GET'>
         <table >
         <tr>
           <th>Employee No</th>
@@ -31,6 +32,14 @@
             //call service, like WCF trong C#
             EmployeeWS_Service service = new EmployeeWS_Service();
             EmployeeWS port = service.getEmployeeWSPort();
+            String deleteEmployeeNo = request.getParameter("deleteEmployeeNo");
+            if(deleteEmployeeNo != null) {
+                try {
+                    port.deleteEmployee(deleteEmployeeNo);
+                } catch(Exception e) {
+                    System.err.println("dsjhjds");
+                }
+            }            
             List<Employee> employees = port.findAll();                        
             for(Employee employee: employees) {
                 out.println("<tr>");
@@ -38,11 +47,15 @@
                 out.println("<td>"+employee.getEmployeeName()+"</td>");
                 out.println("<td>"+employee.getPlaceOfWork()+"</td>");
                 out.println("<td>"+employee.getPhoneNo()+"</td>");
-                out.println("<td>"+employee.getEmployeeNo()+"</td>");
+                out.println("<td><a href='./index.jsp?deleteEmployeeNo="
+                        +employee.getEmployeeNo()+"'>Delete</td>");
                 out.println("</tr>");                
             }
+            
         %>        
       </table>
+      
+      </form>
       <a href="./addnew.jsp">Add New</a>
       
        
