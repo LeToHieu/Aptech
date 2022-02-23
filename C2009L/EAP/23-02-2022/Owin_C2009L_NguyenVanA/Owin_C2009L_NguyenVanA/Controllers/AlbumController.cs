@@ -45,6 +45,7 @@ namespace Owin_C2009L_NguyenVanA.Controllers
         }
         [HttpPut]
         public void Put(int id, Album item) {
+            //how to read this request?
             Album foundAlbum = this.Get(id);
             if (foundAlbum != null) { 
                 foundAlbum.Title = item.Title != null ? item.Title : foundAlbum.Title;

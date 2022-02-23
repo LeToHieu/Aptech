@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
 using System;
 using System.Net.Http;
+using Newtonsoft.Json;
+using Owin_C2009L_NguyenVanA.Models;
 
 namespace Owin_C2009L_NguyenVanA
 {
@@ -13,21 +15,24 @@ namespace Owin_C2009L_NguyenVanA
     {
         private static HttpClient client = new HttpClient();
         static void Main(string[] args)
-        {
-            const string SERVER_NAME = "localhost";
-            const string PORT = "9000";
-            string baseAddress = $"http://{SERVER_NAME}:{PORT}/";
-
+        {            
             // Start OWIN host 
-            using (WebApp.Start<Startup>(url: baseAddress))
+            using (WebApp.Start<Startup>(url: ApiClient.baseAddress))
             {
 
-                string urlGetAllAlbum = $"{baseAddress}api/Album";
-                var response = client.GetAsync(urlGetAllAlbum).Result;
-
-                Console.WriteLine(response);
-                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
-                
+                Album album = new Album()
+                {
+                    Id = 5,
+                    Title = "xx",
+                    Genre = "genre1",
+                    Price = 11.2233
+                };
+                Console.WriteLine("Enter your choice: ");
+                Console.WriteLine("1.Show all albums");
+                Console.WriteLine("2.Insert album");
+                Console.WriteLine("3.Update an album");
+                Console.WriteLine("4.Delete an album");
+                Console.WriteLine("5.Exit");
                 //Console.WriteLine($"Server is started at : {PORT}");
                 Console.ReadLine();
             }
