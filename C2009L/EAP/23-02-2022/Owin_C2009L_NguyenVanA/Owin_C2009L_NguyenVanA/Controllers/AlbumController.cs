@@ -11,6 +11,7 @@ namespace Owin_C2009L_NguyenVanA.Controllers
 {
     public class AlbumController: ApiController
     {
+        //api, server
         private List<Album> list = new List<Album> {
             new Album {
                 Id = 1,

@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiClient.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Program.cs" />

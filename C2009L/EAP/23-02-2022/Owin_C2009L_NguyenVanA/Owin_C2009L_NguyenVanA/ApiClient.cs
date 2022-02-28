@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,7 +37,9 @@ namespace Owin_C2009L_NguyenVanA
         public void InsertAlbum(Album album)
         {
             var serializedObject = JsonConvert.SerializeObject(album);            
-            var byteContent = new ByteArrayContent(Encoding.UTF8.GetBytes(serializedObject));            
+            var byteContent = new ByteArrayContent(Encoding.UTF8.GetBytes(serializedObject));
+
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = client
                 .PostAsync($"{baseAddress}api/Album", byteContent)
                 .Result;
