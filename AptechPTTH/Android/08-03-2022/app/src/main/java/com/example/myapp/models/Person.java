@@ -8,12 +8,15 @@ public class Person implements Serializable {
     private String email;
     private String phoneNumber;
 
+
     public Person(int personId, String name, String email, String phoneNumber) {
         this.personId = personId;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+
     }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

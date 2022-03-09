@@ -50,6 +50,7 @@ public class PersonsAdapter extends BaseAdapter {
         //Fetch data to selected View
         textViewName.setText(selectedPerson.getName());
         textViewPhone.setText(selectedPerson.getPhoneNumber());
+
         return myView;
     }
 }
