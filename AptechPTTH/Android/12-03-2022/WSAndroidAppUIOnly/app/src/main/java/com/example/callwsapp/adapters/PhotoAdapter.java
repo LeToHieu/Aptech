@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import com.example.callwsapp.R;
 import com.example.callwsapp.models.Photo;
@@ -35,11 +34,6 @@ public class PhotoAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.photo_list_item, viewGroup, false);
-        //Activity + Service
-        Photo photo = photos.get(i);
-        TextView textViewTitle = view.findViewById(R.id.textViewTitle);
-        textViewTitle.setText(photo.getTitle());
-        //cac field khac ??
         return view;
     }
 }
