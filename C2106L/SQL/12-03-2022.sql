@@ -35,4 +35,4 @@ CREATE TABLE Result(
 ALTER TABLE Result 
 ALTER COLUMN Mark FLOAT;
 
---docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=123456" -p 1435:1433 --name sql-server-2019-container -d mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04
+--docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=123456" -p 1435:1433 --name sql-server-2019-container -d mcr.microsoft.com/mssql/server:2019-latest
