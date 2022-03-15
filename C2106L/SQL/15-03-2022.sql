@@ -98,17 +98,29 @@ FROM
 ON Query2.ClassId = Class.ClassId;    
 
 
-SELECT
-    StudentId,        
-    COUNT(*) AS TongDiem
-FROM Result
-GROUP BY Mark;
-
 SELECT 
     Student.StudentId AS 'MãSinhViên',
     Student.StudentName AS 'TênSinhViên',
-    Result.Mark AS 'TổngĐiểm'
+    Query2.TotalOfMark AS 'TổngĐiểm'
 FROM Student 
-INNER JOIN Result
-ON Student.StudentId = Result.StudentId;    
+INNER JOIN (SELECT
+	StudentId,
+	SUM(Mark) AS TotalOfMark
+FROM Result
+GROUP BY StudentID
+HAVING SUM(Mark) > 10) AS Query2
+ON Student.StudentId = Query2.StudentId;    
+
+CREATE VIEW view_StudentSubjectMark AS 
+SELECT 
+    Student.StudentId,
+    Student.StudentName,
+    Subject.SubjectName,
+    Result.Mark    
+FROM Student
+INNER JOIN Result ON Student.StudentId = Result.StudentId
+INNER JOIN Subject ON Result.SubjectId = Subject.SubjectId;
+
+
+SELECT * FROM view_StudentSubjectMark;
 
