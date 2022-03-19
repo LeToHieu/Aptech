@@ -132,6 +132,10 @@ public class FoodListActivity extends AppCompatActivity {
         //category
         recycleViewCategories = findViewById(R.id.recycleViewCategories);
 
+        //SQLite: insert/delete, NOT Update
+        //user information
+        //location history
+        //licence agreement => DONOT Call API
 
         recycleViewFoods = findViewById(R.id.recycleViewFoods);
         getFoods();
@@ -141,6 +145,6 @@ public class FoodListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(getApplicationContext(),
                 LinearLayoutManager.VERTICAL, false);
         recycleViewFoods.setLayoutManager(layoutManager);
-        
+
     }
 }
