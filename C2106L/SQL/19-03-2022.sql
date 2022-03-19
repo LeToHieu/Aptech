@@ -155,7 +155,7 @@ ON Result AFTER INSERT AS
 		ROLLBACK --undo
 END
 
-
+--@ => at => address(Objective C/Apple)
 DROP TRIGGER TG_Subject_Update;
 
 CREATE TRIGGER TG_Subject_Update  
@@ -166,7 +166,6 @@ BEGIN
 	RAISERROR ('You don’t update this column', 16, 10)  
 	ROLLBACK
 END;  
-
 
 --How to test trigger ? 
 SELECT * FROM Subject;
