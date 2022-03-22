@@ -89,4 +89,18 @@ WHERE Travels.trID IN
 		AND Travels.catID 
 			IN (SELECT catID FROM Categories WHERE catname LIKE '%Food and Drink%'));
 
-
+--Q7:
+DROP TRIGGER TG_Travels_Update;
+CREATE TRIGGER TG_Travels_Update
+ON Travels AFTER UPDATE AS
+	DECLARE @NumberOfNegativePrice AS INT 
+	--kiem tra xem co ban ghi nao co Price < 0 hay ko, neu co thi lay ra 1 cai
+	SET @NumberOfNegativePrice = (SELECT COUNT(*) FROM Travels WHERE Price < 0) 	
+	IF @NumberOfNegativePrice > 0 
+		BEGIN RAISERROR  ('Travel tour’s price must be greater than zero',16,10); 
+			ROLLBACK --undo
+		END
+--Test trigger
+SELECT * FROM Travels;
+UPDATE Travels SET Travels.price = -1
+WHERE Travels.trID = 10;
