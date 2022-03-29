@@ -8,10 +8,10 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE_NOTE = "Note";
-    public static final String SQL_CREATE_ENTRIES = "CREATE TABLE "+TABLE_NOTE+"("+
+    public static final String SQL_CREATE_ENTRIES = "CREATE TABLE IF NOT EXISTS "+TABLE_NOTE+"("+
             "_id INTEGER PRIMARY KEY AUTOINCREMENT,"+
             "noidung TEXT,"+
-            "quantrong  INTEGER," +
+            "quantrong INTEGER," +
             "ngaytao TEXT)";
 
     public static final String DATABASE_NAME = "NoteDB.db";

@@ -58,7 +58,7 @@ public class NoteModify {
         String[] selectionArgs = {String.format("%d", id)};
         db.delete( DBHelper.TABLE_NOTE, "_id = ?", selectionArgs);
     }
-    public ArrayList<Note> getNotes() {
+    public Cursor getNotesCursor() {
         ArrayList<Note> notes = new ArrayList<>();
         this.db = dbHelper.getReadableDatabase();
         String[] fields = {
@@ -76,14 +76,6 @@ public class NoteModify {
                 null,                   // don't filter by row groups
                 null               // The sort order
         );
-        while(cursor.moveToNext()) {
-            long itemId = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
-            String noidung = cursor.getString(cursor.getColumnIndexOrThrow("noidung"));
-            Boolean quantrong = cursor.getInt(cursor.getColumnIndexOrThrow("quantrong")) > 0;
-            Date ngaytao = DateTimeUtility.convertStringToDate(cursor.getString(cursor.getColumnIndexOrThrow("ngaytao")));
-            notes.add(new Note(noidung, quantrong, ngaytao));
-        }
-        return notes;
-
+        return cursor;
     }
 }
