@@ -63,6 +63,7 @@ public class NoteModify {
         this.db = dbHelper.getReadableDatabase();
         String[] fields = {
                 "_id",
+                "noidung",
                 "quantrong",
                 "ngaytao"
         };

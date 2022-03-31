@@ -40,7 +40,8 @@ public class CustomAdapter extends CursorAdapter {
         Boolean quantrong = cursor.getInt(cursor.getColumnIndexOrThrow("quantrong")) > 0;
         textViewNoidung.setText(noidung);
         textViewNgaytao.setText(ngaytao);
-        leftView.setBackgroundColor(quantrong == true ? 0xFF0000 : 0x00FF00);
+        leftView.setBackgroundColor(quantrong == true ? 0xFFFF0000 : 0xFF00FF00);
+        //leftView.setBackground();
         //Date ngaytao = DateTimeUtility.convertStringToDate(cursor.getString(cursor.getColumnIndexOrThrow("ngaytao")));
     }
 }

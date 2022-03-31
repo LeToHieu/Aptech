@@ -3,6 +3,7 @@ package nguyenvana.aprotrain.com;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -26,10 +27,11 @@ public class MainActivity extends AppCompatActivity {
         listViewNote = findViewById(R.id.listViewNote);
         noteModify = new NoteModify(this);
         //data => adapter
-        notes.add(new Note("Di choi", true, new Date()));
+        //noteModify.insertNote(new Note("Di choi", true, new Date()));
 
         Cursor cursor = noteModify.getNotesCursor();
         customAdapter = new CustomAdapter(this, cursor, true);
         listViewNote.setAdapter(customAdapter);
+        listViewNote.setBackgroundColor(Color.WHITE);
     }
 }
