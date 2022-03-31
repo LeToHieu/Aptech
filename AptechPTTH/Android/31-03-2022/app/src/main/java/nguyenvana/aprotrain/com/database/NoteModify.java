@@ -15,9 +15,22 @@ import nguyenvana.aprotrain.com.utilities.DateTimeUtility;
 public class NoteModify {
     private SQLiteDatabase db;
     private DBHelper dbHelper;
-    public NoteModify(Context context) {
+    private Context context;
+    private NoteModify(Context context) {
         dbHelper = new DBHelper(context);
+        this.context = context;
     }
+    //Singleton pattern
+    private static NoteModify instance;
+    public static NoteModify getInstance(Context context) {
+        if(instance == null) {
+            instance = new NoteModify(context);
+        }
+        instance.context = context;
+        instance.dbHelper = new DBHelper(context);
+        return instance;
+    }
+
     public long insertNote(Note note) {
         try {
             this.db = dbHelper.getWritableDatabase();
@@ -34,7 +47,7 @@ public class NoteModify {
 
     }
     //success => >=0
-    public int updateNote(int id, Note note) {
+    public int updateNote(long id, Note note) {
         try {
             this.db = dbHelper.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
@@ -53,7 +66,7 @@ public class NoteModify {
             return -1;
         }
     }
-    public void deleteNote(int id) {
+    public void deleteNote(long id) {
         this.db = dbHelper.getWritableDatabase();
         String[] selectionArgs = {String.format("%d", id)};
         db.delete( DBHelper.TABLE_NOTE, "_id = ?", selectionArgs);

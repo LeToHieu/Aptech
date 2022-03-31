@@ -6,6 +6,9 @@
         <entry key="..\:/code/Aptech/AptechPTTH/Android/29-03-2022/app/src/main/res/layout/list_item.xml" value="0.25052083333333336" />
         <entry key="..\:/code/Aptech/AptechPTTH/Android/29-03-2022/app/src/main/res/layout/main_activity.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.3765625" />
+        <entry key="app/src/main/res/layout/note_alert_dialog.xml" value="0.375" />
+        <entry key="app/src/main/res/menu/context_menu.xml" value="0.375" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.375" />
       </map>
     </option>
   </component>
