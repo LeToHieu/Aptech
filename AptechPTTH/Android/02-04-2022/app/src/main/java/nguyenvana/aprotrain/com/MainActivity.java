@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.itemExit:
                 Toast.makeText(this, "You press Exit", Toast.LENGTH_LONG).show();
+                MainActivity.this.finish();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
