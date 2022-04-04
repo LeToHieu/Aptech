@@ -11,8 +11,8 @@ namespace EAP_C2009i_NguyenVanA.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         
-        public DataContext() { 
-
+        public DataContext() {
+            Database.SetInitializer(new DataInitializer(this));
         }
     }
     
