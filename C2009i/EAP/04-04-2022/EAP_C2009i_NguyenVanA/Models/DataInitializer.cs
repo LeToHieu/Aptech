@@ -9,13 +9,17 @@ namespace EAP_C2009i_NguyenVanA.Models
     public class DataInitializer: DropCreateDatabaseIfModelChanges<DataContext>
         //DataContext.mdf
     {
+        /*
         public DataInitializer(DataContext context) {            
-            //this.Seed(context);
+            this.Seed(context);
         }
+        */
         protected override void Seed(DataContext context)
         {
-            Console.WriteLine("Begin seeding...");
+            
             base.Seed(context);
+            /*
+            Console.WriteLine("Begin seeding1...");
             context.Categories.Add(new Category()
             {
                 CategoryId = 1,
@@ -169,6 +173,7 @@ namespace EAP_C2009i_NguyenVanA.Models
             });
             context.SaveChanges();
             Console.WriteLine("End seeding...");
+            */
         }
     }
 }

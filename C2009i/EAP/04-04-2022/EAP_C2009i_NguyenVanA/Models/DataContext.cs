@@ -12,7 +12,7 @@ namespace EAP_C2009i_NguyenVanA.Models
         public virtual DbSet<Product> Products { get; set; }
         
         public DataContext() {
-            Database.SetInitializer(new DataInitializer(this));
+            //Database.SetInitializer(new DataInitializer(this));
         }
     }
     
