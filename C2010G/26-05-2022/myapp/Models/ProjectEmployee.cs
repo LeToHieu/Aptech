@@ -10,6 +10,7 @@ namespace myapp.Models
     {        
         [Key]
         public int EmployeeId { get; set; }
+        [Required]
         public int ProjectId { get; set; }
         public string Tasks { get; set; }
         public Employee Employee { get; set;}
