@@ -1,15 +1,15 @@
 <?php
     define('SERVER', 'localhost');
-    define('DB_NAME', 'abc12');
+    define('DB_NAME', 'php_de04');
     define('DB_USER_NAME', 'root');
     define('DB_PASSWORD', '');
     $sql_create_db = "CREATE DATABASE IF NOT EXISTS ".DB_NAME; 
     $sql_create_table = "
-        CREATE TABLE IF NOT EXISTS abc12users (
-            username VARCHAR(100),
-            password_hash CHAR(40),
-            phone VARCHAR(10) UNIQUE
-        )";
+        CREATE TABLE IF NOT EXISTS tblItem(
+            ID INT,
+            Name VARCHAR(50)
+        )
+    ";
     //pdo = PHP Data Object
     $connection_string = "mysql:host=".SERVER;
     $connection = null;    
