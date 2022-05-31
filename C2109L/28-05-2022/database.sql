@@ -10,12 +10,12 @@ CREATE TABLE tblPerson(
 	Gender BIT,
 	DateOfBirth DATE
 );
-INSERT INTO(Name, Gender, DateOfBirth) VALUES
+INSERT INTO tblPerson(Name, Gender, DateOfBirth) VALUES
 ('Nguyen Van A', 1, '1996/12/15'),
-('Nguyen Van A', 1, '1996/12/15'),
-('Nguyen Van A', 1, '1996/12/15'),
-('Nguyen Van A', 1, '1996/12/15'),
-
+('Nguyen Vadsn A', 1, '1998/11/15'),
+('Nguyen Vandsd dA', 0, '1994/10/15'),
+('Nguyen Vanjeij A', 0, '1997/07/15'),
+('Nguyen Vsdsdan A', 1, '1999/09/15');
 
 
 INSERT INTO tblItem(ID, Name) VALUES
