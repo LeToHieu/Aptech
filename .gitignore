@@ -5,6 +5,7 @@
 .o
 # User-specific files
 *.rsuser
+*.mdf
 *.suo
 *.user
 *.userosscache
