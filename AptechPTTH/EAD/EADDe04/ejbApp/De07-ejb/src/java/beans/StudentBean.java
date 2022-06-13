@@ -14,6 +14,7 @@ public class StudentBean implements StudentBeanLocal {
             .createEntityManagerFactory("De07-ejbPU")
                 .createEntityManager();            
     // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    
+    // "Insert Code > Add Business Method")        
+    public override void insert(String name, String email, Integer age) {
+    }
 }
