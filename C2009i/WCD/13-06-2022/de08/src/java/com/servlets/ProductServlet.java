@@ -37,12 +37,22 @@ public class ProductServlet extends HttpServlet {
         request.getRequestDispatcher("productlist.jsp").forward(request, response);           
     }
     private void assignCategory(HttpServletRequest request, 
-            HttpServletResponse response) {
+            HttpServletResponse response) throws ServletException {
         int productId = Integer.valueOf(request.getParameter("productId"));
+        Product product = ProductRepository.getProductById(productId); 
+        request.setAttribute("product",product);
+        ArrayList<Category> categories = CategoryRepository.getAllCategories();
+        request.setAttribute("categories",categories);
+        request.getRequestDispatcher("assign.jsp").forward(request, response);                   
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        int productId = Integer.valueOf(request.getParameter("productId"));
+        int categoryId = Integer.valueOf(request.getParameter("categoryId"));
+        Product product = ProductRepository.getProductById(productId); 
+        //update success
+        //redirect
+        response.sendRedirect("/ProductServlet?actionName=showProducts");  
     }
 }

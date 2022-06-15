@@ -145,6 +145,10 @@
     <Compile Include="Migrations\202206111437030_initial.Designer.cs">
       <DependentUpon>202206111437030_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206141347354_initial1.cs" />
+    <Compile Include="Migrations\202206141347354_initial1.Designer.cs">
+      <DependentUpon>202206141347354_initial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\DataInitializer.cs" />
@@ -219,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206111437030_initial.resx">
       <DependentUpon>202206111437030_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206141347354_initial1.resx">
+      <DependentUpon>202206141347354_initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

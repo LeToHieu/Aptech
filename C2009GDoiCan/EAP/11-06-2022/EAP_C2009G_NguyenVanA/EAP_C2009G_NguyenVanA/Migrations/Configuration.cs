@@ -28,9 +28,10 @@ namespace EAP_C2009G_NguyenVanA.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
+            
             DataInitializer dataInitializer = new DataInitializer();
             dataInitializer.CreateFakeData(context);
+            
         }
     }
 }

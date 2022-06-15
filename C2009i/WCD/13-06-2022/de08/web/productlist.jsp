@@ -39,6 +39,7 @@
                     out.print("<td>"+product.getDescription()+"</td>");
                     out.print("<td><a href='/ProductServlet?productId="+
                             product.getId()
+                            +"actionName=assignCategory"
                             +"'>Assign this product to other category</a></td>");
                     out.print("</tr>");                    
                 }

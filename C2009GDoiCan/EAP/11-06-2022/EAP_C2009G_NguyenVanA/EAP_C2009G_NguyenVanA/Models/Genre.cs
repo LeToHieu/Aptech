@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq; //Language Integrated Query
 using System.Web;
 
@@ -7,7 +8,9 @@ namespace EAP_C2009G_NguyenVanA.Models
 {
     public class Genre
     {
+
         public int GenreId { get; set; }        
+        [Required]
         public string GenreName { get; set; }
         //virtual = can be overrided
         public virtual ICollection<Movie> Movies { get; set; }

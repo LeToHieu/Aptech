@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EAP_C2009G_NguyenVanA.Models;
+using PagedList;
 
 namespace EAP_C2009G_NguyenVanA.Controllers
 {
@@ -15,10 +16,45 @@ namespace EAP_C2009G_NguyenVanA.Controllers
         private DataContext db = new DataContext();
 
         // GET: Movies
-        public ActionResult Index()
+        public ViewResult Index(string sortOrder, 
+            string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
             var movies = db.Movies.Include(m => m.Genre);
-            return View(movies.ToList());
+            ViewBag.CurrentFilter = searchString;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(movie => movie.Title.ToLower()
+                                            .Contains(searchString.ToLower())
+                                       || movie.Genre.GenreName.ToLower()
+                                       .Contains(searchString.ToLower()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    movies = movies.OrderByDescending(movie => movie.Title);
+                    break;                                
+                default:  // Name ascending 
+                    movies = movies.OrderBy(movie => movie.Title);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1); //coalescing
+            //class extensions(Swift + Kotlin)
+            //Decorator patterns
+            return View(movies.ToPagedList(pageNumber, pageSize));            
         }
 
         // GET: Movies/Details/5
@@ -37,6 +73,7 @@ namespace EAP_C2009G_NguyenVanA.Controllers
         }
 
         // GET: Movies/Create
+        //[Authorize]
         public ActionResult Create()
         {
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "GenreName");
@@ -48,6 +85,7 @@ namespace EAP_C2009G_NguyenVanA.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Authorize]
         public ActionResult Create([Bind(Include = "MovieId,Title,ReleaseDate,RunningTime,BoxOffice,GenreId")] Movie movie)
         {
             if (ModelState.IsValid)
@@ -62,6 +100,7 @@ namespace EAP_C2009G_NguyenVanA.Controllers
         }
 
         // GET: Movies/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +121,7 @@ namespace EAP_C2009G_NguyenVanA.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "MovieId,Title,ReleaseDate,RunningTime,BoxOffice,GenreId")] Movie movie)
         {
             if (ModelState.IsValid)
@@ -95,6 +135,7 @@ namespace EAP_C2009G_NguyenVanA.Controllers
         }
 
         // GET: Movies/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +153,7 @@ namespace EAP_C2009G_NguyenVanA.Controllers
         // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Movie movie = db.Movies.Find(id);
