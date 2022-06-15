@@ -13,16 +13,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.persistence.*;  
 
 public class CategoryServlet extends HttpServlet {
-
+    
+    private EntityManager entityManager = Persistence
+            .createEntityManagerFactory("de08PU")
+            .createEntityManager();  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setContentType("text/html;charset=UTF-8");
-        ArrayList<Category> categories = new ArrayList<Category>();
-        categories.add(new Category(1, "sea food", "this is sea food"));
-        categories.add(new Category(1, "djshfdf", "thisd,sfkdolk is sea food"));
+        //response.setContentType("text/html;charset=UTF-8");        
+        ArrayList<Category> categories = 
+                    (ArrayList<Category>)entityManager
+                        .createNamedQuery("Category.findAll", Category.class)
+                .getResultList();        
         request.setAttribute("categories",categories);
         request.getRequestDispatcher("category.jsp").forward(request, response);                        
     }

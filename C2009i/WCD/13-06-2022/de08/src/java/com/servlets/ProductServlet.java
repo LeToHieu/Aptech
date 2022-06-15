@@ -9,7 +9,9 @@ import com.models.Category;
 import com.models.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class ProductServlet extends HttpServlet {
-    
+    private EntityManager entityManager = Persistence
+            .createEntityManagerFactory("de08PU")
+            .createEntityManager();  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,19 +33,33 @@ public class ProductServlet extends HttpServlet {
         }                    
     }
     //like action result
-    private void showProducts(HttpServletRequest request, HttpServletResponse response) {
+    private void showProducts(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException
+    {
         int categoryId = Integer.valueOf(request.getParameter("categoryId"));            
-        ArrayList<Product> products = new ArrayList<Product>();
-        products.add(new Product(1, "DSDSDSD", 123.5, "djhsuhdsh"));
+        ArrayList<Product> products = 
+                    (ArrayList<Product>)entityManager
+                        .createNamedQuery("Product.findAll", Product.class)
+                .getResultList();
+        
         request.setAttribute("products",products);
         request.getRequestDispatcher("productlist.jsp").forward(request, response);           
     }
     private void assignCategory(HttpServletRequest request, 
-            HttpServletResponse response) throws ServletException {
+            HttpServletResponse response) throws ServletException, IOException {
         int productId = Integer.valueOf(request.getParameter("productId"));
-        Product product = ProductRepository.getProductById(productId); 
+        Product product = entityManager
+                        .createNamedQuery("Product.findById", Product.class)
+                        .setParameter("id", productId)
+                        .getSingleResult();
         request.setAttribute("product",product);
-        ArrayList<Category> categories = CategoryRepository.getAllCategories();
+        
+        ArrayList<Category> categories = 
+                    (ArrayList<Category>)entityManager
+                        .createNamedQuery(""
+                                + "Category.findAll", Category.class)
+                .getResultList();
+        
         request.setAttribute("categories",categories);
         request.getRequestDispatcher("assign.jsp").forward(request, response);                   
     }
@@ -50,8 +68,14 @@ public class ProductServlet extends HttpServlet {
             throws ServletException, IOException {
         int productId = Integer.valueOf(request.getParameter("productId"));
         int categoryId = Integer.valueOf(request.getParameter("categoryId"));
-        Product product = ProductRepository.getProductById(productId); 
+        Product product = entityManager
+                        .createNamedQuery("Product.findById", Product.class)
+                        .setParameter("id", productId)
+                        .getSingleResult();        
         //update success
+        entityManager.getTransaction().begin();
+        entityManager.persist(product);
+        entityManager.getTransaction().commit();
         //redirect
         response.sendRedirect("/ProductServlet?actionName=showProducts");  
     }
