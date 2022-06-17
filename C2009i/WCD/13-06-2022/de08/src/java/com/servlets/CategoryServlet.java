@@ -9,6 +9,7 @@ import com.models.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +25,8 @@ public class CategoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //response.setContentType("text/html;charset=UTF-8");        
-        ArrayList<Category> categories = 
-                    (ArrayList<Category>)entityManager
+        List<Category> categories = 
+                    (List<Category>)entityManager
                         .createNamedQuery("Category.findAll", Category.class)
                 .getResultList();        
         request.setAttribute("categories",categories);

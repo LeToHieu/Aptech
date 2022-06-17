@@ -4,6 +4,7 @@
     Author     : w11
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="com.models.Category"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,13 +29,13 @@
                 <th>Actions</th>
             </tr>
             <%            
-                ArrayList<Category> categories = (ArrayList<Category>)request.getAttribute("categories");            
+                List<Category> categories = (List<Category>)request.getAttribute("categories");            
                 for(Category category: categories) {
                     out.print("<tr>");        
                     out.print("<td>"+category.getId()+"</td>");
                     out.print("<td>"+category.getName()+"</td>");
                     out.print("<td>"+category.getDescription()+"</td>");
-                    out.print("<td><a href='/ProductServlet'>Show Products</a></td>");
+                    out.print("<td><a href='ProductServlet'>Show Products</a></td>");
                     out.print("</tr>");                    
                 }
             %>            

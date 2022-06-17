@@ -52,7 +52,7 @@ public class Product implements Serializable {
     private String description;
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
     @ManyToOne
-    private Category categoryId;
+    private Category category;
 
     public Product() {
     }
@@ -93,12 +93,13 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Category getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Category categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
+        System.out.println("aaa");
     }
 
     @Override
