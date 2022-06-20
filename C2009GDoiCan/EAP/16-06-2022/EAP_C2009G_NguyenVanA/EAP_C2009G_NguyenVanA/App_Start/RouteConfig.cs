@@ -18,6 +18,13 @@ namespace EAP_C2009G_NguyenVanA
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            /*
+            routes.MapRoute(
+                name: "Api",
+                url: "api/{controller}/{id}",
+                defaults: new { controller = "JsonWS", id = UrlParameter.Optional }
+            );
+            */
         }
     }
 }

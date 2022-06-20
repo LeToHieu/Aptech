@@ -12,7 +12,8 @@ namespace EAP_C2009G_NguyenVanA.Models
         public System.DateTime ReleaseDate { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
-        public int CategoryId { get; set; }        
+        public int CategoryId { get; set; }
+        [Newtonsoft.Json.JsonIgnore]
         public Category Category { get; set; }
     }
 }

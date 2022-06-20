@@ -8,6 +8,9 @@ namespace EAP_C2009G_NguyenVanA.Models
 {
     public class DataInitializer : DropCreateDatabaseIfModelChanges<DataContext>
     {
+        public void GenerateData(DataContext context) {
+            this.Seed(context);
+        }
         public override void InitializeDatabase(DataContext context)
         {
             base.InitializeDatabase(context);
