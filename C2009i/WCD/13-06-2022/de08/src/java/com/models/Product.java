@@ -1,7 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+CREATE DATABASE de08;
+USE de08;
+CREATE TABLE category(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    description VARCHAR(100)
+);
+INSERT INTO category(name, description) VALUES
+('hai san', 'this is seafood'),
+('electronics', 'electonic');
+CREATE TABLE product(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    price FLOAT,
+    description VARCHAR(100),
+    categoryId INT NOT NULL
+);
+
+ALTER TABLE product ADD FOREIGN KEY (categoryId) REFERENCES category(id);
+INSERT INTO product(name, price, description, categoryId) VALUES
+('laptop macbook', 1122, 'macboookkk', 2),
+('sashimi', 133, 'Japanese food', 1);
  */
 package com.models;
 
@@ -20,10 +39,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author w11
- */
+
 @Entity
 @Table(name = "product")
 @XmlRootElement

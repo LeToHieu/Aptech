@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
     , @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id")
     , @NamedQuery(name = "Product.findByProductName", query = "SELECT p FROM Product p WHERE p.productName = :productName")
+    , @NamedQuery(name = "Product.filterProduct", query = "SELECT p FROM Product p WHERE p.productName LIKE :typedText")
     , @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price")
     , @NamedQuery(name = "Product.findByQuantity", query = "SELECT p FROM Product p WHERE p.quantity = :quantity")})
 public class Product implements Serializable {
@@ -48,6 +49,14 @@ public class Product implements Serializable {
     @Column(name = "quantity")
     private Integer quantity;
 
+    public Product(Integer id, String productName, Float price, Integer quantity) {
+        this.id = id;
+        this.productName = productName;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    
     public Product() {
     }
 

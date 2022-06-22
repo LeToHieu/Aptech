@@ -51,6 +51,7 @@
                 }
             %>               
         </table>
+        <a href="addnew.jsp" >Add new</a>
     </form>
     </center>
         

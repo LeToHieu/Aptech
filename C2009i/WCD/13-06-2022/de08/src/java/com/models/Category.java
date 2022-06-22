@@ -1,7 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+CREATE DATABASE de08;
+USE de08;
+CREATE TABLE category(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100)
+    description VARCHAR(100)
+);
+
  */
 package com.models;
 
