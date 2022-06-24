@@ -52,8 +52,20 @@ app.controller('StudentController', function($scope){
         //alert(JSON.stringify($scope.selectedClass))
         //alert(JSON.stringify($scope.genders))
         
-        const selectedGender = $scope.genders.filter(item => item.checked == true)[0]
+        const selectedGender = $scope.genders?.filter(item => item.checked == true)[0]
         const selectedLanguages = $scope.languages.filter(item => item.checked == true)
+        if(selectedLanguages.length == 0){
+            alert("You must select at least one language")
+            return
+        }
+        if($scope.studentName.trim().length == 0){
+            alert("You must enter student's name")
+            return
+        }
+        if($scope.selectedClass == null ) {
+            alert("Choose one class, please")
+            return
+        }
         console.log(`name: ${$scope.studentName}, dob = ${$scope.dateOfBirth}, 
                 gender: ${JSON.stringify(selectedGender)},
                 selected languages: ${JSON.stringify(selectedLanguages)})}
@@ -71,11 +83,20 @@ app.controller('StudentController', function($scope){
         $scope.students.push(student)
     }
     $scope.btnAddClass = function() {
-        
+        let newClass = prompt("Enter your class name", "New class")
+        if (newClass == null || newClass == "") {
+            alert("class name is required")
+            return
+        }
+        if($scope.studentClasses
+            .filter(item => item.trim()
+            .toLowerCase() == newClass.toLowerCase()).length ==0) {
+                $scope.studentClasses.push(newClass)
+        }
     }
-    $scope.btnDeleteStudent = function(studentId) {
-        debugger
-        $scope.students = $scope.students.filter(item => item.id != studentId)
-        debugger
+    $scope.btnDeleteStudent = function(studentId) {                
+        if (confirm("Do you want to delete this student ?") == true) {
+            $scope.students = $scope.students.filter(item => item.id != studentId)        
+        }         
     }
 })

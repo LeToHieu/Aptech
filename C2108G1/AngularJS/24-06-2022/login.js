@@ -7,10 +7,12 @@ app.controller('LoginController', function($scope){
         let username = $scope.username
         let password = $scope.password
         */
+       debugger
         const {username, password} = $scope //destructuring an object
         //alert(`You pressed username:  ${username}, and password: ${password}`);
         if(username.toLowerCase() == "admin" && password == "123456") {
-            alert("Login successful")
+            //alert("Login successful")
+            window.location.href="./studentinfo.html"
         } else {
             alert("Login failed.Incorect username and password")
         }
