@@ -49,8 +49,8 @@ public class Question2Servlet extends HttpServlet {
             response.addCookie(new Cookie("name", name));
             response.addCookie(new Cookie("address", address));
             response.addCookie(new Cookie("phoneNo", phoneNo));
-            response.addCookie(new Cookie("className", className));            
-            request.getRequestDispatcher("detail.jsp").forward(request, response);                        
+            response.addCookie(new Cookie("className", className));   
+            response.sendRedirect("detail.jsp");           
         } else {            
             request.getRequestDispatcher("question02.jsp").forward(request, response);                        
         }
