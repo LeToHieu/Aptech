@@ -4,9 +4,17 @@
         <servlet-name>UserServlet</servlet-name>
         <servlet-class>servlets.UserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Question2Servlet</servlet-name>
+        <servlet-class>servlets.Question2Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/UserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Question2Servlet</servlet-name>
+        <url-pattern>/Question2Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
