@@ -45,6 +45,14 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
+    public Employee(String employeeNo, String employeeName, 
+            String placeOfWork, String phoneNo) {
+        this.employeeNo = employeeNo;
+        this.employeeName = employeeName;
+        this.placeOfWork = placeOfWork;
+        this.phoneNo = phoneNo;
+    }
+
     public Employee(String employeeNo) {
         this.employeeNo = employeeNo;
     }
