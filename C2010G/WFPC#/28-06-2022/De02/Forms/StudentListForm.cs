@@ -22,10 +22,12 @@ namespace De02.Forms
         }
         private void reloadDataGridView()
         {
-            //dataGridView.AutoGenerateColumns = true;
+            dataGridView.AutoGenerateColumns = true;
             //dataGridView.MultiSelect = false;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.DataSource = Database.Database.Instance.GetStudents();
+            DataSet dataSet = Database.Database.Instance.GetStudents();
+            
+            dataGridView.DataSource = dataSet.Tables[0];
         }
         protected override void Dispose(bool disposing)
         {
