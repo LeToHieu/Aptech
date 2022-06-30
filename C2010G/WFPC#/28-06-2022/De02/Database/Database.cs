@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using De02.Models;
+using System.Data;
+
 namespace De02.Database
 {
     public class Database
@@ -60,5 +62,28 @@ namespace De02.Database
                 Connection.Close();            
             }
         }
+        public DataSet GetStudents() {
+            try
+            {
+                SqlDataReader myReader = null;
+                DataSet dataSet = new DataSet();
+                String query = "SELECT * FROM tblUser";
+                SqlCommand myCommand = new SqlCommand(query, this.Connection);                
+                myReader = myCommand.ExecuteReader();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, this.Connection);
+                dataAdapter.Fill(dataSet, "Student list");   
+                
+                return dataSet;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Cannot query user.Error: {e.ToString()}");
+                return null;
+            }
+            finally
+            {
+                //Connection.Close();
+            }
+        } 
     }
 }

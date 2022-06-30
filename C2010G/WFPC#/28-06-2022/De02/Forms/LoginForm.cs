@@ -19,7 +19,8 @@ namespace De02.Forms
             InitializeComponent();
             this.btnLogin.Click += BtnLogin_Click;
             this.StudentListForm = new StudentListForm();
-
+            txtUsername.Text = "admin";
+            txtPassword.Text = "admin";
         }
         protected override void Dispose(bool disposing)
         {
@@ -69,6 +70,11 @@ namespace De02.Forms
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void btnLogin_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

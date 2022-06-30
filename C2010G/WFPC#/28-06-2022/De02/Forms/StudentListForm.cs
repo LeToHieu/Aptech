@@ -18,6 +18,14 @@ namespace De02.Forms
         public StudentListForm()
         {
             InitializeComponent();
+            reloadDataGridView();
+        }
+        private void reloadDataGridView()
+        {
+            //dataGridView.AutoGenerateColumns = true;
+            //dataGridView.MultiSelect = false;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.DataSource = Database.Database.Instance.GetStudents();
         }
         protected override void Dispose(bool disposing)
         {
@@ -29,6 +37,10 @@ namespace De02.Forms
             base.Dispose(disposing);
             
         }
-      
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
