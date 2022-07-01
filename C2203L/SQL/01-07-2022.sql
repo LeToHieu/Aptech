@@ -81,3 +81,14 @@ INSERT INTO Student(StudentId, StudentName, BirthDate, ClassId)
 VALUES(6, N'Nguyen vAn XX', '1999-09-29',1000);
 SELECT * FROM Student;
 DELETE FROM Student WHERE ClassId=1000;
+
+INSERT INTO Subject(SubjectId, SubjectName, SessionCount) VALUES
+(1, 'C Programming', 22),
+(2, 'Web Design', 18),
+(3, 'Database Managemen', 23);
+INSERT INTO Result(StudentId, SubjectId, Mark) VALUES
+(1,1,8),
+(1,2,7),
+(2,3,5),
+(3,2,6),
+(4,3,9);
