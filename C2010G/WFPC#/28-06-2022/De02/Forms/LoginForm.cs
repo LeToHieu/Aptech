@@ -19,12 +19,12 @@ namespace De02.Forms
             InitializeComponent();
             this.btnLogin.Click += BtnLogin_Click;
             this.StudentListForm = new StudentListForm();
-            txtUsername.Text = "admin";
-            txtPassword.Text = "admin";
+            txtUsername.Text = "hungnv";
+            txtPassword.Text = "123456";
         }
         protected override void Dispose(bool disposing)
         {
-            MessageBox.Show("Dissssppoooo");
+            //MessageBox.Show("Dissssppoooo");
             base.Dispose(disposing);
 
         }
@@ -47,7 +47,7 @@ namespace De02.Forms
                 MessageBox.Show("You must enter password");
                 return;
             }
-            if (Database.Database.Instance.GetUser(txtUsername.Text, txtUsername.Text) != null)
+            if (Database.Database.Instance.GetUser(txtUsername.Text, txtPassword.Text) != null)
             {
                 StudentListForm.LoginForm = this;
                 StudentListForm.Show();
@@ -73,6 +73,11 @@ namespace De02.Forms
         }
 
         private void btnLogin_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
         {
 
         }

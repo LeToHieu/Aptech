@@ -34,13 +34,13 @@ namespace De02.Database
                 }
             } 
         }
-        public User? GetUser(String username, String password) {
+        public User? GetUser(String userName, String password) {
             try
             {
                 SqlDataReader myReader = null;
-                String query = "SELECT * FROM tblUser WHERE username=@username AND password=@password";
+                String query = "SELECT * FROM tblStudent WHERE userName=@userName AND password=@password";
                 SqlCommand myCommand = new SqlCommand(query, this.Connection);
-                myCommand.Parameters.AddWithValue("@username", username);
+                myCommand.Parameters.AddWithValue("@userName", userName);
                 myCommand.Parameters.AddWithValue("@password", password);
                 myReader = myCommand.ExecuteReader();
                 while (myReader.Read())
@@ -67,7 +67,9 @@ namespace De02.Database
             {
                 SqlDataReader myReader = null;
                 DataSet dataSet = new DataSet();
-                String query = "SELECT * FROM tblUser";
+                String query = "SELECT className, studentName, userName, address"+
+                  " FROM tblStudent"+
+                  " INNER JOIN tblClass ON tblStudent.classCode = tblClass.classCode";
                 SqlCommand myCommand = new SqlCommand(query, this.Connection);                
                 myReader = myCommand.ExecuteReader();
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(query, this.Connection);
