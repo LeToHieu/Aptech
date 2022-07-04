@@ -138,9 +138,29 @@ FROM
 INNER JOIN Student
 ON Student.StudentId = Q1.StudentId;
 
+--7. Views
+DROP VIEW view_StudentSubjectMark;
+CREATE VIEW view_StudentSubjectMark AS 
+SELECT
+	Student.StudentId,
+	Student.StudentName,
+	Subject.SubjectName, 
+	Result.Mark
+FROM Student
+JOIN Result
+  ON Student.StudentId = Result.StudentId
+JOIN Subject
+  ON Result.SubjectId = Subject.SubjectId;
+
+SELECT TOP 3 * FROM view_StudentSubjectMark ORDER BY Mark DESC; -- descending
+
+SELECT * FROM Result WHERE SubjectId = 2;
 
 
 
-
-
-
+CREATE PROCEDURE up_IncreaseMark 
+@SubjectId INT AS
+BEGIN
+	UPDATE Result SET Result.Mark = Result.Mark - 1
+	WHERE Result.SubjectId = 2;
+END
