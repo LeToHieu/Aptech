@@ -80,6 +80,7 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            
             // 
             // btnExportXML
             // 
@@ -98,6 +99,7 @@
             this.btnSave.TabIndex = 30;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
@@ -107,7 +109,7 @@
             this.btnDelete.TabIndex = 29;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            
             // 
             // btnUpdate
             // 
@@ -143,6 +145,7 @@
             this.comboBoxClassName.Name = "comboBoxClassName";
             this.comboBoxClassName.Size = new System.Drawing.Size(434, 39);
             this.comboBoxClassName.TabIndex = 25;
+            
             // 
             // txtAddress
             // 
@@ -156,7 +159,7 @@
             this.txtUsername.Location = new System.Drawing.Point(513, 304);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(434, 38);
-            this.txtUsername.TabIndex = 23;
+            this.txtUsername.TabIndex = 23;            
             // 
             // txtStudentName
             // 

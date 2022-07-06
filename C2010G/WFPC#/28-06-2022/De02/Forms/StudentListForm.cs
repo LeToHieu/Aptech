@@ -15,6 +15,7 @@ namespace De02.Forms
         //public LoginForm loginForm; //field        
         //property
         public LoginForm LoginForm { get; set; }
+        private int studentId;
         public StudentListForm()
         {
             InitializeComponent();
@@ -25,10 +26,9 @@ namespace De02.Forms
             dataGridView.AutoGenerateColumns = false;
             dataGridView.RowHeadersVisible = false;
             //dataGridView.ColumnHeadersVisible = false;
-            dataGridView.ReadOnly = true;
+            dataGridView.ReadOnly = false;
             //dataGridView.MultiSelect = false;
-            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DataSet dataSet = Database.Database.Instance.GetStudents();
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;            
             //className, studentName,userName,address             
             //Set Columns Count
             dataGridView.ColumnCount = 4;
@@ -47,10 +47,37 @@ namespace De02.Forms
 
             dataGridView.Columns[3].Name = "DiaChi";
             dataGridView.Columns[3].HeaderText = "Dia chi";
-            dataGridView.Columns[3].DataPropertyName = "Address";
+            dataGridView.Columns[3].DataPropertyName = "Address";            
 
-            dataGridView.DataSource = dataSet.Tables[0];
+            dataGridView.DataSource = Database.Database
+                                        .Instance
+                                        .GetStudents()
+                                        .Tables[0];
+            dataGridView.SelectionChanged += DataGridView_SelectionChanged;
+            comboBoxClassName.DataSource = Database.Database
+                    .Instance.GetClasses().Tables[0];
+            comboBoxClassName.DisplayMember = "ClassName";
+        }
+        private void DataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            var rowsCount = dataGridView.SelectedRows.Count;
+            if (rowsCount == 0) return;
+            DataRowView dataRowView = (DataRowView)dataGridView.SelectedRows[0].DataBoundItem;
+            //dataRowView.Row.ItemArray[0];
+            this.studentId = (int)dataRowView.Row.ItemArray[0];
+            String className = (String)dataRowView.Row.ItemArray[1];
+            String studentName = (String)dataRowView.Row.ItemArray[2];
+            String userName = (String)dataRowView.Row.ItemArray[3];
+            String address = (String)dataRowView.Row.ItemArray[4];
             
+            //fill in Form
+            txtStudentName.Text = studentName;
+            txtUsername.Text = userName;
+            txtAddress.Text = address;
+            comboBoxClassName.Text = className;
+
+
+            Console.WriteLine("haha");            
         }
         protected override void Dispose(bool disposing)
         {
@@ -68,9 +95,19 @@ namespace De02.Forms
 
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-
+            DataRowView dataRowView = (DataRowView)comboBoxClassName.SelectedItem;
+            //dataRowView.Row.ItemArray
+            Console.WriteLine("haha");
+            Database.Database.Instance.UpdateStudent(
+                studentName: txtStudentName.Text,
+                userName: txtUsername.Text,
+                address: txtAddress.Text,
+                classCode: (int)dataRowView.Row.ItemArray[0],
+                studentId: studentId
+                //classCode:comboBoxClassName.SelectedItem               
+                );            
         }
     }
 }

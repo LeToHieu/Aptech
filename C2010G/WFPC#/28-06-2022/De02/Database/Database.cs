@@ -34,7 +34,56 @@ namespace De02.Database
                 }
             } 
         }
-        public User? GetUser(String userName, String password) {
+        public void UpdateStudent(String studentName, String userName, 
+            int classCode,
+            String address, int studentId) {            
+            try
+            {                
+                String query = "UPDATE tblStudent SET " +
+                                    "studentName=@studentName, " +
+                                    "userName=@userName, " +
+                                    "classCode=@classCode, " +
+                                    "address=@address " +
+                                    "WHERE studentId=@studentId";
+                SqlCommand myCommand = new SqlCommand(query, this.Connection);
+                myCommand.Parameters.AddWithValue("@studentName", studentName);
+                myCommand.Parameters.AddWithValue("@userName", userName);
+                myCommand.Parameters.AddWithValue("@classCode", classCode);
+                myCommand.Parameters.AddWithValue("@address", address);
+                myCommand.Parameters.AddWithValue("@studentId", studentId);
+
+                myCommand.ExecuteNonQuery();                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Cannot update student.Error: {e.ToString()}");                
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+        }
+        public void DeleteStudent(int studentId)
+        {
+            try
+            {
+                String query = "DELETE FROM tblStudent WHERE studentId=@studentId";                                    
+                SqlCommand myCommand = new SqlCommand(query, this.Connection);
+                myCommand.Parameters.AddWithValue("@studentId", studentId);
+                myCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Cannot update student.Error: {e.ToString()}");
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+        }
+        public bool Login(String userName, String password) {
             try
             {
                 SqlDataReader myReader = null;
@@ -44,19 +93,15 @@ namespace De02.Database
                 myCommand.Parameters.AddWithValue("@password", password);
                 myReader = myCommand.ExecuteReader();
                 while (myReader.Read())
-                {
-                    return new User()
-                    {
-                        id = Convert.ToInt32(myReader["id"]),
-                        username = (String)myReader["username"]
-                    };
-                }
-                return null;
+                {                
+                    return true;
+                }                
+                return false;
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Cannot query user.Error: {e.ToString()}");
-                return null;
+                return false;
             }
             finally {
                 Connection.Close();            
@@ -67,7 +112,7 @@ namespace De02.Database
             {
                 SqlDataReader myReader = null;
                 DataSet dataSet = new DataSet();
-                String query = "SELECT className, studentName, userName, address"+
+                String query = "SELECT studentId, className, studentName, userName, address"+
                   " FROM tblStudent"+
                   " INNER JOIN tblClass ON tblStudent.classCode = tblClass.classCode";
                 SqlCommand myCommand = new SqlCommand(query, this.Connection);                
@@ -79,13 +124,38 @@ namespace De02.Database
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Cannot query user.Error: {e.ToString()}");
+                Console.WriteLine($"Cannot query Student.Error: {e.ToString()}");
                 return null;
             }
             finally
             {
                 //Connection.Close();
             }
-        } 
+        }
+        public DataSet GetClasses()
+        {
+            try
+            {
+                SqlDataReader myReader = null;
+                DataSet dataSet = new DataSet();
+                String query = "SELECT * FROM tblClass";
+                SqlCommand myCommand = new SqlCommand(query, this.Connection);
+                myReader = myCommand.ExecuteReader();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, this.Connection);
+                dataAdapter.Fill(dataSet, "class list");
+                Connection.Close();
+                return dataSet;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Cannot query Class list.Error: {e.ToString()}");
+                return null;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
     }
 }

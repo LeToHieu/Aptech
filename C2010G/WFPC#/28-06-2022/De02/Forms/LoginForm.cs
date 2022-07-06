@@ -47,7 +47,9 @@ namespace De02.Forms
                 MessageBox.Show("You must enter password");
                 return;
             }
-            if (Database.Database.Instance.GetUser(txtUsername.Text, txtPassword.Text) != null)
+            if (Database.Database
+                    .Instance
+                    .Login(txtUsername.Text, txtPassword.Text))
             {
                 StudentListForm.LoginForm = this;
                 StudentListForm.Show();
@@ -56,10 +58,6 @@ namespace De02.Forms
             else {
                 MessageBox.Show("Wrong username, password");
             }
-
-            
-
-
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
