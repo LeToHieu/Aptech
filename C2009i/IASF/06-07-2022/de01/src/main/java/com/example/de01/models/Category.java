@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,6 +20,6 @@ public class Category {
     private int categoryId;
     private String categoryName;
     @OneToMany(fetch = FetchType.EAGER)
-    private Collection<Book> books = new ArrayList<>();
+    private Set<Book> books;
 
 }
