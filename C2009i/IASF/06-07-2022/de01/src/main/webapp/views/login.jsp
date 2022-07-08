@@ -9,6 +9,22 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is login</h1>
+    <h1>Login</h1>
+    <form action="/users/login" method="post">    
+    <table>
+        <tr>
+            <td>Username</td>
+            <td><input type="text" name="username" placeholder="Enter username"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="password" placeholder="Enter password"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Login"></td>
+            <td></td>
+        </tr>
+    </table>
+    </form>
 </body>
 </html>
