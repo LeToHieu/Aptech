@@ -83,3 +83,91 @@ FROM (
 	INNER JOIN Categories 
 	ON Categories.catID = Q1.catID) AS Q2
 WHERE Categories.catID= Q2.CatID;
+
+--update price
+SELECT catID FROM Categories WHERE catname='Food and drink';
+SELECT * FROM Travels;
+
+UPDATE Travels SET days = 6
+WHERE catID='300';
+
+--SELECT * FROM Travels WHERE (trID = 10 OR trID = 12);
+SELECT * FROM Travels WHERE trID IN (10, 12, 15, 178, 21);
+
+SELECT * FROM Travels WHERE 
+Travels.days > 5 AND Travels.catID IN (
+	SELECT catID FROM Categories WHERE catname='Food and drink'
+);
+
+UPDATE Travels 
+SET Travels.price = 1.1*Travels.price
+WHERE Travels.days > 5 AND Travels.catID IN (
+	SELECT catID FROM Categories WHERE catname='Food and drink'
+);
+
+DROP TRIGGER TG_Travels_Update;
+CREATE TRIGGER TG_Travels_Update  
+ON Travels --on table's name
+AFTER UPDATE AS --event(when)
+BEGIN
+	DECLARE @Price AS FLOAT --declare local variable
+	SET @Price = (SELECT TOP 1 Price FROM INSERTED) 
+	IF (@Price < 0) 
+	BEGIN 
+		RAISERROR ('Travel tour’s price must be
+					greater than zero',16,10);		
+		ROLLBACK 
+	END
+END
+--test trigger
+UPDATE Travels
+SET Travels.price = 381 
+WHERE trID='14';
+SELECT * FROM Travels;
+
+DROP TRIGGER TG_Travels_Delete;
+CREATE TRIGGER TG_Travels_Delete  
+ON Travels --on table's name
+AFTER DELETE AS --event(when)
+BEGIN
+	UPDATE Categories 
+	SET Categories.counts = Categories.counts - 1 
+	--DELETED = "deleted travel"
+	WHERE Categories.catID IN (SELECT catID FROM DELETED)		
+END
+
+SELECT * FROM Travels WHERE trID = 14;
+DELETE FROM Travels WHERE trID = 14;
+SELECT * FROM Categories WHERE catID=100;
+--test trigger
+SELECT * FROM Travels WHERE trID = 14;
+DELETE FROM Travels WHERE trID = 14;
+SELECT * FROM Categories WHERE catID=100;
+
+
+DROP TRIGGER TG_Travels_Insert;
+CREATE TRIGGER TG_Travels_Insert  
+ON Travels --on table's name
+AFTER INSERT AS --event(when)
+BEGIN
+	DECLARE @StartDate AS DateTime --declare local variable
+	SET @StartDate = (SELECT TOP 1 startDate FROM INSERTED) 
+	IF (@StartDate < GETDATE()) 
+	BEGIN 
+		RAISERROR ('Travel tour’s startdate must be
+				after the current date.',16,10);		
+		ROLLBACK 
+	END	
+END
+--test trigger
+SELECT * FROM Travels;
+
+INSERT INTO Travels(trID, name, price, days, catID, startDate) 
+VALUES(99, 'di dhoieo wew', 900, 10, 300, '2022-07-09');
+
+DELETE FROM Travels WHERE trID=99;
+
+INSERT INTO Travels(trID, name, price, days, catID, startDate) 
+VALUES(99, 'di dhoieo wew', 900, 10, 300, '2022-07-07');
+
+SELECT * FROM sys.triggers WHERE type='TR';
