@@ -91,7 +91,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/insertconfirmed", method = RequestMethod.POST)
-    public String AcceptToInsert (ModelMap modelMap, String title, String categoryID, String price){
+    public String acceptToInsert(ModelMap modelMap, String title, String categoryID, String price){
 
         try{
             Book b = new Book(title, categoryID, Float.parseFloat(price));

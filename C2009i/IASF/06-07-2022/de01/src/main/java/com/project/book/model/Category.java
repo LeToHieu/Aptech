@@ -1,5 +1,9 @@
 package com.project.book.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,6 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name ="category")
+@AllArgsConstructor
+@Getter
+@Setter
 public class Category {
     @Id
     private String categoryID;
@@ -16,10 +23,10 @@ public class Category {
     public Category() {
     }
 
-    public Category(String categoryID, String categoryName) {
-        this.categoryID = categoryID;
-        this.categoryName = categoryName;
-    }
+//    public Category(String categoryID, String categoryName) {
+//        this.categoryID = categoryID;
+//        this.categoryName = categoryName;
+//    }
 
     @Override
     public String toString() {
@@ -29,19 +36,19 @@ public class Category {
                 '}';
     }
 
-    public String getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
+//    public String getCategoryID() {
+//        return categoryID;
+//    }
+//
+//    public void setCategoryID(String categoryID) {
+//        this.categoryID = categoryID;
+//    }
+//
+//    public String getCategoryName() {
+//        return categoryName;
+//    }
+//
+//    public void setCategoryName(String categoryName) {
+//        this.categoryName = categoryName;
+//    }
 }
