@@ -20,8 +20,7 @@ CREATE TABLE Result (
 	SubjectId INT NOT NULL,	
 	Mark INT
 );
-CREATE NONCLUSTERED INDEX NCI_Student_StudentName   
-ON Student(StudentName);
+CREATE NONCLUSTERED INDEX CI_tblUser_UserID ON tblUser(StudentName);
 DROP INDEX IF EXISTS NCI_Student_StudentName ON Student;
 --alter table change column type sql server
 ALTER TABLE Result ALTER COLUMN Mark FLOAT; 
