@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "book")
+@RequestMapping(path = "books")
 public class BookController {
     @Autowired
     private BookRepository bookRepository;
@@ -27,16 +27,7 @@ public class BookController {
     @Autowired
     private HttpSession httpSession;
 
-    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-    public String Welcome (ModelMap modelMap){
-        if(httpSession.getAttribute("username") == null){
-            return "redirect:/user/login";
-        }
-        httpSession.getAttribute("username");
-        return "welcome";
-    }
-
-    @RequestMapping(value = "/booklist", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String getBookList(ModelMap modelMap){
         if(httpSession.getAttribute("username") == null){
             return "redirect:/user/login";
@@ -52,8 +43,18 @@ public class BookController {
             books.add(hashtable);
         }
         modelMap.addAttribute("books", books);
-        return "booklist";
+        return "books";
     }
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+    public String Welcome (ModelMap modelMap){
+        if(httpSession.getAttribute("username") == null){
+            return "redirect:/user/login";
+        }
+        httpSession.getAttribute("username");
+        return "welcome";
+    }
+
+
 
     @RequestMapping(value = "/deleteBook", method = RequestMethod.GET)
     public String deleteBook (ModelMap modelMap,
@@ -77,7 +78,7 @@ public class BookController {
         }catch (Exception e){
             System.out.println(e);
         }
-        return "redirect:/book/booklist";
+        return "redirect:/books";
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.GET)
@@ -99,7 +100,7 @@ public class BookController {
         }catch (Exception e){
             System.out.println(e);
         }
-        return "redirect:/book/booklist";
+        return "redirect:/books";
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)

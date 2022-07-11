@@ -25,7 +25,7 @@ public class UserController {
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String Login (ModelMap modelMap){
         if(httpSession.getAttribute("username") != null){
-            return "redirect:/book/booklist";
+            return "redirect:/books";
         }
         return "login"; //login.jsp
     }
@@ -39,7 +39,7 @@ public class UserController {
                 //login sucess
                 httpSession.setAttribute("username", username);
                 modelMap.addAttribute("error", "");
-                return "redirect:/book/welcome"; //redirect to welcome
+                return "redirect:/books/welcome"; //redirect to welcome
             } else {
                 modelMap.addAttribute("error", "Wrong username/password");
             }

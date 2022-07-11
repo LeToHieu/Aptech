@@ -8,10 +8,10 @@
 </head>
 <body>
     <h2>Do you really want to delete this book?</h2>
-    <form method="post" action="/book/deleteBook">
+    <form method="post" action="/books/deleteBook">
         <input type="hidden" value="${bookid}" name="bookId">
         <input type="submit" value="submit">
     </form>
-    <a href="/book/booklist">Return to Book list</a></td>
+    <a href="/books">Return to Book list</a></td>
 </body>
 </html>

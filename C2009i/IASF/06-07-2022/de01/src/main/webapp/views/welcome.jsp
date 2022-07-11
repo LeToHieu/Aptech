@@ -9,9 +9,9 @@
 <body>
     <h2><b>Welcome ${username}</b></h2>
     <ul>
-        <li><a href="/book/booklist">List all books</a></li>
-        <li><a href="/book/insert">Insert books</a></li>
-        <li><a href="/book/logout">Log out</a></li>
+        <li><a href="/books">List all books</a></li>
+        <li><a href="/books/insert">Insert books</a></li>
+        <li><a href="/books/logout">Log out</a></li>
     </ul>
 </body>
 </html>

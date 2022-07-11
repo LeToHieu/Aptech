@@ -24,11 +24,11 @@
                 <td>${hashtableBook.get("title")}</td>
                 <td>${hashtableBook.get("categoryName")}</td>
                 <td>${hashtableBook.get("price")}</td>
-                <td><a href='/book/deleteBook?bookID=${hashtableBook.get("bookID")}'>Delete</a></td>
+                <td><a href='/books/deleteBook?bookID=${hashtableBook.get("bookID")}'>Delete</a></td>
             </tr>
             </c:forEach>
 
     </table>
-    <a href="/book/welcome">Return to welcome page</a></td>
+    <a href="/books/welcome">Return to welcome page</a></td>
 </body>
 </html>
