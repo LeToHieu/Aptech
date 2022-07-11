@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,22 +7,23 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="/users/login" method="post">    
-    <table>
-        <tr>
-            <td>Username</td>
-            <td><input type="text" name="username" placeholder="Enter username"></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="password" placeholder="Enter password"></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Login"></td>
-            <td></td>
-        </tr>
-    </table>
+    <h2>Login</h2>
+    <h2 style="color: red;">${error}</h2>
+    <form method="post" action="login">
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Login"></td>
+            </tr>
+        </table>                        
     </form>
 </body>
 </html>
