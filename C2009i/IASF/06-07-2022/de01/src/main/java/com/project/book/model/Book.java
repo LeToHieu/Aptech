@@ -8,18 +8,19 @@ import javax.persistence.*;
 @Table(name ="books")
 @RequiredArgsConstructor
 @Getter @Setter
+@AllArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String bookID;
+    private Long bookID;
     private String title;
     private float price;
-    private String categoryID;
-    public Book( String title, String categoryID, float price) {
-        this.title = title;
-        this.categoryID = categoryID;
-        this.price = price;
-    }
+    private Long categoryID;
+//    public Book( String title, Long categoryID, float price) {
+//        this.title = title;
+//        this.categoryID = categoryID;
+//        this.price = price;
+//    }
 
     @Override
     public String toString() {

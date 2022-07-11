@@ -26,6 +26,6 @@ INSERT INTO Category(CategoryName) VALUES
 ('Tan Van'),
 ('Du lich');
 INSERT INTO Books(Title, Price, CategoryId) VALUES('Mai mai tuoi 20', 123, 1);
-INSERT INTO Books(Title, Price, CategoryId) VALUES('on ai hat ve Ha noi', 454, 2);
-INSERT INTO Books(Title, Price, CategoryId) VALUES('Mai mai tuoi 20', 222, 3);
+INSERT INTO Books(Title, Price, CategoryId) VALUES('Con ai hat ve Ha noi', 454, 2);
+INSERT INTO Books(Title, Price, CategoryId) VALUES('Mua thu ha noi', 222, 3);
 

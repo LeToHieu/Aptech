@@ -2,32 +2,23 @@ package com.project.book.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name ="category")
 @AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 public class Category {
     @Id
-    private String categoryID;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long categoryID;
     @Column(name = "CategoryName")
     private String categoryName;
-
-    public Category() {
-    }
-
-//    public Category(String categoryID, String categoryName) {
-//        this.categoryID = categoryID;
-//        this.categoryName = categoryName;
-//    }
-
     @Override
     public String toString() {
         return "Category{" +
@@ -35,20 +26,4 @@ public class Category {
                 ", categoryName='" + categoryName + '\'' +
                 '}';
     }
-
-//    public String getCategoryID() {
-//        return categoryID;
-//    }
-//
-//    public void setCategoryID(String categoryID) {
-//        this.categoryID = categoryID;
-//    }
-//
-//    public String getCategoryName() {
-//        return categoryName;
-//    }
-//
-//    public void setCategoryName(String categoryName) {
-//        this.categoryName = categoryName;
-//    }
 }

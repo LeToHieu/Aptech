@@ -67,7 +67,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/deleteBook", method = RequestMethod.POST)
-    public String deleteBookConfirm (ModelMap modelMap, String bookId){
+    public String deleteBookConfirm (ModelMap modelMap, Long bookId){
 
         try{
             Optional<Book> b =bookRepository.findById(bookId);
@@ -92,10 +92,14 @@ public class BookController {
     }
 
     @RequestMapping(value = "/insertconfirmed", method = RequestMethod.POST)
-    public String acceptToInsert(ModelMap modelMap, String title, String categoryID, String price){
+    public String acceptToInsert(ModelMap modelMap, String title, Long categoryID, String price){
 
         try{
-            Book b = new Book(title, categoryID, Float.parseFloat(price));
+            //Book b = new Book(title, categoryID, Float.parseFloat(price));
+            Book b = new Book();
+            b.setTitle(title);
+            b.setCategoryID(categoryID);
+            b.setPrice(Float.parseFloat(price));
             bookRepository.save(b);
         }catch (Exception e){
             System.out.println(e);

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
-public interface BookRepository extends CrudRepository<Book, String> {
+public interface BookRepository extends CrudRepository<Book, Long> {
     @Query(value = "SELECT b.BookId, b.Title, c.CategoryName, b.Price " +
                     "FROM books b " +
                     "INNER join category c " +
