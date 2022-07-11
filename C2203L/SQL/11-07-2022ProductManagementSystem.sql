@@ -111,3 +111,41 @@ INNER JOIN tblOrderDetail
 ON tblOrderDetail.OrderID = tblOrder.OrderID
 INNER JOIN tblProduct
 ON tblProduct.ProductID = tblOrderDetail.ProductID;
+
+SELECT * FROM tblOrderDetail;
+
+DROP VIEW view_Top2Product;
+CREATE VIEW view_Top2Product AS
+SELECT 
+	--TOP 2
+	Q1.ProductID,
+	tblProduct.ProductName,
+	tblProduct.Price,
+	Q1.TotalQuantity
+FROM tblProduct
+INNER JOIN (SELECT 
+	ProductID,
+	SUM(Quantity) AS TotalQuantity
+FROM tblOrderDetail
+GROUP BY ProductID) AS Q1
+ON Q1.ProductID = tblProduct.ProductID;
+
+SELECT TOP 2 * FROM view_Top2Product
+ORDER BY TotalQuantity DESC;
+
+DROP PROCEDURE sp_TimSanPham;
+CREATE PROCEDURE sp_TimSanPham 
+	@GiaMua MONEY,
+	@Count INT OUTPUT
+AS
+BEGIN
+	SELECT @Count = count(*)
+	FROM tblProduct WHERE tblProduct.Price < @GiaMua;
+END
+--sp = stored procedure
+ 
+DECLARE @Count1 money;
+EXECUTE sp_TimSanPham 200, @Count = @Count1 OUTPUT;    
+
+PRINT 'count is ' + CONVERT(varchar(10),@Count1);  
+GO
