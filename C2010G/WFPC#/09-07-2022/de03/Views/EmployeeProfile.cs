@@ -13,7 +13,8 @@ namespace de03
     public partial class EmployeeProfile : Form
     {
         private ExamWinFormEntities db = new ExamWinFormEntities();
-        private Department selectedDepartment = null;//backing store
+        private Department selectedDepartment;//backing store
+        private Employee selectedEmployee;
         public Department SelectedDeparment {
             get => selectedDepartment ?? db.Departments.FirstOrDefault();
             set {
@@ -57,7 +58,20 @@ namespace de03
                 listViewItem.Tag = employee;
                 listView.Items.Add(listViewItem);
             }
+            listView.MouseClick += ListView_MouseClick;
         }
+
+        private void ListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            ListViewItem listViewItem = listView.SelectedItems[0];
+            selectedEmployee = (Employee)listViewItem.Tag;
+                                                
+        }
+
         private void InitializeTreeView()
         {            
             treeView.BeginUpdate();
@@ -77,8 +91,6 @@ namespace de03
         private void TreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             SelectedDeparment = (Department)e.Node.Tag;
-            String x = SelectedDeparment.DeptName;
-            String x1 = SelectedDeparment.DeptID;
             FetchDataToListView();
         }
 
@@ -95,6 +107,19 @@ namespace de03
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes && selectedEmployee != null)
+            {
+                this.db.Employees.Remove(selectedEmployee);
+                this.db.SaveChanges();
+                FetchDataToListView();
+            }
         }
     }
 }
