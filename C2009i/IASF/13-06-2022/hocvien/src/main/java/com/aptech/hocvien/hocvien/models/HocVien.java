@@ -1,7 +1,13 @@
 package com.aptech.hocvien.hocvien.models;
 
-import java.util.Scanner;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 
+import java.util.Scanner;
+@Getter
+@Setter
+@Log4j2
 public class HocVien {
     private String ma_hoc_vien;
     private String ho_va_ten;
@@ -10,14 +16,16 @@ public class HocVien {
     private Float diem_mon_b;
     private Float diem_mon_c;
     private Float diem_mon_d;
-    private Float diem_trung_binh;
-    private String ket_qua;
 
     private static Scanner getScanner() {
         return new Scanner(System.in);
     }
-    public String getKet_qua() {
-        Float diemTrungBinh = getDiem_trung_binh();
+
+    public Float diem_trung_binh() {
+        return (diem_mon_a + diem_mon_b + diem_mon_c + diem_mon_d)/4;
+    }
+    public String ket_qua() {
+        Float diemTrungBinh = diem_trung_binh();
         //nested ternary
         return diemTrungBinh < 5 ? "YEU" : (
                 diemTrungBinh >= 5 && diemTrungBinh <= 6 ? "TB":
@@ -26,15 +34,14 @@ public class HocVien {
                 );
     }
 
-    public void setKet_qua(String ket_qua) {
-        this.ket_qua = ket_qua;
-    }
+
 
     public HocVien() {}
     public HocVien(String ma_hoc_vien, String ho_va_ten,
                    String lop_hoc,
                    Float diem_mon_a, Float diem_mon_b, Float diem_mon_c, Float diem_mon_d
                    ) {
+        log.info("create hocvien with name: {}", ho_va_ten);
         this.ma_hoc_vien = ma_hoc_vien;
         this.ho_va_ten = ho_va_ten;
         this.lop_hoc = lop_hoc;
@@ -42,10 +49,12 @@ public class HocVien {
         this.diem_mon_b = diem_mon_b;
         this.diem_mon_c = diem_mon_c;
         this.diem_mon_d = diem_mon_d;
-        this.diem_trung_binh = getDiem_trung_binh(); //calculated fields
-        this.ket_qua = getKet_qua();
+        //calculated properties
+        //this.diem_trung_binh = diem_trung_binh(); //calculated fields
+        //this.ket_qua = getKet_qua();
     }
 
+    /*
     public String getMa_hoc_vien() {
         return ma_hoc_vien;
     }
@@ -109,7 +118,10 @@ public class HocVien {
     public void setDiem_trung_binh(Float diem_trung_binh) {
         this.diem_trung_binh = diem_trung_binh;
     }
-
+    public void setKet_qua(String ket_qua) {
+        this.ket_qua = ket_qua;
+    }
+    */
     @Override
     public String toString() {
         return "HocVien{" +
@@ -120,8 +132,8 @@ public class HocVien {
                 ", diem_mon_b=" + diem_mon_b +
                 ", diem_mon_c=" + diem_mon_c +
                 ", diem_mon_d=" + diem_mon_d +
-                ", diem_trung_binh=" + diem_trung_binh +
-                ", ket_qua='" + ket_qua + '\'' +
+                ", diem_trung_binh=" + diem_trung_binh() +
+                ", ket_qua='" + ket_qua() + '\'' +
                 '}';
     }
     public static HocVien input() {
