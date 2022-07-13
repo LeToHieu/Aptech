@@ -4,13 +4,15 @@ import com.aptech.hocvien.hocvien.models.HocVien;
 import com.aptech.hocvien.hocvien.repositories.HocVienRepository;
 import com.aptech.hocvien.hocvien.services.IHocVienService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class HocVienRunner implements CommandLineRunner {
-    private final IHocVienService hocVienService;
+    @Autowired
+    private IHocVienService hocVienService;
     @Override
     public void run(String... args) throws Exception {
         HocVien hocVienA = new HocVien("hva", "Nguyen Van A", "c1908i",
