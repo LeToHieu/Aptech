@@ -149,3 +149,38 @@ EXECUTE sp_TimSanPham 200, @Count = @Count1 OUTPUT;
 
 PRINT 'count is ' + CONVERT(varchar(10),@Count1);  
 GO
+
+DROP TRIGGER TG_tblProduct_Update;
+CREATE TRIGGER TG_tblProduct_Update  
+ON tblProduct --on table's name
+AFTER UPDATE AS --event(when)
+BEGIN
+	DECLARE @Price AS MONEY --declare local variable
+	SET @Price = (SELECT TOP 1 Price FROM tblProduct) 
+	IF (@Price < 10) 
+	BEGIN 
+		RAISERROR ('You don''t update price less than 10!',16,10);		
+		ROLLBACK 
+	END	
+END
+--test trigger
+SELECT * FROM tblProduct;
+UPDATE tblProduct SET Price = 11 WHERE ProductID = 1;
+
+DROP TRIGGER TG_tblUser_Update;
+CREATE TRIGGER TG_tblUser_Update  
+ON tblUser --on table's name
+AFTER UPDATE AS --event(when)
+	--check Whether Username is "modified" ?
+BEGIN 
+	IF ((COLUMNS_UPDATED() & 2) = 2) OR ((COLUMNS_UPDATED() & 4) = 4)    
+	--PRINT COLUMNS_UPDATED();
+	BEGIN
+		RAISERROR ('You cannot update Username',16,10);		
+		ROLLBACK 
+	END	
+END
+SELECT * FROM tblUser;
+
+UPDATE tblUser SET UserName='stevejobs1' WHERE UserID=1;
+UPDATE tblUser SET BirthDate='1996-08-27', UserName = 'stevejobs2' WHERE UserID=1;
