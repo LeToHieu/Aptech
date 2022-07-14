@@ -11,10 +11,13 @@ namespace de03
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Employee
     {
         public int EmployeeID { get; set; }
+        [Required]
+        [StringLength(maximumLength: 10000, MinimumLength = 5)]
         public string EmployeeName { get; set; }
         public string DeptID { get; set; }
         public bool Gender { get; set; }

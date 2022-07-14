@@ -15,6 +15,7 @@ namespace de03
         private ExamWinFormEntities db = new ExamWinFormEntities();
         private Department selectedDepartment;//backing store
         private Employee selectedEmployee;
+        private EmployeeDetail employeeDetail;
         public Department SelectedDeparment {
             get => selectedDepartment ?? db.Departments.FirstOrDefault();
             set {
@@ -120,6 +121,13 @@ namespace de03
                 this.db.SaveChanges();
                 FetchDataToListView();
             }
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            employeeDetail = employeeDetail ?? new EmployeeDetail();//nil-coalescing
+            employeeDetail.EmployeeProfile = this;
+            employeeDetail.Show();
         }
     }
 }
