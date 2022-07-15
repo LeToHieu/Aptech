@@ -56,7 +56,7 @@ public class ProductController {
             }
             productRepository.save(foundProduct);
         }
-        return "redirect:/products/getProductsByCategoryID/"+product.getCategoryID();
+        return String.format("redirect:/products/getProductsByCategoryID/%s", product.getCategoryID());
     }
 
 
