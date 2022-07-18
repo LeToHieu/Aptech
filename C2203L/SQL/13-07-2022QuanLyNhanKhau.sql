@@ -77,3 +77,100 @@ WHERE TenDuong = N'GiảiTỏa';
 SELECT * FROM DuongPho 
 WHERE TenDuong = N'GiảiTỏa';
 
+SELECT name FROM sys.views WHERE type='V';
+
+DROP VIEW view_all_NhaTrenPho;
+
+CREATE VIEW view_all_NhaTrenPho
+AS
+	(SELECT 
+		QuanHuyen.TenQH, 
+		DuongPho.TenDuong, 
+		DuongPho.NgayDuyetTen, 
+		NhaTrenPho.ChuHo, 
+		NhaTrenPho.DienTich, 
+		NhaTrenPho.SoNhanKhau	
+	FROM QuanHuyen 
+	INNER JOIN DuongPho 
+	ON QuanHuyen.MaQH=QuanHuyen.MaQH 
+	INNER JOIN NhaTrenPho
+ON DuongPho.DuongID=NhaTrenPho.DuongID);
+
+SELECT * FROM view_all_NhaTrenPho;
+
+
+DROP VIEW view_AVG_NhaTrenPho;
+CREATE VIEW view_AVG_NhaTrenPho
+AS
+	(SELECT 
+		DuongPho.TenDuong AS 'Tên đường' , 
+		Q1.DienTichTrungBinh AS 'Diện tích trung bình' , 
+		Q1.NhanKhauTrungBinh AS 'Số nhân khẩu trung bình' 
+	FROM DuongPho 
+	JOIN 
+		(SELECT 
+			AVG(NhaTrenPho.DienTich) AS DienTichTrungBinh, 
+			AVG(NhaTrenPho.SoNhanKhau) AS NhanKhauTrungBinh, 
+			DuongID
+		FROM NhaTrenPho
+		GROUP BY DuongID) AS Q1 ON Q1.DuongID=DuongPho.DuongID);  
+--test view 
+SELECT * FROM view_AVG_NhaTrenPho;
+
+/*
+SELECT definition
+FROM
+    sys.sql_modules
+WHERE
+    object_id = object_id('view_AVG_NhaTrenPho');
+*/
+
+DROP PROCEDURE sp_NgayQuyetTen_DuongPho;
+CREATE PROCEDURE sp_NgayQuyetTen_DuongPho 
+	@NgayDuyet DATETIME	
+AS
+BEGIN
+	SELECT 
+		view_all_NhaTrenPho.NgayDuyetTen AS 'Ngày duyệt tên', 
+		view_all_NhaTrenPho.TenDuong AS 'Tên Đường', 
+		view_all_NhaTrenPho.TenQH	 AS 'Tên quận huyện' 
+	FROM view_all_NhaTrenPho
+	WHERE view_all_NhaTrenPho.NgayDuyetTen = @NgayDuyet;
+END
+EXEC sp_NgayQuyetTen_DuongPho '1998-12-30';
+--sp = stored procedure
+
+DROP TRIGGER TG_NhaTrenPho_Update;
+CREATE TRIGGER TG_NhaTrenPho_Update  
+ON NhaTrenPho --on table's name
+AFTER UPDATE, INSERT AS --event(when)
+BEGIN
+	DECLARE @SoNhanKhau AS INT --declare local variable
+	SET @SoNhanKhau = (SELECT TOP 1 SoNhanKhau FROM inserted) 
+	IF (@SoNhanKhau <= 0 ) 
+	BEGIN 
+		RAISERROR ('SoNhanKhau must be greater than or equal zero !',16,10);		
+		ROLLBACK 
+	END	
+END
+
+SELECT * FROM NhaTrenPho;
+UPDATE NhaTrenPho SET SoNhanKhau=0 
+WHERE NhaID=1;
+
+
+DROP TRIGGER TG_DuongPho_Instead_Of_Delete;
+CREATE TRIGGER TG_DuongPho_Instead_Of_Delete  
+ON DuongPho --on table's name
+INSTEAD OF DELETE AS 
+BEGIN
+	RAISERROR ('Please do something else instead of deleting data in table DuongPho',16,10);	
+	ROLLBACK;
+END
+
+--test trigger
+SELECT * FROM DuongPho;
+DELETE FROM DuongPho WHERE DuongID = 2;
+
+
+--dnsuhds hduhsdush 
