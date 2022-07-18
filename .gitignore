@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 .o
 # User-specific files
+*.xxx
 *.rsuser
 *.mdf
 *.suo
@@ -475,3 +476,5 @@ Ankh.NoLoad
 /C2009i/WCD/20-06-2022/de01/dist/
 /C2009i/WCD/24-06-2022/de06/nbproject/private/
 /C2009i/WCD/29-06-2022/de07/nbproject/private/
+/AptechPTTH/EAD/EADDe04/ejbApp/De07-ejb/dist/
+/AptechPTTH/EAD/EADDe04/ejbApp/De07-war/dist/

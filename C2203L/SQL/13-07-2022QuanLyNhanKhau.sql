@@ -171,6 +171,9 @@ END
 --test trigger
 SELECT * FROM DuongPho;
 DELETE FROM DuongPho WHERE DuongID = 2;
+<<<<<<< HEAD
 
 
 --dnsuhds hduhsdush 
+=======
+>>>>>>> a2bab596d8ff3818f9e0963c17bb6f9307ddd13f

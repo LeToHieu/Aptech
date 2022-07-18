@@ -13,5 +13,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface StudentBeanLocal {
-    public void insert(String name, String email, Integer age);        
+    public void insert(Integer rollnumber, String name, String email);
 }

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : list.jsp
-    Created on : May 23, 2022, 10:37:15 AM
-    Author     : w11
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
