@@ -12,10 +12,10 @@ from os.path import isfile, join
 from pathlib import Path
 from pyunpack import Archive
 import openpyxl as xl
-
+import shutil
 count = 0
 files = listdir('.')
-
+files.sort()
 for file in files:	
 	if file.lower().endswith(('.rar', '.zip')):
 		count = count + 1		
@@ -26,9 +26,13 @@ for file in files:
 		try:
 			if not Path(destination_path).exists():
 				os.makedirs(destination_path)
+			else:
+				shutil.rmtree(destination_path)
+				os.makedirs(destination_path)
 			Archive(file).extractall(destination_path)			
 			if os.path.exists(file):
-  				os.remove(file)
+  				# os.remove(file)
+  				pass
 		except:
 			print("Cannot extract: "+file)
 		
@@ -47,7 +51,6 @@ worksheet_temp = workbook['temp']
 
 new_sheets = []
 start_student = 11
-files = listdir('.')
 for file in files:	
 	if os.path.isdir(os.path.join('./', file)):
 		new_sheet = workbook.copy_worksheet(worksheet_temp)
@@ -62,3 +65,4 @@ for file in files:
 del worksheet_temp
 workbook.save(excel_file_name2)	
 workbook.close()
+
