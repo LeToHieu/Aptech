@@ -25,17 +25,30 @@ public class StudentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");//setting the content type  
-        PrintWriter printWriter=response.getWriter();//get the stream to write the data  
-
-        //writing html in the stream  
-        printWriter.println("<html><body>");  
-        int x = Integer.parseInt(request.getParameter("x"));
-        int y = Integer.parseInt(request.getParameter("y"));
-        int sum = x + y;
-        printWriter.println(String.format("sum = %d", sum));  
-        printWriter.println("</body></html>");                  
-        printWriter.close();//closing the stream  
+        String type = request.getParameter("type") == null ? "" 
+                : (String)request.getParameter("type");
+        if(type.equals("")) {
+            request.getRequestDispatcher("list.jsp").forward(request, response);     
+        } else {
+            if(type.equals("delete")) {
+                String rollNumber = (String)request.getParameter("rollnumber");
+                EntityManager entityManager = getEntityManager();
+                Employee employee = entityManager
+                            .createNamedQuery("Employee.findByEmployeeNo", Employee.class)  
+                            .setParameter("employeeNo", employeeNo)
+                            .getSingleResult();        
+                entityManager.getTransaction().begin();
+                entityManager.remove(employee);            
+                entityManager.getTransaction().commit();                  
+            }
+            EntityManager entityManager = getEntityManager();
+            List<Employee> employees = 
+                        (List<Employee>)entityManager
+                            .createNamedQuery("Employee.findAll", Employee.class)                            
+                            .getResultList();           
+            request.setAttribute("employees", employees);
+            request.getRequestDispatcher("employees.jsp").forward(request, response);     
+        }
     }
 
     @Override
