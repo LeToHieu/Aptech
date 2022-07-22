@@ -3,6 +3,7 @@
  */
 package beans;
 
+import java.util.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,6 +30,22 @@ public class StudentBean implements StudentBeanLocal {
             System.err.println("Cannot insert student, error: "+e.getMessage());
         }
     }
-    
-     
+    @Override
+    public void delete(String rollNumber){    
+       Student employee = entityManager
+                            .createNamedQuery("Student.findByRollNo", Student.class)  
+                            .setParameter("rollNumber", rollNumber)
+                            .getSingleResult();        
+                entityManager.getTransaction().begin();
+                entityManager.remove(employee);            
+                entityManager.getTransaction().commit();                  
+    }
+    @Override
+    public ArrayList<Student> findAll() {
+        ArrayList<Student> students = 
+                        (ArrayList<Student>)entityManager
+                            .createNamedQuery("Student.findAll", Student.class)                            
+                            .getResultList();
+        return students;
+    }
 }

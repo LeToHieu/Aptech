@@ -8,16 +8,19 @@ import beans.StudentBeanLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Student;
 
 /**
  *
  * @author w11
  */
 public class StudentServlet extends HttpServlet {
+    
 
     @EJB
     private StudentBeanLocal studentBean;
@@ -32,21 +35,10 @@ public class StudentServlet extends HttpServlet {
         } else {
             if(type.equals("delete")) {
                 String rollNumber = (String)request.getParameter("rollnumber");
-                EntityManager entityManager = getEntityManager();
-                Employee employee = entityManager
-                            .createNamedQuery("Employee.findByEmployeeNo", Employee.class)  
-                            .setParameter("employeeNo", employeeNo)
-                            .getSingleResult();        
-                entityManager.getTransaction().begin();
-                entityManager.remove(employee);            
-                entityManager.getTransaction().commit();                  
+                studentBean.delete(rollNumber);
+                
             }
-            EntityManager entityManager = getEntityManager();
-            List<Employee> employees = 
-                        (List<Employee>)entityManager
-                            .createNamedQuery("Employee.findAll", Employee.class)                            
-                            .getResultList();           
-            request.setAttribute("employees", employees);
+            request.setAttribute("employees", studentBean.findAll());
             request.getRequestDispatcher("employees.jsp").forward(request, response);     
         }
     }

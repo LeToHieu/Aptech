@@ -5,7 +5,10 @@
  */
 package beans;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Local;
+import models.Student;
 
 /**
  *
@@ -14,4 +17,7 @@ import javax.ejb.Local;
 @Local
 public interface StudentBeanLocal {
     public void insert(Integer rollnumber, String name, String email);
+    public ArrayList<Student> findAll();
+    public void delete(String rollNumber);
 }
+
