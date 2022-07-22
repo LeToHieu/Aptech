@@ -52,17 +52,18 @@ worksheet_temp = workbook['temp']
 new_sheets = []
 start_student = 11
 for file in files:	
-	if os.path.isdir(os.path.join('./', file)):
+	if os.path.isdir(os.path.join('./', file)):		
 		new_sheet = workbook.copy_worksheet(worksheet_temp)
 		# import pdb
 		# pdb.set_trace()
+		#new_sheet.title = file if len(file) < 13 else file[0:12]
 		new_sheet.title = file
 		worksheet_result['B'+str(start_student)] = file 
-		worksheet_result['C'+str(start_student)] = '='+"'"+file+"'"+'!C13'
+		worksheet_result['C'+str(start_student)] = '='+"'"+file+"'"+'!C9'
 		start_student = start_student + 1
 
 
-del worksheet_temp
+#del worksheet_temp
 workbook.save(excel_file_name2)	
 workbook.close()
 
