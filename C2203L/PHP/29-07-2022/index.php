@@ -34,14 +34,7 @@
         $isGood = false;
         //var_dump($isGood);
         //print_r($p1);
-        echo "server's name is : ".SERVER_NAME."<br>";
-        //associative array = dictionary = json object
-        $studentA = array(
-            "name" => "Hoang",
-            "age" => 18,
-            "email" => "hoang@gmail.com"
-        );
-        print_r($studentA);
+        echo "server's name is : ".HOST."<br>";        
     ?>
 </head>
 <script>

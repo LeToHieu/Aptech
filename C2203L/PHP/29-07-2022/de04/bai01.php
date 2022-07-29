@@ -31,7 +31,9 @@
                 <p>First</p>
             </td>
             <td>
-                <input type="text" name="firstNumber" placeholder="Enter first number" >             
+                <input type="text" 
+                    value = <?php echo $firstNumber; ?>
+                    name="firstNumber" placeholder="Enter first number" >             
             </td>
         </tr>
         <tr>
@@ -39,7 +41,10 @@
                 <p>Second</p>
             </td>
             <td>                
-                <input type="text" name="secondNumber" placeholder="Enter second number">
+                <input type="text" 
+                    name="secondNumber" 
+                    value = <?php echo $secondNumber; ?>
+                    placeholder="Enter second number">
             </td>
         </tr>
         <tr>
