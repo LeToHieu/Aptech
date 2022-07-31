@@ -48,9 +48,9 @@ worksheets = workbook.worksheets
 
 worksheet_result = workbook['Result']
 worksheet_temp = workbook['temp']
-
 new_sheets = []
 start_student = 11
+count = 0
 for file in files:	
 	if os.path.isdir(os.path.join('./', file)):		
 		new_sheet = workbook.copy_worksheet(worksheet_temp)
@@ -59,11 +59,13 @@ for file in files:
 		#new_sheet.title = file if len(file) < 13 else file[0:12]
 		new_sheet.title = file
 		worksheet_result['B'+str(start_student)] = file 
-		worksheet_result['C'+str(start_student)] = '='+"'"+file+"'"+'!C9'
-		start_student = start_student + 1
-
+		worksheet_result['C'+str(start_student)] = '='+"'"+file+"'"+'!C11'
+		start_student = start_student + 1		
+		count = count + 1		
+		print("created sheet name: "+str(count)+" - "+file)
 
 #del worksheet_temp
 workbook.save(excel_file_name2)	
 workbook.close()
+print("done")
 
