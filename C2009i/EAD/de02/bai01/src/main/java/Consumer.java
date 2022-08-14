@@ -1,10 +1,8 @@
-import org.apache.xbean.spring.generator.MapMapping;
-
 import javax.jms.*;
 
-public class ConsumerMessageListener implements MessageListener {
+public class Consumer implements MessageListener {
     private String consumerName;
-    public ConsumerMessageListener(String consumerName) {
+    public Consumer(String consumerName) {
         this.consumerName = consumerName;
     }
 
