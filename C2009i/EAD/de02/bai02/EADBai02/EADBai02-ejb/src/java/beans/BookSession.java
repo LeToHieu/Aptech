@@ -19,8 +19,8 @@ import models.Book;
  * @author w11
  */
 @Stateless
-public class BookSessionBean implements BookSessionBeanLocal {
-    private EntityManagerFactory emf = 
+public class BookSession implements BookSessionLocal {
+private EntityManagerFactory emf = 
                         Persistence
                         .createEntityManagerFactory("EADBai02-ejbPU"); 
 
@@ -33,8 +33,7 @@ public class BookSessionBean implements BookSessionBeanLocal {
     }
 
     @Override
-    public ArrayList<Book> searchBookByName(String bookName) {
-        
+    public ArrayList<Book> searchBookByName(String bookName) {        
         EntityManager em=emf.createEntityManager();  
         Query query = em.createNamedQuery("Books.findByBookName");
         query.setParameter("bookName", bookName);                
@@ -51,5 +50,4 @@ public class BookSessionBean implements BookSessionBeanLocal {
         em.remove(book);
         em.getTransaction().commit();
     }
-    
 }

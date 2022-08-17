@@ -14,8 +14,8 @@ import models.Book;
  * @author w11
  */
 @Local
-public interface BookSessionBeanLocal {
-    public ArrayList<Book> findAll();
-    public ArrayList<Book> searchBookByName(String bookName);
-    public void removeBookById(int id);
+public interface BookSessionLocal {
+    ArrayList<Book> findAll();
+    ArrayList<Book> searchBookByName(String bookName);
+    void removeBookById(int id);
 }
