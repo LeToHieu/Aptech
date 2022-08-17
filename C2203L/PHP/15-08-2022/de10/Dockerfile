@@ -1,6 +1,4 @@
-FROM php:zts-alpine3.16
-WORKDIR /code
-# RUN apk add --no-cache gcc musl-dev linux-headers
-EXPOSE 8080
-COPY . .
-CMD ["php -S localhost:8080 -t ."]
+FROM php:8.1-apache
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN docker-php-ext-install pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+RUN apt-get update && apt-get upgrade -y

@@ -24,7 +24,7 @@ try {
 		}
 		//echo "<p>Create table ".TABLE_ABC12USERS." successfully</p>";				
 	}
-} catch (PDOException $e) {
+} catch (PDOException $e) {	
 	echo $e->getMessage();
 } finally {
     //do nothing

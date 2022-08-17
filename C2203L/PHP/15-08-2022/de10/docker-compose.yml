@@ -3,12 +3,12 @@ services:
   php:
     build: 
       context: ./
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile    
     container_name: php-container
     ports:
-      - "8083:5000"
+      - "8083:80"
     volumes:
-      - .:/code
+      - .:/var/www/html/
     networks:
       - backend
     depends_on:
@@ -19,14 +19,27 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: Abc123456789
+      MYSQL_DATABASE: abc12      
     volumes:
       - ./db:/var/lib/mysql
+      - ./init_database.sql:/data/application/init_database.sql
+    ports:
+      - "3307:3306"
+    command: --init-file /data/application/init_database.sql
+    networks:
+      - backend
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin-container
+    restart: always
+    ports:
+      - 8084:80
+    environment:
+      PMA_HOST: mysql-container
     networks:
       - backend
 networks:
   backend:
     name: php-mysql-backend
-###
 
-###
 # docker compose -f ./docker-compose.yml up
