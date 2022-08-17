@@ -4,6 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 .o
 # User-specific files
+C2203L/PHP/15-08-2022/de10/db
+./C2203L/PHP/15-08-2022/de10/db
 *.xxx
 *.rsuser
 *.mdf
