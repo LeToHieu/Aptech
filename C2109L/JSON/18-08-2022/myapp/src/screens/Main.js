@@ -4,9 +4,30 @@ import {InputGroup,Form, Col,
     Row, Dropdown} from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
+import { useState, useEffect } from "react";
 
 function Main() {
-    //JSX
+    const [student, setStudent] = useState({}) //state is immutable
+    
+    const [students, setStudents] = useState([
+        {
+            name: 'Nguyen Van A',
+            class: "C2019L",
+            DOB: '1970-12-25',
+            gender:'male',
+            language: ['English', 'German']
+        },
+        {
+            name: 'Ngdmdikjfen Van A',
+            class: "C2233L",
+            DOB: '2000-12-25',
+            gender:'Female',
+            language: ['English', 'Russia']
+        }
+    ])
+    useEffect(() => {
+        debugger
+    })
     return <div className="container">
         <h1>Input student information</h1>
         <Row className="mb-3">
@@ -14,7 +35,11 @@ function Main() {
             Student Name
             </Form.Label>
             <Col sm="10">
-                <Form.Control placeholder="Enter your name" />
+                <Form.Control 
+                    onChange={(event) => {
+                        debugger
+                    }}
+                    placeholder="Enter your name" />
             </Col>
         </Row>        
         <Row className="mb-3">
@@ -28,7 +53,7 @@ function Main() {
 
                         }} //when day is clicked
                         onChange={() => {
-
+                            debugger
                         }} //only when value has changed
                     />
             </Col>
@@ -101,8 +126,15 @@ function Main() {
             </Row>                                
             </Col>
         </Row>
-        
-        <StudentList />
+        <Button 
+            onClick={()=>{
+                debugger                
+            }}
+            className="btn ms-2" 
+            variant="outline-primary">Insert Student</Button>  
+        <StudentList students={students} doSomething = {() => {
+            debugger
+        }}/>
     </div>
 }
 export default Main

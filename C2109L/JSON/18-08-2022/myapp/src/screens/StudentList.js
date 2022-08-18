@@ -1,35 +1,46 @@
-import {Table} from 'react-bootstrap';
-function StudentList() {
+import {Table, Button} from 'react-bootstrap';
+function StudentList(props) {
+    // let students = props.students
+    // let doSomething = props.doSomething
+    //destructuring
+    const {students, doSomething} = props
+    //debugger
     return <div>
         <Table striped bordered hover>
             <thead>
                 <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Language</th>
+                <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <td>3</td>
-                <td colSpan={2}>Larry the Bird</td>
-                <td>@twitter</td>
-                </tr>
+                {
+                    students.map(eachStudent => {
+                        //debugger
+                        return <tr>
+                            <td>{eachStudent.name}</td>
+                            <td>{eachStudent.class}</td>
+                            <td>{eachStudent.DOB}</td>
+                            <td>{eachStudent.gender}</td>
+                            <td>{eachStudent.language}</td>
+                            <td></td>
+                        </tr>
+                    })
+                }
+                               
         </tbody>
     </Table>
+    <Button 
+    onClick={()=>{
+        debugger
+        doSomething()
+    }}
+    className="btn ms-2" 
+    variant="outline-primary">Do Something</Button>  
     </div>
 }
 export default StudentList
