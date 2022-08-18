@@ -10,7 +10,7 @@ namespace EAP_Cxxx_NguyenVanA.Models
     {        
         public int CustomerId { get; set; }
         [Required]
-        [StringLength(32, MinimumLength =3)]
+        [StringLength(32, MinimumLength =3, ErrorMessage ="Length must be 3 to 30 characters")]
         public string FullName { get; set; }
         [Required]
         [DataType(DataType.Date)]
@@ -21,6 +21,8 @@ namespace EAP_Cxxx_NguyenVanA.Models
         [EmailAddress]
         public string Email { get; set; }
         [Required]
+        [StringLength(20, MinimumLength = 8)]
+        [UsernameAttribute]
         public string UserName { get; set; }
         [Required]
         public string Password { get; set; }
