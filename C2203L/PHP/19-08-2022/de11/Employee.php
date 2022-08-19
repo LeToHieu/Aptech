@@ -1,10 +1,10 @@
 <?php
 //echo "This is point class";
 class Employee {
-    private $employeeNo;
-    private $employeeName;
-    private $post;
-    private $salary;
+    public $employeeNo;
+    public $employeeName;
+    public $post;
+    public $salary;
     public function __construct(
         $employeeNo,
         $employeeName = "",
@@ -16,5 +16,16 @@ class Employee {
         $this->post = $post;
         $this->salary = $salary;
     }       
+    //factory method
+    public static function fromDictionary($dictionary) {        
+        return $dictionary == null ? 
+                new Employee() :
+                new Employee($dictionary['empno'],
+                        $dictionary['ename'],
+                        $dictionary['post'],
+                        $dictionary['salary']
+        );
+    }
+    
 }
 ?>
