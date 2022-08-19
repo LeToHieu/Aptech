@@ -38,6 +38,11 @@ function Main() {
                 <Form.Control 
                     onChange={(event) => {
                         debugger
+                        //student.name = event.target.value //NO!
+                        setStudent({
+                            ...student, //spread operator
+                            name: event.target.value
+                        })
                     }}
                     placeholder="Enter your name" />
             </Col>
