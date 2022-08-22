@@ -25,6 +25,30 @@ services:
       PMA_HOST: mysql-container
     networks:
       - backend
+  webserver:
+    image: nginx:alpine
+    container_name: nginx-container
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8085:80"
+      - "443:443"
+    networks:
+      - backend
+  php_laravel:
+    build: 
+      context: ./
+      dockerfile: ./DockerfileLaravel    
+    image: sunlight4d/php-laravel
+    container_name: php-laravel-container    
+    ports:
+      - "8086:80"
+    volumes:
+      - .:/var/www/html/
+    networks:
+      - backend
+    depends_on:
+      - mysql
   php:
     build: 
       context: ./
@@ -41,5 +65,6 @@ services:
 networks:
   backend:
     name: php-mysql-backend
+    driver: bridge
 
 # docker compose -f ./docker-compose.yml up
