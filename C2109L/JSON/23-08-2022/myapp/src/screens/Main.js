@@ -5,7 +5,12 @@ import {InputGroup,Form, Col,
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import { useState, useEffect } from "react";
-
+function convertDateToString(date) {    
+    const year = date.getFullYear()
+    const month = date.getMonth()+1
+    const day = date.getDate()
+    return `${year}-${month}-${day}`    
+}
 function Main() {
     const [student, setStudent] = useState({}) //state is immutable
     const [allLanguages, setAllLanguages] = useState([
@@ -43,7 +48,7 @@ function Main() {
         }
     ])
     useEffect(() => {
-        debugger
+        //debugger
     })
     return <div className="container">
         <h1>Input student information</h1>
@@ -54,7 +59,7 @@ function Main() {
             <Col sm="10">
                 <Form.Control 
                     onChange={(event) => {
-                        debugger
+                        //debugger
                         //student.name = event.target.value //NO!
                         setStudent({
                             ...student, //spread operator
@@ -72,11 +77,11 @@ function Main() {
                 <DatePicker
                         placeholderText="Enter your DOB"                        
                         onChange={(selectedDate) => {
-                            debugger
+                            //debugger
                             //student.DOB = selectedDate
                             setStudent({
                                 ...student,
-                                DOB: selectedDate
+                                DOB: convertDateToString(selectedDate)
                             })
                         }} //only when value has changed
                     />
@@ -165,15 +170,16 @@ function Main() {
         </Row>
         <Button 
             onClick={()=>{                
-                //let selectedLanguages = allLanguages.filter(item => item.isSelected == true)
-                debugger  
+                //let selectedLanguages = allLanguages.filter(item => item.isSelected == true)                
                 setStudents(students.concat(student))
+                debugger  
             }}
             className="btn ms-2" 
             variant="outline-primary">Insert Student</Button>  
         <StudentList students={students} doSomething = {() => {
-            debugger
+            //debugger
         }}/>
     </div>
 }
+
 export default Main
